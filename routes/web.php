@@ -4,9 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\Admin\JournalistController;
-use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Front\MainController;
+use App\Http\Controllers\Admin\ArticleController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\JournalistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +45,18 @@ All Admin Routes List
 Route::prefix('admin')->middleware(['auth', 'user-access:admin'])->group(function () {
 
     Route::get('/home', [AdminController::class, 'adminHome'])->name('admin.home');
+    Route::prefix('article')->group(function () {
+        Route::get('/add', [ArticleController::class, 'addArticle'])->name('admin.article.add');
+        Route::get('/pending', [ArticleController::class, 'pendingArticle'])->name('admin.article.pending');
+        Route::post('/create', [ArticleController::class, 'storeArticle'])->name('admin.article.create');
+        Route::get('/list', [ArticleController::class, 'listArticle'])->name('admin.article.list');
+        Route::post('/ckeditor/upload', [ArticleController::class, 'upload'])->name('ckeditor.upload');
+        Route::get('/edit/{id}', [ArticleController::class, 'editArticle'])->name('admin.article.edit');
+        Route::post('/update/{id}', [ArticleController::class, 'updateArticle'])->name('admin.article.update');
+        Route::delete('/delete/{id}', [ArticleController::class, 'deleteArticle'])->name('admin.article.delete');
+    });
+
+
     Route::prefix('category')->group(function () {
         Route::get('/list', [CategoryController::class, 'listCategory'])->name('admin.category.list');
         Route::get('/add', [CategoryController::class, 'addCategory'])->name('admin.category.add');
@@ -55,6 +68,7 @@ Route::prefix('admin')->middleware(['auth', 'user-access:admin'])->group(functio
     Route::prefix('journalist')->group(function () {
 
         Route::get('/add', [JournalistController::class, 'addJournalist'])->name('admin.journalist.add');
+        Route::get('/pending', [JournalistController::class, 'pendingJournalist'])->name('admin.journalist.pending');
         Route::post('/create', [JournalistController::class, 'storeJournalist'])->name('admin.journalist.create');
         Route::get('/list', [JournalistController::class, 'listJournalist'])->name('admin.journalist.list');
         Route::get('/edit/{id}', [JournalistController::class, 'editJournalist'])->name('admin.journalist.edit');
@@ -68,7 +82,16 @@ Route::prefix('admin')->middleware(['auth', 'user-access:admin'])->group(functio
 All Admin Routes List
 --------------------------------------------
 --------------------------------------------*/
-Route::middleware(['auth', 'user-access:manager'])->group(function () {
+Route::prefix('manager')->middleware(['auth', 'user-access:manager'])->group(function () {
 
-    Route::get('/manager/home', [HomeController::class, 'managerHome'])->name('manager.home');
+    Route::get('/home', [HomeController::class, 'managerHome'])->name('manager.home');
+    Route::prefix('agent')->group(function () {
+        Route::get('/add', [JournalistController::class, 'addAgent'])->name('manager.agent.add');
+        Route::get('/list', [JournalistController::class, 'addAgent'])->name('manager.agent.list');
+    });
+
+    Route::prefix('article')->group(function () {
+        Route::get('/add', [JournalistController::class, 'addAgent'])->name('manager.article.add');
+        Route::get('/list', [JournalistController::class, 'addAgent'])->name('manager.article.list');
+    });
 });

@@ -23,7 +23,9 @@ class MainController extends Controller
 
     public function getSingleArticle(Request $request)
     {
-        return view('single-article');
+        $data['categories'] = Category::where(['is_delete' => '0', 'status' => 'active'])->get();
+
+        return view('single-article', $data);
     }
     public function getArticleByCategory(Request $request, $id)
     {

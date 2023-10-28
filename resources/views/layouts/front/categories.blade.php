@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-category">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="{{url('/')}}">
             <span class="material-symbols-outlined" style="font-size: 26px;">
                 home
             </span>

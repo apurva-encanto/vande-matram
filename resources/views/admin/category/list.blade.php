@@ -61,7 +61,7 @@
                                                     <select id="demo-foo-filter-status" class="form-select form-select-sm">
                                                         <option value="">Show all</option>
                                                         <option value="active">Active</option>
-                                                        <option value="disabled">Disabled</option>
+                                                        <option value="inactive">Inactive</option>
                                                         <option value="suspended">Suspended</option>
                                                     </select>
                                                 </div>

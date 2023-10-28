@@ -16,11 +16,11 @@
                                             
                                             
                                             <li class="breadcrumb-item"><a href="{{route('admin.home')}}"> Dashoard</a></li> 
-                                            <li class="breadcrumb-item active">Journalist's List</li>
+                                            <li class="breadcrumb-item active">Article's List</li>
                                         </ol>
                                     </div>
                                    
-                                    <h4 class="page-title">View Journalist's List</h4>
+                                    <h4 class="page-title">View Article's List</h4>
                                 </div>
                             </div>
                         </div>     
@@ -45,11 +45,11 @@
                                                     
                                                     <div class="w-100">
                                                         <h5 class="mt-0 mb-0 font-15">
-                                                            View Journalist's List
+                                                            View Article's List
                                                         </h5> 
                                                         
                                                     </div>
-                                                    <a href="{{route('admin.journalist.add')}}" class="btn btn-primary">Add</a>
+                                                    <a href="{{route('admin.article.add')}}" class="btn btn-primary">Add</a>
                                                 </div>
 
                                             </div>  
@@ -81,46 +81,41 @@
                                             <table id="demo-foo-filtering" class="table table-bordered toggle-circle mb-0" data-page-size="7">
                                                 <thead>
                                                 <tr>
-                                                    <th data-toggle="true" style="background: #eee;">First Name</th>
-                                                    <th style="background: #eee;">Last Name</th>
-                                                    <th style="background: #eee;" data-hide="phone">Job Role</th>
+                                                    <th data-toggle="true" style="background: #eee;">Name</th>
+                                                    <th style="background: #eee;">Slug</th>
+                                                    <th style="background: #eee;">Status</th>
                                                     <th style="background: #eee;">Action</th>
-                                                    <th style="background: #eee;" data-hide="phone, tablet">Date of Join</th>
-                                                    <th  style="background: #eee;" data-hide="phone, tablet">Status</th>
-                                                </tr>
+                                                    </tr>
                                                 </thead>
                                                 <tbody>
 
-                                                @foreach ($users as $user )
+                                                @foreach ($articles as $article )
                                                 <tr>
-                                                    <td>{{$user->first_name}}</td>
-                                                    <td>{{$user->last_name}}</td>
-                                                    <td class="text-uppercase">{{$user->role}}</td>
-                                                    <td>
-                                                        <a href="{{ route('admin.journalist.edit',$user->user_id) }}" class="btn btn-xs btn-info mb-1"><i class="mdi mdi-pencil"></i></a>
-                                                        <a  data-bs-toggle="modal" data-bs-target="#danger-alert-modal{{$user->id}}" class="btn btn-xs btn-danger mb-1"><i class="mdi mdi-delete"></i></a>
-                                                    </td>
-                                                    <td>{{$user->start_date}}</td>
-                                                    <td>
-                                                        @if($user->status=='active')
+                                                    <td>{{$article->title}}</td>
+                                                    <td>{{$article->title_slug}}</td>
+                                                    <td>  @if($article->status=='active')
                                                         <span class="badge label-table bg-success">Active</span>
                                                         @else
                                                         <span class="badge label-table bg-danger">Inactive</span>
-                                                        @endif
+                                                        @endif</td>
+                                                    <td>
+                                                        <a href="{{ route('admin.article.edit',$article->id) }}" class="btn btn-xs btn-info mb-1"><i class="mdi mdi-pencil"></i></a>
+                                                        <a  data-bs-toggle="modal" data-bs-target="#danger-alert-modal{{$article->id}}" class="btn btn-xs btn-danger mb-1"><i class="mdi mdi-delete"></i></a>
                                                     </td>
+                                                   
                                                 </tr>
 
-                                                <div id="danger-alert-modal{{$user->id}}" class="modal fade" tabindex="-1" style="display: none;" aria-hidden="true">
+                                                <div id="danger-alert-modal{{$article->id}}" class="modal fade" tabindex="-1" style="display: none;" aria-hidden="true">
                                                     <div class="modal-dialog modal-sm">
                                                         <div class="modal-content modal-filled bg-danger">
                                                             <div class="modal-body p-4">
                                                                 <div class="text-center">
-                                                                <form action="{{ route('admin.journalist.delete',$user->user_id) }}" method="POST">
+                                                                <form action="{{ route('admin.article.delete',$article->id) }}" method="POST">
                                                                     @csrf
                                                                     @method('DELETE')
                                                                     <i class="dripicons-wrong h1 text-white"></i>
                                                                     <h4 class="mt-2 text-white">Delete User</h4>
-                                                                    <p class="mt-3 text-white">Are you sure you want to delete <strong>{{$user->name}}</strong> .</p>
+                                                                    <p class="mt-3 text-white">Are you sure you want to delete <strong>{{$article->title}}</strong> .</p>
                                                                     <button type="submit" class="btn btn-light my-2" >Continue</button>
                                                                 </form>  
                                                                 </div>

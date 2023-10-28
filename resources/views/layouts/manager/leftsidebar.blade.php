@@ -16,25 +16,7 @@
                     <span> Dashboards </span>
                 </a> 
             </li>
-            <li>
-                <a href="#Article" data-bs-toggle="collapse">
-                    <i class="mdi mdi-clipboard-multiple-outline"></i>    
-                    <span>  Category </span>
-                    <span class="menu-arrow"></span>
-                </a>
-                <div class="collapse " id="Article">
-                    <ul class="nav-second-level">
-                        <li>
-                            <a href="{{route('admin.category.add')}}">Add News Category</a>
-                        </li>
-                        <li>
-                            <a href="{{route('admin.category.list')}}">Category's List</a>
-                        </li>
-                        
-                    </ul>
-                </div>
-            </li>
-
+           
              
             <li>
                 <a href="#Article" data-bs-toggle="collapse">
@@ -45,13 +27,10 @@
                 <div class="collapse " id="Article">
                     <ul class="nav-second-level">
                         <li>
-                            <a href="{{route('admin.article.add')}}">Add New Article</a>
+                            <a href="{{route('manager.article.add')}}">Add New Article</a>
                         </li>
                         <li>
-                            <a href="{{route('admin.article.pending')}}">Pending Article</a>
-                        </li>
-                        <li>
-                            <a href="{{route('admin.article.list')}}">Article's List</a>
+                            <a href="{{route('manager.article.list')}}">Article's List</a>
                         </li>
                         
                     </ul>
@@ -68,19 +47,16 @@
             <li>
                 <a href="#sidebarCrm" data-bs-toggle="collapse">
                     <i class="mdi mdi-account-multiple"></i>    
-                    <span>  Journalist </span>
+                    <span>  Agent </span>
                     <span class="menu-arrow"></span>
                 </a>
                 <div class="collapse " id="sidebarCrm">
                     <ul class="nav-second-level">
                         <li>
-                            <a href="{{route('admin.journalist.add')}}">Add New Journalist</a>
+                            <a href="{{route('manager.agent.add')}}">Add New Agent</a>
                         </li>
                         <li>
-                            <a href="{{route('admin.journalist.pending')}}">Pending Journalist</a>
-                        </li>
-                        <li>
-                            <a href="{{route('admin.journalist.list')}}">Journalist's List</a>
+                            <a href="{{route('manager.agent.list')}}">Agent's List</a>
                         </li>
                         
                     </ul>

@@ -132,8 +132,12 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function deleteCategory($id)
     {
-        //
+
+        $category = Category::find($id);
+        $category->is_delete = '1';
+        $category->save();
+        return redirect()->route('admin.category.list')->with('success', 'Category Deleted Successfully');
     }
 }

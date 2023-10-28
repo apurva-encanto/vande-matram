@@ -275,7 +275,7 @@ $(document).ready(function(){
         });
     });
 
-    function ImageInput(element){
+function ImageInput(element){
   // Variables
   var $wrapper = element;
   var $file = $wrapper.querySelector('input[type=file]');
