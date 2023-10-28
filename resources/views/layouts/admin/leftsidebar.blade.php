@@ -45,10 +45,10 @@
                 <div class="collapse " id="Article">
                     <ul class="nav-second-level">
                         <li>
-                            <a href="crm-dashboard.html">Add New Article</a>
+                            <a href="{{route('admin.article.add')}}">Add New Article</a>
                         </li>
                         <li>
-                            <a href="crm-contacts.html">Article's List</a>
+                            <a href="{{route('admin.article.list')}}">Article's List</a>
                         </li>
                         
                     </ul>
