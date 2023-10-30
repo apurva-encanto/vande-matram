@@ -16,11 +16,11 @@
                                             
                                             
                                             <li class="breadcrumb-item"><a href="{{route('admin.home')}}"> Dashoard</a></li> 
-                                            <li class="breadcrumb-item active">Article's List</li>
+                                            <li class="breadcrumb-item active">Pending Article's List</li>
                                         </ol>
                                     </div>
                                    
-                                    <h4 class="page-title">View Article's List</h4>
+                                    <h4 class="page-title">Pending Article's List</h4>
                                 </div>
                             </div>
                         </div>     
@@ -45,7 +45,7 @@
                                                     
                                                     <div class="w-100">
                                                         <h5 class="mt-0 mb-0 font-15">
-                                                            View Article's List
+                                                            Pending Article's List
                                                         </h5> 
                                                         
                                                     </div>
@@ -126,7 +126,7 @@
                                                                     @csrf
                                                                     @method('DELETE')
                                                                     <i class="dripicons-wrong h1 text-white"></i>
-                                                                    <h4 class="mt-2 text-white">Delete Article</h4>
+                                                                    <h4 class="mt-2 text-white">Delete User</h4>
                                                                     <p class="mt-3 text-white">Are you sure you want to delete <strong>{{$article->title}}</strong> .</p>
                                                                     <button type="submit" class="btn btn-light my-2" >Continue</button>
                                                                 </form>  

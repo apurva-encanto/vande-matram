@@ -1,4 +1,4 @@
-@extends('layouts.admin.index')
+@extends('layouts.manager.index')
 @push('custom-style')
 <link rel="stylesheet" href="{{asset('assets/libs/dropzone/min/dropzone.min.css')}}"> 
 <link rel="stylesheet" href="{{asset('assets/libs/select2/css/select2.min.css')}}">   
@@ -61,7 +61,7 @@
 
                                         <div class="row mt-3">
                                             <div class="col-xl-6">
-                                                <form id="myForm" class="needs-validation" method="post" enctype="multipart/form-data" novalidate action="{{ route('admin.article.update',$article->id) }}" >
+                                                <form id="myForm" class="needs-validation" method="post" enctype="multipart/form-data" novalidate action="{{ route('manager.article.update',$article->id) }}" >
                                                     @csrf
                                                     <div class="mb-3">
                                                         <label for="Title" class="form-label">Title</label>
@@ -102,21 +102,6 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Approve Article</label>
-                                                       <select name="is_approved" id="" class="form-control">
-                                                           <option value="1" @if($article->is_approved == '1')selected @endif>Approved</option>
-                                                           <option value="0" @if($article->is_approved == '0')selected @endif >Not Approved</option>
-                                                       </select>
-                                                        <div class="invalid-feedback">
-                                                         Please enter a Publish Date.
-                                                        </div>
-
-                                                        @error('publish_date')
-                                                            <div class="text-danger">{{ $message }}</div>
-                                                        @enderror
-                                                    </div>
-
                                             </div> <!-- end col-->
                                             
                                             <div class="col-xl-6">
@@ -139,7 +124,7 @@
 
                                                         <div class="mb-3">
                                                             <label class="form-label">Publish Status</label>
-                                                            {{-- <p class="text-muted font-14">You can set time for publish.</p> --}}
+                                                            {{-- <p class="text-muted font-14">You can set time for publish.</p>s --}}
 
                                                            <select name="publish" id="" class="form-control">
                                                                <option value="1" @if($article->publish == '1')selected @endif>Publish</option>
@@ -364,7 +349,7 @@ document.querySelectorAll('.image-input').forEach(_ => {
     CKEDITOR.replace('editor1', {
     });
     function redirectToRoute() {
-        window.location.href = "{{ route('admin.journalist.list') }}";
+        window.location.href = "{{ route('manager.article.list') }}";
     }
 </script>
 

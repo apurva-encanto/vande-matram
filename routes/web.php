@@ -32,7 +32,7 @@ Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/admin-logincheck', [LoginController::class, 'logincheck'])->name('admin.logincheck');
 
-Route::middleware(['auth', 'user-access:user'])->group(function () {
+Route::middleware(['auth', 'user-access:agent'])->group(function () {
 
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 });
@@ -87,11 +87,19 @@ Route::prefix('manager')->middleware(['auth', 'user-access:manager'])->group(fun
     Route::get('/home', [HomeController::class, 'managerHome'])->name('manager.home');
     Route::prefix('agent')->group(function () {
         Route::get('/add', [JournalistController::class, 'addAgent'])->name('manager.agent.add');
-        Route::get('/list', [JournalistController::class, 'addAgent'])->name('manager.agent.list');
+        Route::post('/create', [JournalistController::class, 'createAgent'])->name('manager.agent.create');
+        Route::get('/list', [JournalistController::class, 'listAgent'])->name('manager.agent.list');
+        Route::get('/edit/{id}', [JournalistController::class, 'editAgent'])->name('manager.agent.edit');
+        Route::post('/update/{id}', [JournalistController::class, 'updateAgent'])->name('manager.agent.update');
+        Route::delete('/delete/{id}', [JournalistController::class, 'deleteAgent'])->name('manager.agent.delete');
     });
 
     Route::prefix('article')->group(function () {
-        Route::get('/add', [JournalistController::class, 'addAgent'])->name('manager.article.add');
-        Route::get('/list', [JournalistController::class, 'addAgent'])->name('manager.article.list');
+        Route::get('/add', [ArticleController::class, 'addManagerArticle'])->name('manager.article.add');
+        Route::get('/list', [ArticleController::class, 'listManagerArticle'])->name('manager.article.list');
+        Route::post('/create', [ArticleController::class, 'StoreManagerArticle'])->name('manager.article.create');
+        Route::get('/edit/{id}', [ArticleController::class, 'editManagerArticle'])->name('manager.article.edit');
+        Route::post('/update/{id}', [ArticleController::class, 'updateManagerArticle'])->name('manager.article.update');
+        Route::delete('/delete/{id}', [ArticleController::class, 'deleteManagerArticle'])->name('manager.article.delete');
     });
 });

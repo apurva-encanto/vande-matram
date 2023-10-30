@@ -23,12 +23,30 @@ class LoginController extends Controller
 
 
         if (auth()->attempt(array('email' => $input['email'], 'password' => $input['password']))) {
-            if (auth()->user()->role == 'admin') {
-                return redirect()->route('admin.home');
-            } else if (auth()->user()->role == 'manager') {
-                return redirect()->route('manager.home');
+
+            if (auth()->user()->is_approved == '1' && auth()->user()->is_delete == '0' && auth()->user()->status == 'active') {
+                if (auth()->user()->role == 'admin') {
+                    return redirect()->route('admin.home');
+                } else if (auth()->user()->role == 'manager') {
+                    return redirect()->route('manager.home');
+                } else {
+                    return redirect()->route('home');
+                }
             } else {
-                return redirect()->route('home');
+
+                if (auth()->user()->is_approved == '0') {
+                    Auth::logout();
+                    return redirect()->route('admin.login')->with('error', 'Your account has not been approved yet.');
+                }
+                if (auth()->user()->is_delete == '1') {
+                    Auth::logout();
+                    return redirect()->route('admin.login')->with('error', 'Your account has been deleted by Authorite.');
+                }
+
+                if (auth()->user()->status == 'inactive') {
+                    Auth::logout();
+                    return redirect()->route('admin.login')->with('error', 'Your account is inactive.');
+                }
             }
         } else {
             return redirect()->route('admin.login')

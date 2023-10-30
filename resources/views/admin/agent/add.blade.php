@@ -19,12 +19,12 @@
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Vandemataram</a></li> 
                                             
                                             
-                                            <li class="breadcrumb-item"><a href="{{route('admin.home')}}"> Dashoard</a></li> 
-                                            <li class="breadcrumb-item active">Edit Journalist</li>
+                                            <li class="breadcrumb-item"><a href="dashboard.html"> Dashoard</a></li> 
+                                            <li class="breadcrumb-item active">Add New Journalist</li>
                                         </ol>
                                     </div>
                                    
-                                    <h4 class="page-title">Edit Journalist</h4>
+                                    <h4 class="page-title">Add New Journalist</h4>
                                 </div>
                             </div>
                         </div>     
@@ -49,29 +49,30 @@
                                                     
                                                     <div class="w-100">
                                                         <h5 class="mt-0 mb-0 font-15">
-                                                        Edit Journalist
+                                                            Add New Journalist
                                                         </h5> 
                                                     </div>
                                                    
                                                 </div>
                                             </div>    
                                         </div>
+
                                         <div class="row mt-3">
                                             <div class="col-xl-6">
-                                                <form class="needs-validation" method="post" enctype="multipart/form-data" novalidate action="{{ route('admin.journalist.update',$user->user_id) }}" >
+                                                <form class="needs-validation" method="post" enctype="multipart/form-data" novalidate action="{{ route('admin.journalist.create')}}" >
                                                     @csrf
                                                     <div class="mb-3">
                                                         <label for="First Name" class="form-label">First Name</label>
-                                                        <input type="text" value="{{$user['first_name']}}"  name="first_name" class="form-control" placeholder="First Name" required>
+                                                        <input type="text" value="{{old('first_name')}}"  name="first_name" class="form-control" placeholder="First Name" required>
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="Last Name" class="form-label">Last Name</label>
-                                                        <input type="text" value="{{$user['last_name']}}"   name="last_name" class="form-control" placeholder="Last Name" required>
+                                                        <input type="text" value="{{old('last_name')}}"   name="last_name" class="form-control" placeholder="Last Name" required>
                                                     </div>
                                                     
                                                     <div class="mb-3">
                                                         <label for="Email Id" class="form-label">Email Id</label>
-                                                        <input type="email" value="{{$user['email']}}" name="email" class="form-control" placeholder="Email Id" required>
+                                                        <input type="email" value="{{old('email')}}" name="email" class="form-control" placeholder="Email Id" required>
                                                         @error('email')
                                                             <div class="text-danger mt-1">{{ $message }}</div>
                                                         @enderror
@@ -82,7 +83,7 @@
 
                                                     <div class="mb-3">
                                                         <label for="Password" class="form-label">Password</label>
-                                                        <input type="password" value=""  name="password" class="form-control" placeholder="Password" >
+                                                        <input type="password" value="{{old('password')}}"  name="password" class="form-control" placeholder="Password" required>
                                                             <div class="invalid-feedback">
                                                             Please enter a Password.
                                                             </div>
@@ -93,7 +94,7 @@
                                                     
                                                     <div class="mb-3">
                                                         <label for="Phone Number" class="form-label">Phone Number</label>
-                                                        <input type="text" value="{{$user['phone']}}"  name="phone" class="form-control" placeholder="Phone Number" required>
+                                                        <input type="text" value="{{old('phone')}}"  name="phone" class="form-control" placeholder="Phone Number" required>
                                                             <div class="invalid-feedback">
                                                               Please enter a Phone Number.
                                                             </div>
@@ -104,11 +105,11 @@
                                                     <div class="mb-3">
                                                         <label class="form-label">Role</label> <br/>
                                                         <div class="form-check form-check-inline">
-                                                            <input  value="manager" type="radio" @if ($user['role']=='manager') checked @endif id="customRadio1" required name="role" class="form-check-input">
+                                                            <input  value="manager" type="radio" id="customRadio1" required name="role" class="form-check-input">
                                                             <label class="form-check-label" for="customRadio1">City Manager</label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
-                                                            <input  value="agent" type="radio" id="customRadio2" @if ($user['role']=='agent') checked @endif  required name="role" class="form-check-input">
+                                                            <input  value="agent" type="radio" id="customRadio2" required name="role" class="form-check-input">
                                                             <label class="form-check-label" for="customRadio2">City Agent</label>
                                                         </div>
                                                     </div>
@@ -116,7 +117,7 @@
                                                     
                                                     <div class="mb-3">
                                                         <label for="Last Name" class="form-label">Area</label>
-                                                        <input type="text" value="{{$user['area']}}"  name="area" class="form-control" required placeholder="Area">
+                                                        <input type="text" value="{{old('area')}}"  name="area" class="form-control" required placeholder="Area">
                                                    
                                                                 <div class="invalid-feedback">
                                                                  Please enter a Area.
@@ -133,7 +134,7 @@
                                                   
                                                     <div class="mb-3">
                                                         <label for="project-overview" class="form-label">Address</label>
-                                                        <textarea  value="{{old('address')}}" class="form-control" name="address" id="project-overview" required rows="5" placeholder="Address">{{$user['address']}}</textarea>
+                                                        <textarea  value="{{old('address')}}" class="form-control" name="address" id="project-overview" required rows="5" placeholder="Address"></textarea>
                                                   
                                                                 <div class="invalid-feedback">
                                                                  Please enter a Address.
@@ -145,7 +146,7 @@
                                                             <!-- Date View -->
                                                             <div class="mb-3">
                                                                 <label class="form-label">Start Date</label>
-                                                                <input  value="{{$user['start_date']}}" type="date" class="form-control" name="start_date" required data-toggle="flatpicker"  placeholder="June 9, 2023">
+                                                                <input  value="{{old('start_date')}}" type="date" class="form-control" name="start_date" required data-toggle="flatpicker" placeholder="June 9, 2023">
                                                     
                                                                 <div class="invalid-feedback">
                                                                  Please enter a Start Date.
@@ -157,85 +158,18 @@
                                                             </div>
 
                                                         </div>
-                                                        <div class="col-lg-6">
-                                                            <div class="mb-3">
-                                                                <label class="form-label">Change Status</label>
-                                                                <select name="status" class="form-control" id="">
-                                                                    <option @if($user['status'] == 'active') selected @endif value="active">Active</option>
-                                                                    <option @if($user['status'] == 'inactive') selected @endif value="inactive">Inactive</option>
-                                                                </select>
-                                                                
-
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-lg-6">
-                                                            <div class="mb-3">
-                                                                <label class="form-label">Aprrove Status</label>
-                                                                <select name="is_approved" class="form-control" id="">
-                                                                    <option   value="1">Approved</option>
-                                                                    <option   value="0">No Approved</option>  
-                                                                </select>
-
-                                                            </div>
-                                                        </div>                                                           
 
                                                     </div>
 
-                                                    <div id="selectRole" class="mb-3 @if ($user['role']=='agent') d-none @endif  ">
-                                                        @php 
-                                                         $selectedAgents=explode("|",$user['team_member_id']);
-                                                        @endphp
-                                                        <label for="project-overview" class="form-label">Team Members</label>
-                                                        <select class="form-control select2" name="team_member_id[]" multiple id="product-category">
-                                                            <option disabled >Select</option>
-                                                            <optgroup label="Agents">
-                                                                @foreach ($agents as $team )
-
-                                                                <option value="{{$team->id}}" 
-                                                                @foreach ($selectedAgents as $teams_id)
-                                                                    @if($team->id == $teams_id && $user['user_id'] == $team->is_assign) selected="selected" @endif
-                                                                    @if($team->is_assign >0 ) disabled="disabled" @endif
-                                                                @endforeach>{{$team->name}}</option>                                                                    
-                                                                @endforeach
-                                                            </optgroup>
-                                                         
-                                                        </select>
-                                                
-
-                                                    <div class="mt-2" id="tooltips-container">
-                                                        <a href="javascript:void(0);" class="d-inline-block">
-                                                            <img src="{{ asset('assets/images/users/user-6.jpg')}}" class="rounded-circle avatar-xs" alt="friend" data-bs-container="#tooltips-container" data-bs-toggle="tooltip" data-bs-placement="top" title="Mat Helme">
-                                                        </a>
-                
-                                                        <a href="javascript:void(0);" class="d-inline-block">
-                                                            <img src="{{ asset('assets/images/users/user-7.jpg')}}" class="rounded-circle avatar-xs" alt="friend" data-bs-container="#tooltips-container" data-bs-toggle="tooltip" data-bs-placement="top" title="Michael Zenaty">
-                                                        </a>
-
-                                                        <a href="javascript:void(0);" class="d-inline-block">
-                                                            <img src="{{ asset('assets/images/users/user-8.jpg')}}" class="rounded-circle avatar-xs" alt="friend" data-bs-container="#tooltips-container" data-bs-toggle="tooltip" data-bs-placement="top" title="James Anderson">
-                                                        </a>
-            
-                                                        <a href="javascript:void(0);" class="d-inline-block">
-                                                            <img src="{{ asset('assets/images/users/user-4.jpg')}}" class="rounded-circle avatar-xs" alt="friend" data-bs-container="#tooltips-container" data-bs-toggle="tooltip" data-bs-placement="top" title="Lorene Block">
-                                                        </a>
-                
-                                                        <a href="javascript:void(0);" class="d-inline-block">
-                                                            <img src="{{ asset('assets/images/users/user-5.jpg')}}" class="rounded-circle avatar-xs" alt="friend" data-bs-container="#tooltips-container" data-bs-toggle="tooltip" data-bs-placement="top" title="Mike Baker">
-                                                        </a>
-                                                    </div>
-                                                        
-                                                </div>
+                                              
                                                 <div class="my-3 mt-xl-0">
                                                 <label for="projectname" class="mb-0 form-label">Photo</label>
 
                                                      <p class="text-muted font-14">Recommended thumbnail size 800x400 (px).</p>
                                                         <label class="image-input">
                                                             <input type="file" name="file" accept="image/png,image/jpeg" max-size="10000000">
-                       
                                                             <input type="hidden" name="">
-                                                            <img src="{{ asset('storage/uploads/user_' . $user->user_id . '/' . $user->photo) }}" alt="">
-
+                                                            <img src="" alt="">
                                                         </label>
 
                                                         @error('file')
@@ -295,17 +229,9 @@
  <script>
 
 $(document).ready(function(){
-        $('input[name="role"]').change(function(){
-            var selectedRole = $('input[name="role"]:checked').val();
-            if(selectedRole === 'manager') {                
-             $('#selectRole').removeClass('d-none')
-            } else if(selectedRole === 'agent') {                
-                $('#selectRole').addClass('d-none')
-            }
-        });
-    });
 
-    function ImageInput(element){
+
+function ImageInput(element){
   // Variables
   var $wrapper = element;
   var $file = $wrapper.querySelector('input[type=file]');
@@ -423,9 +349,11 @@ document.querySelectorAll('.image-input').forEach(_ => {
   
 });
  </script>
+
 <script>
     function redirectToRoute() {
         window.location.href = "{{ route('admin.journalist.list') }}";
     }
 </script>
+
  @endpush

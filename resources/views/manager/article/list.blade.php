@@ -1,4 +1,4 @@
-@extends('layouts.admin.index')
+@extends('layouts.manager.index')
 @section('content')
 <div class="content-page">
                 <div class="content">
@@ -102,16 +102,15 @@
                                                             @else
                                                             <span class="material-symbols-outlined text-bg-danger border-3">
                                                                 close
-                                                            </span>                                                            
-                                                        @endif
-                                                    </td>
+                                                                </span>                                                            
+                                                        @endif</td>
                                                     <td>  @if($article->status=='active')
                                                         <span class="badge label-table bg-success">Active</span>
                                                         @else
                                                         <span class="badge label-table bg-danger">Inactive</span>
                                                         @endif</td>
                                                     <td>
-                                                        <a href="{{ route('admin.article.edit',$article->id) }}" class="btn btn-xs btn-info mb-1"><i class="mdi mdi-pencil"></i></a>
+                                                        <a href="{{ route('manager.article.edit',$article->id) }}" class="btn btn-xs btn-info mb-1"><i class="mdi mdi-pencil"></i></a>
                                                         <a  data-bs-toggle="modal" data-bs-target="#danger-alert-modal{{$article->id}}" class="btn btn-xs btn-danger mb-1"><i class="mdi mdi-delete"></i></a>
                                                     </td>
                                                    
@@ -122,7 +121,7 @@
                                                         <div class="modal-content modal-filled bg-danger">
                                                             <div class="modal-body p-4">
                                                                 <div class="text-center">
-                                                                <form action="{{ route('admin.article.delete',$article->id) }}" method="POST">
+                                                                <form action="{{ route('manager.article.delete',$article->id) }}" method="POST">
                                                                     @csrf
                                                                     @method('DELETE')
                                                                     <i class="dripicons-wrong h1 text-white"></i>

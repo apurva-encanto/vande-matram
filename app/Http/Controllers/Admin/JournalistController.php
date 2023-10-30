@@ -52,6 +52,8 @@ class JournalistController extends Controller
         $user->password = Hash::make($input['password']);
         $user->role = $input['role'];
         $user->status = 'active';
+        $user->created_by = 1;
+        $user->is_approved = 1;
         $user->device_token = ' ';
         $user->save();
 
@@ -112,10 +114,25 @@ class JournalistController extends Controller
             ->select('users.*', 'journalist_details.*')
             ->where('role', '!=', 'admin')
             ->where('is_delete', '0')
+            ->where('is_approved', 1)
             ->orderBy('users.id', 'desc')
             ->get();
 
         return view('admin.journalist.list', $data);
+    }
+
+    public function pendingJournalist(Request $request)
+    {
+
+        $data['users'] = User::leftJoin('journalist_details', 'users.id', '=', 'journalist_details.user_id')
+            ->select('users.*', 'journalist_details.*')
+            ->where('role', '!=', 'admin')
+            ->where('is_delete', '0')
+            ->where('is_approved', 0)
+            ->orderBy('users.id', 'desc')
+            ->get();
+
+        return view('admin.journalist.pending', $data);
     }
 
     public function editJournalist(Request $request, $id)
@@ -173,9 +190,14 @@ class JournalistController extends Controller
         $userUpdate->phone = $input['phone'];
         $userUpdate->role = $input['role'];
         $userUpdate->status = $input['status'];
-        if (array_key_exists("password", $input)) {
+        if (!empty($input['password'])) {
             $userUpdate->password = Hash::make($input['password']);
         }
+
+        if (!empty($input['is_approved'])) {
+            $userUpdate->is_approved = $input['is_approved'];
+        }
+
         $userUpdate->save();
         User::where('is_assign', $id)->update(['is_assign' => 0]);
 
@@ -241,5 +263,203 @@ class JournalistController extends Controller
         }
 
         return redirect()->route('admin.journalist.list')->with('success', 'Journalist Deleted successfully!');
+    }
+
+    public function addAgent()
+    {
+        return view('manager.agent.add');
+    }
+
+    public function createAgent(Request $request)
+    {
+
+        $input = $request->all();
+
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email|unique:users',
+            'password' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'phone' => 'required|unique:users',
+            'start_date' => 'required',
+            'area' => 'required',
+            'address' => 'required',
+            'file' => 'required|file|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+
+        $user = new User();
+        $user->name = $input['first_name'] . ' ' . $input['last_name'];
+        $user->email = $input['email'];
+        $user->phone = $input['phone'];
+        $user->password = Hash::make($input['password']);
+        $user->role = 'agent';
+        $user->created_by = auth()->user()->id;
+        $user->is_assign = auth()->user()->id;
+        $user->is_approved = 0;
+        $user->status = 'active';
+        $user->device_token = ' ';
+        $user->save();
+
+        // Generate a dynamic folder name based on user ID or any unique identifier
+        $dynamicFolderName = 'user_' . $user->id; // Example: 'user_1'
+
+        // Check if the folder exists, create it if not
+        if (!Storage::disk('public')->exists('uploads/' . $dynamicFolderName)) {
+            Storage::disk('public')->makeDirectory('uploads/' . $dynamicFolderName);
+        }
+
+        try {
+            $file = $request->file('file');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $file->storeAs('uploads/' . $dynamicFolderName, $fileName, 'public'); // The uploaded file will be stored in storage/app/public/uploads
+        } catch (\Exception $e) {
+            $user_exists = User::find($user->id);
+            $user_exists->delete();
+            return back()->with('error', 'File upload failed: ' . $e->getMessage());
+        }
+        try {
+
+
+            $curentUser = JournalistDetail::where('user_id', auth()->user()->id)->first();
+
+            if ($curentUser->team_member_id > 0 && !empty($curentUser)) {
+                $curentUser->team_member_id = $curentUser->team_member_id . '|' . $user->id;
+            } else {
+                $curentUser->team_member_id =  $user->id;
+            }
+            $curentUser->save();
+            $journalistUser = new JournalistDetail();
+            $journalistUser->user_id = $user->id;
+            $journalistUser->first_name = $input['first_name'];
+            $journalistUser->last_name = $input['last_name'];
+            $journalistUser->start_date = $input['start_date'];
+            $journalistUser->area = $input['area'];
+            $journalistUser->address = $input['address'];
+            $journalistUser->photo = $fileName;
+            $journalistUser->team_member_id = 0;
+            $journalistUser->save();
+
+
+            return redirect()->route('manager.agent.list')->with('success', 'Agent Save successfully!');
+        } catch (\Exception $e) {
+            // Handle the exception here
+            $user_exists = User::find($user->id);
+            $user_exists->delete();
+            // Log the exception, display an error message, or redirect to an error page
+            return back()->with('error', 'Failed to create Agent user: ' . $e->getMessage());
+        }
+    }
+
+    public function listAgent()
+    {
+
+        $data['users'] = User::leftJoin('journalist_details', 'users.id', '=', 'journalist_details.user_id')
+            ->select('users.*', 'journalist_details.*')
+            ->where('created_by', auth()->user()->id)
+            ->where('is_delete', '0')
+            ->orWhere('is_assign', auth()->user()->id)
+            ->orderBy('users.id', 'desc')
+            ->get();
+
+        return view('manager.agent.list', $data);
+    }
+
+    public function editAgent(Request $request, $id)
+    {
+        $data['user'] = User::leftJoin('journalist_details', 'users.id', '=', 'journalist_details.user_id')
+            ->select('users.*', 'journalist_details.*')
+            ->where('users.id', $id)
+            ->first();
+        return view('manager.agent.edit', $data);
+    }
+
+    public function updateAgent(Request $request, $id)
+    {
+        $input = ($request->all());
+
+        $validator = Validator::make($request->all(), [
+            'email' => ['required', 'email', Rule::unique('users')->ignore($id)],
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'phone' => ['required', Rule::unique('users')->ignore($id)],
+            'start_date' => 'required',
+            'area' => 'required',
+            'address' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        if (!empty($request->file('file'))) {
+            // Generate a dynamic folder name based on user ID or any unique identifier
+            $dynamicFolderName = 'user_' . $id; // Example: 'user_1'
+            // Check if the folder exists, create it if not
+            if (!Storage::disk('public')->exists('uploads/' . $dynamicFolderName)) {
+                Storage::disk('public')->makeDirectory('uploads/' . $dynamicFolderName);
+            }
+
+            try {
+                $file = $request->file('file');
+                $fileName = time() . '_' . $file->getClientOriginalName();
+                $file->storeAs('uploads/' . $dynamicFolderName, $fileName, 'public'); // The uploaded file will be stored in storage/app/public/uploads
+                JournalistDetail::where('user_id', $id)->update(['photo' => $fileName]);
+            } catch (\Exception $e) {
+                return back()->with('error', 'File upload failed: ' . $e->getMessage());
+            }
+        }
+
+        $userUpdate = User::find($id);
+        $userUpdate->name = $input['first_name'] . ' ' . $input['last_name'];
+        $userUpdate->email = $input['email'];
+        $userUpdate->phone = $input['phone'];
+        $userUpdate->status = $input['status'];
+        if (!empty($input['password'])) {
+            $userUpdate->password = Hash::make($input['password']);
+        }
+        $userUpdate->save();
+
+
+        JournalistDetail::where('user_id', $id)->update(
+            [
+                'first_name' => $input['first_name'],
+                'last_name' => $input['last_name'],
+                'start_date' => $input['start_date'],
+                'area' => $input['area'],
+                'address' => $input['address'],
+                'team_member_id' => 0,
+
+            ]
+        );
+
+        return redirect()->route('manager.agent.list')->with('success', 'Agent Updated successfully!');
+    }
+
+    public function deleteAgent($id)
+    {
+        $user = User::find($id);
+        if ($user->is_assign > 0) {
+            $journalistDetails = JournalistDetail::where('user_id', $user->is_assign)->first();
+            $team_agents = explode('|', $journalistDetails->team_member_id);
+            // Remove the specified value from the array
+            $array = implode("|", array_diff($team_agents, array($id)));
+            JournalistDetail::where('user_id', $user->is_assign)->update(['team_member_id' => $array]);
+        }
+
+        $user->is_assign = 0;
+        $user->is_delete = '1';
+        $user->save();
+
+
+        return redirect()->route('manager.agent.list')->with('success', 'Agent Deleted successfully!');
     }
 }

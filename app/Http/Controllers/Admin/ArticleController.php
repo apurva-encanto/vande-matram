@@ -48,7 +48,7 @@ class ArticleController extends Controller
         $validator = Validator::make($request->all(), [
             'title' => 'required|unique:articles',
             'category_id' => 'required',
-            'content' => 'required',
+            'editor1' => 'required',
             'popular' => 'required',
             'top_new' => 'required',
             'publish_date' => 'required|date|after_or_equal:today',
@@ -56,6 +56,13 @@ class ArticleController extends Controller
         ], [
             'publish_date.after_or_equal' => 'The publish date must be greater than or equal to the current date.',
         ]);
+
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
         // Generate a dynamic folder name based on user ID or any unique identifier
         $dynamicFolderName = 'article_' . auth()->user()->id; // Example: 'user_1'
 
@@ -84,6 +91,8 @@ class ArticleController extends Controller
         $article->top_new = $request->top_new;
         $article->publish = $request->publish;
         $article->is_show = 1;
+        $article->created_by = 1;
+        $article->is_approved = 1;
         $article->save();
 
         return redirect()->route('admin.article.list')->with('success', 'Article Save successfully!');
@@ -127,7 +136,10 @@ class ArticleController extends Controller
     public function listArticle()
     {
 
-        $data['articles'] = Article::where('is_delete', '0')->get();
+        $data['articles'] = Article::where('is_delete', '0')
+            ->where('is_approved', '1')
+            ->orderBy('id', 'desc')
+            ->get();
         return view("admin.article.list", $data);
     }
 
@@ -169,6 +181,7 @@ class ArticleController extends Controller
         $article->popular = $request->popular;
         $article->top_new = $request->top_new;
         $article->publish = $request->publish;
+        $article->is_approved = $request->is_approved;
         $article->save();
 
         return redirect()->route('admin.article.list')->with('success', 'Article Updated Successfuly');
@@ -181,5 +194,128 @@ class ArticleController extends Controller
         $article->save();
 
         return redirect()->route('admin.article.list')->with('success', 'Article Deleted Successfuly');
+    }
+
+    public function addManagerArticle()
+    {
+        $data['categories'] = Category::where(['is_delete' => '0', 'status' => 'active'])->get();
+        return view('manager.article.add', $data);
+    }
+
+    public function listManagerArticle()
+    {
+        $data['articles'] = Article::where('is_delete', '0')->where('created_by', auth()->user()->id)
+            ->orderBy('id', 'desc')
+            ->get();
+        return view('manager.article.list', $data);
+    }
+
+    public function StoreManagerArticle(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|unique:articles',
+            'category_id' => 'required',
+            'editor1' => 'required',
+            'popular' => 'required',
+            'top_new' => 'required',
+            'publish_date' => 'required|date|after_or_equal:today',
+        ], [
+            'publish_date.after_or_equal' => 'The publish date must be greater than or equal to the current date.',
+        ]);
+
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        // Generate a dynamic folder name based on user ID or any unique identifier
+        $dynamicFolderName = 'article_' . auth()->user()->id; // Example: 'user_1'
+
+        // Check if the folder exists, create it if not
+        if (!Storage::disk('public')->exists('uploads/' . $dynamicFolderName)) {
+            Storage::disk('public')->makeDirectory('uploads/' . $dynamicFolderName);
+        }
+
+        $file = $request->file('file');
+        $fileName = time() . '_' . $file->getClientOriginalName();
+        $file->storeAs('uploads/' . $dynamicFolderName, $fileName, 'public'); // The uploaded file will be stored in storage/app/public/uploads
+        $category = Category::find($request->category_id);
+
+
+        $article = new Article();
+        $article->user_id = auth()->user()->id;
+        $article->title = $request->title;
+        $article->title_slug = $this->createSlug($request->title);
+        $article->content = $this->dataready($request->editor1);
+        $article->image = $fileName;
+        $article->category_id =  $request->category_id;
+        $article->category_slug = $category->slug;
+        $article->publish_date = $request->publish_date;
+        $article->views = 0;
+        $article->popular = $request->popular;
+        $article->top_new = $request->top_new;
+        $article->publish = $request->publish;
+        $article->is_show = 1;
+        $article->created_by = auth()->user()->id;
+        $article->is_approved = 0;
+        $article->save();
+
+        return redirect()->route('manager.article.list')->with('success', 'Article Save successfully!');
+    }
+
+
+    public function pendingArticle(Request $request)
+    {
+        $data['articles'] = Article::where('is_delete', '0')
+            ->where('is_approved', 0)
+            ->orderBy('id', 'desc')
+            ->get();
+        return view('admin.article.pending', $data);
+    }
+
+    public function editManagerArticle(Request $request, $id)
+    {
+
+        $data['categories'] = Category::where(['is_delete' => '0', 'status' => 'active'])->get();
+        $data["article"] = Article::find($id);
+        return view('manager.article.edit', $data);
+    }
+
+
+    public function updateManagerArticle(Request $request, $id)
+    {
+        $category = Category::find($request->category_id);
+
+        $article = Article::find($id);
+        $article->title = $request->title;
+        $article->title_slug = $this->createSlug($request->title);
+        $article->content = $this->dataready($request->editor1);
+        if (!empty($request->file('file'))) {
+            // Generate a dynamic folder name based on user ID or any unique identifier
+            $dynamicFolderName = 'article_' . auth()->user()->id; // Example: 'user_1'
+
+            // Check if the folder exists, create it if not
+            if (!Storage::disk('public')->exists('uploads/' . $dynamicFolderName)) {
+                Storage::disk('public')->makeDirectory('uploads/' . $dynamicFolderName);
+            }
+
+            $file = $request->file('file');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $file->storeAs('uploads/' . $dynamicFolderName, $fileName, 'public'); // The uploaded file will be stored in storage/app/public/uploads
+            $article->image = $fileName;
+        }
+        $article->category_id =  $request->category_id;
+        $article->category_slug = $category->slug;
+        $article->publish_date = $request->publish_date;
+        $article->views = 0;
+        $article->popular = $request->popular;
+        $article->top_new = $request->top_new;
+        $article->publish = $request->publish;
+        $article->save();
+
+        return redirect()->route('manager.article.list')->with('success', 'Article Updated Successfuly');
     }
 }
