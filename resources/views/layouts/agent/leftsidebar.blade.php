@@ -27,10 +27,10 @@
                 <div class="collapse " id="Article">
                     <ul class="nav-second-level">
                         <li>
-                            <a href="{{route('manager.article.add')}}">Add New Article</a>
+                            <a href="{{route('agent.article.add')}}">Add New Article</a>
                         </li>
                         <li>
-                            <a href="{{route('manager.article.list')}}">Article's List</a>
+                            <a href="{{route('agent.article.list')}}">Article's List</a>
                         </li>
                         
                     </ul>
@@ -43,25 +43,7 @@
                     <span> Create New Page </span>
                 </a> 
             </li> --}}
-            
-            <li>
-                <a href="#sidebarCrm" data-bs-toggle="collapse">
-                    <i class="mdi mdi-account-multiple"></i>    
-                    <span>  Agent </span>
-                    <span class="menu-arrow"></span>
-                </a>
-                <div class="collapse " id="sidebarCrm">
-                    <ul class="nav-second-level">
-                        <li>
-                            <a href="{{route('manager.agent.add')}}">Add New Agent</a>
-                        </li>
-                        <li>
-                            <a href="{{route('manager.agent.list')}}">Agent's List</a>
-                        </li>
-                        
-                    </ul>
-                </div>
-            </li> 
+       
             
             <li>
                 <a href="#sidebarDashboards" data-bs-toggle="collapse"  >

@@ -1,4 +1,4 @@
-@extends('layouts.manager.index')
+@extends('layouts.agent.index')
 @push('custom-style')
 <link rel="stylesheet" href="{{asset('assets/libs/dropzone/min/dropzone.min.css')}}"> 
 <link rel="stylesheet" href="{{asset('assets/libs/select2/css/select2.min.css')}}">   
@@ -61,7 +61,7 @@
 
                                         <div class="row mt-3">
                                             <div class="col-xl-6">
-                                                <form id="myForm" class="needs-validation" method="post" enctype="multipart/form-data" novalidate action="{{ route('manager.article.update',$article->id) }}" >
+                                                <form id="myForm" class="needs-validation" method="post" enctype="multipart/form-data" novalidate action="{{ route('agent.article.update',$article->id) }}" >
                                                     @csrf
                                                     <div class="mb-3">
                                                         <label for="Title" class="form-label">Title</label>
@@ -120,15 +120,6 @@
                                                             @error('publish_date')
                                                                 <div class="text-danger">{{ $message }}</div>
                                                             @enderror
-                                                        </div>
-
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Approve Article</label>
-                                                           <select name="is_approved" id="" class="form-control">
-                                                               <option value="0" @if($article->is_approved == '0')selected @endif>Approved</option>
-                                                               <option value="2" @if($article->is_approved == '2')selected @endif >Not Approved</option>
-                                                           </select>
-                                                            
                                                         </div>
 
                                                         <div class="mb-3">
@@ -358,7 +349,7 @@ document.querySelectorAll('.image-input').forEach(_ => {
     CKEDITOR.replace('editor1', {
     });
     function redirectToRoute() {
-        window.location.href = "{{ route('manager.article.list') }}";
+        window.location.href = "{{ route('agent.article.list') }}";
     }
 </script>
 

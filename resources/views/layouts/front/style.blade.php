@@ -970,7 +970,7 @@ margin:0
 position:relative;
 float:left;
 width:100%;
-height:30px;
+height:40px;
 align-items: center;
 background-color:var(--topbar-bg);
 z-index:1;
@@ -1124,7 +1124,7 @@ margin:0
 .main-logo img{
 display:block;
 max-width:100%;
-/* max-height:100%; */
+max-height:100%;
 margin:0
 }
 .is-dark #selary-mobile-logo-section img {
@@ -4219,7 +4219,7 @@ padding:0 0 0 25px
 }
 .selary-pro-about-section .footer-logo img{
 display:block;
-max-height:34px;
+max-height:54px;
 margin:0
 }
 .selary-pro-about-section .Image .image-caption{
@@ -4525,8 +4525,7 @@ display:block
 position:relative;
 top:unset;
 left:unset;
-right:unset;
-height:40px;
+right:unset
 }
 .main-search .search-form{
 padding:0 15px
@@ -4980,3 +4979,61 @@ font-size:110px
 font-size:25px
 }
 }
+
+
+.youtube-player {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    background: #000;
+    margin: 5px;
+  }
+  
+  .youtube-player iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    background: transparent;
+  }
+  
+  .youtube-player img {
+    object-fit: cover;
+    display: block;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    max-width: 100%;
+    width: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    border: none;
+    height: auto;
+    cursor: pointer;
+    -webkit-transition: 0.4s all;
+    -moz-transition: 0.4s all;
+    transition: 0.4s all;
+  }
+  
+  .youtube-player img:hover {
+    -webkit-filter: brightness(75%);
+    -moz-filter: brightness(75%);
+    filter: brightness(75%);
+  }
+  
+  .youtube-player .play {
+    height: 72px;
+    width: 72px;
+    left: 50%;
+    top: 50%;
+    margin-left: -36px;
+    margin-top: -36px;
+    position: absolute;
+     background: url("https://1.bp.blogspot.com/-9WM7CTGFE6w/YEIY4yiXrSI/AAAAAAAAKLA/KQ9KQqUFQ-omzPDInJqiorJHHIVvrSu2QCNcBGAsYHQ/s16000/play-button.png") no-repeat;
+    cursor: pointer;
+  }

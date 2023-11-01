@@ -35,6 +35,15 @@ Route::get('/admin-logincheck', [LoginController::class, 'logincheck'])->name('a
 Route::middleware(['auth', 'user-access:agent'])->group(function () {
 
     Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+    Route::prefix('article')->group(function () {
+        Route::get('/add', [ArticleController::class, 'addAgentArticle'])->name('agent.article.add');
+        Route::get('/list', [ArticleController::class, 'listAgentArticle'])->name('agent.article.list');
+        Route::post('/create', [ArticleController::class, 'StoreAgentArticle'])->name('agent.article.create');
+        Route::get('/edit/{id}', [ArticleController::class, 'editAgentArticle'])->name('agent.article.edit');
+        Route::post('/update/{id}', [ArticleController::class, 'updateAgentArticle'])->name('agent.article.update');
+        Route::delete('/delete/{id}', [ArticleController::class, 'deleteAgentArticle'])->name('agent.article.delete');
+    });
 });
 
 /*------------------------------------------
@@ -96,6 +105,7 @@ Route::prefix('manager')->middleware(['auth', 'user-access:manager'])->group(fun
 
     Route::prefix('article')->group(function () {
         Route::get('/add', [ArticleController::class, 'addManagerArticle'])->name('manager.article.add');
+        Route::get('/pending', [ArticleController::class, 'pendingManagerArticle'])->name('manager.article.pending');
         Route::get('/list', [ArticleController::class, 'listManagerArticle'])->name('manager.article.list');
         Route::post('/create', [ArticleController::class, 'StoreManagerArticle'])->name('manager.article.create');
         Route::get('/edit/{id}', [ArticleController::class, 'editManagerArticle'])->name('manager.article.edit');

@@ -1,4 +1,4 @@
-@extends('layouts.manager.index')
+@extends('layouts.agent.index')
 @push('custom-style')
 <link rel="stylesheet" href="{{asset('assets/libs/dropzone/min/dropzone.min.css')}}"> 
 <link rel="stylesheet" href="{{asset('assets/libs/select2/css/select2.min.css')}}">   
@@ -20,11 +20,11 @@
                                             
                                             
                                             <li class="breadcrumb-item"><a href="dashboard.html"> Dashoard</a></li> 
-                                            <li class="breadcrumb-item active">Edit News Article</li>
+                                            <li class="breadcrumb-item active">Add New Article</li>
                                         </ol>
                                     </div>
                                    
-                                    <h4 class="page-title">Edit News Article</h4>
+                                    <h4 class="page-title">Add New Article</h4>
                                 </div>
                             </div>
                         </div>     
@@ -49,7 +49,7 @@
                                                     
                                                     <div class="w-100">
                                                         <h5 class="mt-0 mb-0 font-15">
-                                                            Edit News Article
+                                                            Add New Article
                                                         </h5> 
                                                     </div>
                                                    
@@ -61,11 +61,11 @@
 
                                         <div class="row mt-3">
                                             <div class="col-xl-6">
-                                                <form id="myForm" class="needs-validation" method="post" enctype="multipart/form-data" novalidate action="{{ route('manager.article.update',$article->id) }}" >
+                                                <form id="myForm" class="needs-validation" method="post" enctype="multipart/form-data" novalidate action="{{ route('agent.article.create')}}" >
                                                     @csrf
                                                     <div class="mb-3">
                                                         <label for="Title" class="form-label">Title</label>
-                                                        <input type="text" value="{{$article->title}}" required  name="title" class="form-control" placeholder="News Title" >
+                                                        <input type="text" value="{{old('title')}}" required  name="title" class="form-control" placeholder="News Title" >
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="Select Category" class="form-label">Select Category</label>
@@ -73,7 +73,7 @@
                                                         <select name="category_id" id="" required class="form-control">
                                                             <option value="">Select Category</option>
                                                             @foreach ($categories as $category )
-                                                            <option @if($article->category_id == $category->id) selected @endif value="{{$category->id}}">{{$category->name}}</option>                                                                
+                                                            <option value="{{$category->id}}">{{$category->name}}</option>                                                                
                                                             @endforeach
                                                         </select>
                                                     </div>                                                   
@@ -81,11 +81,11 @@
                                                     <div class="mb-3">
                                                         <label class="form-label">Popular New</label> <br/>
                                                         <div class="form-check form-check-inline">
-                                                            <input  value="1" type="radio" @if($article->popular == '1') checked @endif id="customRadio1"  name="popular" class="form-check-input">
+                                                            <input  value="1" type="radio" id="customRadio1"  name="popular" class="form-check-input">
                                                             <label class="form-check-label" for="customRadio1">Yes</label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
-                                                            <input  value="0" type="radio" @if($article->popular == '0') checked @endif id="customRadio2"  name="popular" class="form-check-input">
+                                                            <input  value="0" type="radio" id="customRadio2" checked name="popular" class="form-check-input">
                                                             <label class="form-check-label" for="customRadio2"  >No</label>
                                                         </div>
                                                     </div>
@@ -93,11 +93,11 @@
                                                     <div class="mb-3">
                                                         <label class="form-label">Top New</label> <br/>
                                                         <div class="form-check form-check-inline">
-                                                            <input  value="1" type="radio" @if($article->top_new == '1') checked @endif id="customRadio1"  name="top_new" class="form-check-input">
+                                                            <input  value="1" type="radio" id="customRadio1"  name="top_new" class="form-check-input">
                                                             <label class="form-check-label" for="customRadio1">Yes</label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
-                                                            <input  value="0" type="radio" @if($article->top_new == '0') checked @endif id="customRadio2"   name="top_new" class="form-check-input">
+                                                            <input  value="0" type="radio" id="customRadio2" checked  name="top_new" class="form-check-input">
                                                             <label class="form-check-label" for="customRadio2" >No</label>
                                                         </div>
                                                     </div>
@@ -111,7 +111,7 @@
                                                         <!-- Date View -->
                                                         <div class="mb-3">
                                                             <label class="form-label">Publish Date</label>
-                                                            <input  value="{{$article->publish_date}}" required type="date" class="form-control" name="publish_date"  data-toggle="flatpicker" placeholder="June 9, 2023">
+                                                            <input  value="{{date('Y-m-d')}}" required type="date" class="form-control" name="publish_date"  data-toggle="flatpicker" placeholder="June 9, 2023">
                                                 
                                                             <div class="invalid-feedback">
                                                              Please enter a Publish Date.
@@ -123,29 +123,17 @@
                                                         </div>
 
                                                         <div class="mb-3">
-                                                            <label class="form-label">Approve Article</label>
-                                                           <select name="is_approved" id="" class="form-control">
-                                                               <option value="0" @if($article->is_approved == '0')selected @endif>Approved</option>
-                                                               <option value="2" @if($article->is_approved == '2')selected @endif >Not Approved</option>
-                                                           </select>
-                                                            
-                                                        </div>
-
-                                                        <div class="mb-3">
                                                             <label class="form-label">Publish Status</label>
-                                                            {{-- <p class="text-muted font-14">You can set time for publish.</p>s --}}
+                                                            <p class="text-muted font-14">You can set time for publish.</p>
 
                                                            <select name="publish" id="" class="form-control">
-                                                               <option value="1" @if($article->publish == '1')selected @endif>Publish</option>
-                                                               <option value="0" @if($article->publish == '0')selected @endif >Unpublish</option>
+                                                               <option value="1">Publish</option>
+                                                               <option value="0" selected>Unpublish</option>
                                                            </select>
                                                             <div class="invalid-feedback">
                                                              Please enter a Publish Date.
                                                             </div>
 
-                                                            @error('publish_date')
-                                                                <div class="text-danger">{{ $message }}</div>
-                                                            @enderror
                                                         </div>
 
                                                     </div>
@@ -159,7 +147,7 @@
                                                     <label class="image-input">
                                                         <input type="file" name="file" id="file-upload" accept="image/png,image/jpeg" max-size="10000000">
                                                         <input type="hidden" name="">
-                                                        <img src="{{ asset('storage/uploads/article_' . $article->user_id . '/' . $article->image) }}" alt="">
+                                                        <img src="" alt="">
                                                     </label>
 
                                                     <p class="file-error d-none text-danger" >Please select a file before submitting the form.</p>
@@ -175,10 +163,8 @@
                                         </div> <!-- end col-->
                                             <div class="col-xl-12">
                                                 <div class="mb-3">
-
-                                                    @php $codedata= html_entity_decode($article->content); @endphp
                                                     <label for="project-overview" class="form-label">Article Content</label>
-                                                    <textarea  value="{{old('editor1')}}" class="form-control" name="editor1" id="project-overview"  rows="5" placeholder="Article Content">{!! $codedata !!}</textarea>
+                                                    <textarea  value="{{old('editor1')}}" class="form-control" name="editor1" id="project-overview"  rows="5" placeholder="Article Content"></textarea>
                                               
                                                             <div class="invalid-feedback">
                                                              Please enter a Article Content.
@@ -233,6 +219,18 @@
  <script src="https://cdn.ckeditor.com/4.12.1/standard/ckeditor.js"></script>
  <script>
 
+
+    document.getElementById('myForm').addEventListener('submit', function(event) {
+        var fileUpload = document.getElementById('file-upload');
+
+        // Check if the file input is empty
+        if (fileUpload.files.length === 0) {
+            // Prevent the form from being submitted
+            event.preventDefault();
+
+            $('.file-error').removeClass('d-none')
+        }
+    });
 
 
 function ImageInput(element){
@@ -358,7 +356,7 @@ document.querySelectorAll('.image-input').forEach(_ => {
     CKEDITOR.replace('editor1', {
     });
     function redirectToRoute() {
-        window.location.href = "{{ route('manager.article.list') }}";
+        window.location.href = "{{ route('agent.article.list') }}";
     }
 </script>
 

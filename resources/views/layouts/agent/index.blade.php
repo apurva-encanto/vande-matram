@@ -41,13 +41,13 @@
             
             <!-- Topbar Start -->
 
-            @include('layouts.manager.topbar')
+            @include('layouts.agent.topbar')
            
             <!-- end Topbar -->
 
             <!-- ========== Left Sidebar Start ========== -->
 
-            @include('layouts.manager.leftsidebar')
+            @include('layouts.agent.leftsidebar')
  
             <!-- Left Sidebar End -->
 
@@ -73,7 +73,7 @@
         <div class="rightbar-overlay"></div>
  
          
-         @include('layouts.manager.footer')
+         @include('layouts.agent.footer')
         
     </body>
 </html>

@@ -28,6 +28,9 @@
                     <ul class="nav-second-level">
                         <li>
                             <a href="{{route('manager.article.add')}}">Add New Article</a>
+                        </li> 
+                        <li>
+                            <a href="{{route('manager.article.pending')}}">Pending Article</a>
                         </li>
                         <li>
                             <a href="{{route('manager.article.list')}}">Article's List</a>
