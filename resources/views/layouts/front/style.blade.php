@@ -5037,3 +5037,10 @@ font-size:25px
      background: url("https://1.bp.blogspot.com/-9WM7CTGFE6w/YEIY4yiXrSI/AAAAAAAAKLA/KQ9KQqUFQ-omzPDInJqiorJHHIVvrSu2QCNcBGAsYHQ/s16000/play-button.png") no-repeat;
     cursor: pointer;
   }
+
+  .content-title{
+    {{-- white-space: nowrap; --}}
+    font-size:22px;
+    {{-- overflow: hidden;
+    text-overflow: ellipsis; --}}
+  }

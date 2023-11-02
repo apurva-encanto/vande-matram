@@ -1,276 +1,518 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="ltr" dir="ltr" lang="en_gb" xmlns="http://www.w3.org/1999/xhtml" xmlns:b="http://www.google.com/2005/gml/b" xmlns:data="http://www.google.com/2005/gml/data" xmlns:expr="http://www.google.com/2005/gml/expr">
     <head>
-        <meta charset="utf-8" />
-        <title>Vandemataram News</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta content="" name="description" />
-        <meta content="Vandemataram News" name="author" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <!-- App favicon -->
-        <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico')}}" />
-
-        <!-- Plugins css -->
-        <!-- Bootstrap css -->
-        <link href="{{ asset('assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
-        <!-- App css -->
-        <link href="{{ asset('assets/css/app.min.css')}}" rel="stylesheet" type="text/css" id="app-style" />
-        <!-- icons -->
-        <link href="{{ asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset('assets/css/main.css')}}" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.carousel.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.theme.default.css" />
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+        <meta content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=yes" name="viewport" />
+        <title>Vande Matram</title>        
+        <link rel="icon" type="image/x-icon" href="{{asset('assets/images/logo-light.png')}}">      
+        <!-- Font Awesome Free 5.15.1 -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/fontawesome.min.css" rel="stylesheet" />
+        <!-- Theme CSS Style -->
+        <style id="page-skin-1" type="text/css">
+            <!--
+            @include('layouts.front.style');
+        </style>
     </head>
+    <body class="is-home is-multiple">
+        <!-- Theme Options -->
 
-    <body>
-        <div class="row">
-            <div class="col-md-2 px-3"  >
-                <div class="card bg-light" style="height: 500px;">
-                    <div class="card-body">
-                        Responsive Advertisement
+        <!-- Outer Wrapper -->
+        <div id="outer-wrapper">
+          
+            <!-- Header Wrapper -->
+            <header id="header-wrapper">
+                <nav class="topbar-wrap flex-center">
+                    <div class="container row-x1">
+                        <div class="topbar-items">
+                            <div class="flex-left flex-content">
+                                <div class="topbar-menu section" id="topbar-menu" name="Topbar Menu">
+                                    <div class="widget LinkList"  id="LinkList105">
+                                        <ul class="topbar-ul link-list">
+                                            <li><a href="/">Home</a></li>
+                                            <li><a href="/">About Us</a></li>
+                                            <li><a href="/">Contact Us</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex-center flex-content">
+                                <div class="main-logo section" id="main-logo" name="Header Logo">
+                                    <div class="widget Header"  id="Header1">
+                                        <a class="logo-img" href="{{url('/')}}">
+                                            <img
+                                                alt="Selary"
+                                                data-height="38"
+                                                data-width="251"
+                                                src="{{asset('assets/images/logo-light.png')}}"
+                                                title="Selary"
+                                            />
+                                            <h1 id="h1-off">Vandematram News</h1>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex-right flex-content">
+                                <div class="topbar-social section" id="topbar-social" name="Topbar Icons">
+                                    <div class="widget LinkList"  id="LinkList106">
+                                        <div class="widget-content">
+                                            <ul class="topbar-ul social-icons social">
+                                                <li class="facebook link-0"><a alt="facebook" class="facebook" href="#" rel="noopener noreferrer" target="_blank" title="facebook"></a></li>
+                                                <li class="twitter link-1"><a alt="twitter" class="twitter" href="#" rel="noopener noreferrer" target="_blank" title="twitter"></a></li>
+                                                <li class="youtube link-2"><a alt="youtube" class="youtube" href="#" rel="noopener noreferrer" target="_blank" title="youtube"></a></li>
+                                                <li class="rss link-3"><a alt="rss" class="rss" href="#" rel="noopener noreferrer" target="_blank" title="rss"></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-8">
-                <!-- Top Header -->
-                <div class="top-header bg-dark mb-2">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-4 background">
-                                Apps:
-                            </div>
-                            <div class="col-sm-4 background">
-                                Follow us on:
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    class="feather feather-facebook icon-dual"
-                                >
-                                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                                </svg>
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    class="feather feather-twitter icon-dual"
-                                >
-                                    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
-                                </svg>
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    class="feather feather-youtube icon-dual"
-                                >
-                                    <path
-                                        d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"
-                                    ></path>
-                                    <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
-                                </svg>
-                            </div>
-                            <div class="col-sm-4 background">
-                                Login
+                </nav>
+                <div class="main-header">
+                    <div class="header-inner show">
+                        <div class="header-header flex-center">
+                            <div class="container row-x1">
+                                <div class="header-items">
+                                    <div class="flex-left">
+                                        <div class="selary-mobile-logo-section main-logo section" id="selary-mobile-logo-section" name="Mobile Logo Section">
+                                            <div class="widget Image"  id="Image121">
+                                                <a class="mobile-menu-toggle" href="javascript:;" role="button" title="Menu"></a>
+                                                <a class="logo-img custom-image" href="/">
+                                                    <img
+                                                        alt="VandeMatram News"
+                                                        id="Image121_img"
+                                                        src="{{asset('assets/images/logo-light.png')}}"
+                                                    />
+                                                    <h1 id="h1-off">VandeMatram News</h1>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        @include('layouts.front.categories')
+                                    </div>
+                                    <div class="flex-right">
+                                        <div class="main-toggle-wrap">
+                                            <a class="main-toggle-style darkmode-toggle" href="javascript:;" role="button"></a>
+                                            <a class="main-toggle-style show-search" href="javascript:;" role="button" title="Search"></a>
+                                        </div>
+                                    </div>
+                                    <div id="main-search-wrap" style="display: none;">
+                                        <div class="main-search">
+                                            <form action="#" class="search-form" role="search">
+                                                <input autocomplete="off" class="search-input" name="q" placeholder="Search" type="search" value="" />
+                                            </form>
+                                            <a class="main-toggle-style hide-search" href="javascript:;" role="button" title="Search"></a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="row">
-                    <div class="col-md-4">
-                        <img src="{{asset('assets/images/logo-light.png')}}" alt="" />
+                
+            </header>
+            <div class="flex-center" id="header-ads-wrap">
+                <div class="header-ads container row-x1 section" id="header-ads" name="Header ADS">
+                    <div class="widget HTML"  id="HTML1">
+                        <div class="widget-content">
+                            <a class="ads-here" href="#">Responsive Advertisement</a>
+                        </div>
                     </div>
-                    <div class="col-md-8">
-                        <div class="card bg-light">
-                            <div class="card-body">
-                                Responsive Advertisement
+                </div>
+            </div>
+            <!-- Featured Posts -->
+            @yield('featured-posts')
+          
+            <!-- Content Wrapper -->
+            <div class="flex-center" id="content-wrapper">
+                <div class="container row-x1">
+                    <!-- Main Wrapper -->
+                     @yield('main-content')
+                    <!-- Sidebar Wrapper -->
+                    <aside id="sidebar-wrapper">
+                        <div class="sidebar selary-pro-widget-ready section" id="sidebar" name="Sidebar">
+                            <div class="widget PopularPosts"  id="PopularPosts2">
+                                <div class="widget-title title-wrap"><h3 class="title">Popular Posts</h3></div>
+                                <div class="widget-content default-items">
+                                    <div class="default-item card-style item-0">
+                                        <a
+                                            class="entry-image-wrap before-mask is-image"
+                                            href="https://selary-templateify.blogspot.com/2023/02/celebrities-in-vanity-fair-coashella.html"
+                                            title="Celebrities in the Vanity Fair Coashella Studio"
+                                        >
+                                            <span
+                                                class="entry-thumb"
+                                                data-image="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhQ9HudXu-xNRnx-hIVwuiAHQB-TQOXsyOn3tJ0zUI_uExNg84xH494oUvzYEF8e64okRFday3jM2sgiHKfulUfAM3iL6Tx7BMA2TwDsgv9PGPhSB4sMAJdZQ7hNPBoG4yzsT8XlqovlYouCFDdLA6eUoBpFmbEzgvgFK5L0_fLVtQNEIaGNT6_PcPtx8jn/w72-h72-p-k-no-nu/21.jpeg"
+                                            ></span>
+                                        </a>
+                                        <div class="entry-header entry-info">
+                                            <span class="entry-category">Health</span>
+                                            <h2 class="entry-title">
+                                                <a href="https://selary-templateify.blogspot.com/2023/02/celebrities-in-vanity-fair-coashella.html" title="Celebrities in the Vanity Fair Coashella Studio">
+                                                    Celebrities in the Vanity Fair Coashella Studio
+                                                </a>
+                                            </h2>
+                                            <div class="entry-meta">
+                                                <span class="entry-author mi"><span class="sp">by</span><span class="author-name">Sora Blogging Tips</span></span>
+                                                <span class="entry-time mi"><span class="sp">-</span><time class="published" datetime="2023-02-25T19:19:00-08:00">February 25, 2023</time></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="default-item item-1">
+                                        <a class="entry-image-wrap is-image" href="https://selary-templateify.blogspot.com/2017/03/where-story-is-being-told-without-words.html" title="Where a “story” is being told without words">
+                                            <span
+                                                class="entry-thumb"
+                                                data-image="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgwuTDTMAj5K8YCV-CJHkRdw6aHfFwfVLb2GGRzuzv26NqGimOiWqQyIwveIfdF5pP29Vf9l5BANUJfgKKFnJu34UjSrCqWHw69fDUrLKN9xq93mhj869DCB7pitRceiY0x_NLTMjcRBtbgvgcNqByJaaaBSuMT0vVw4ZN_-jTXObWHr2nkvQk1rbPrNH99/w72-h72-p-k-no-nu/22.jpeg"
+                                            ></span>
+                                        </a>
+                                        <div class="entry-header">
+                                            <h2 class="entry-title">
+                                                <a href="https://selary-templateify.blogspot.com/2017/03/where-story-is-being-told-without-words.html" title="Where a “story” is being told without words">
+                                                    Where a &#8220;story&#8221; is being told without words
+                                                </a>
+                                            </h2>
+                                            <div class="entry-meta">
+                                                <span class="entry-time mi"><time class="published" datetime="2017-03-17T00:59:00-07:00">March 17, 2017</time></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="default-item item-2">
+                                        <a class="entry-image-wrap is-image" href="https://selary-templateify.blogspot.com/2016/03/where-story-is-being-told-without-world.html" title="Where a “story” is being told without world">
+                                            <span
+                                                class="entry-thumb"
+                                                data-image="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZF1xWuaIeZoNv1JXLx-uV73u3xN50klM4HcFg22TaRlRG2CxrjWAevp9oDa9kNDGgH0AwEAWScbCBoKZxo0afFITNUE1hJRPanamZZy5LzimU1FniWH42_i1sOVUWULuvx238423erYAlGzm61Oh91fvy8uIuqdl5JY4r-5oCKa-ODQzHvRfrBHGWTZzC/w72-h72-p-k-no-nu/R10.jpg"
+                                            ></span>
+                                        </a>
+                                        <div class="entry-header">
+                                            <h2 class="entry-title">
+                                                <a href="https://selary-templateify.blogspot.com/2016/03/where-story-is-being-told-without-world.html" title="Where a “story” is being told without world">
+                                                    Where a &#8220;story&#8221; is being told without world
+                                                </a>
+                                            </h2>
+                                            <div class="entry-meta">
+                                                <span class="entry-time mi"><time class="published" datetime="2016-03-17T00:57:00-07:00">March 17, 2016</time></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="default-item item-3">
+                                        <a class="entry-image-wrap is-image" href="https://selary-templateify.blogspot.com/2016/03/celebrities-in-vanity-fair-coashella.html" title="Celebrities in the Vanity Fair Coashella Studio">
+                                            <span
+                                                class="entry-thumb"
+                                                data-image="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh4aHP_7dO11ll28G4n89ncdJS3lKqObQ_eyLhDC5MVyMxeFOCfZ3Iohy1y5dZ-oZvJNOXoiSkgtwk-IDGMHbzRMfCCcJrLqftieCxr8WFsBxKv78_2MoRH4bPKPe6cUUxzYY9QAjbfEsESA9yMQOKo8y6apLyUG2t8WUeALVhrcMoTErvxA0VevWrBGQSi/w72-h72-p-k-no-nu/28.jpeg"
+                                            ></span>
+                                        </a>
+                                        <div class="entry-header">
+                                            <h2 class="entry-title">
+                                                <a href="https://selary-templateify.blogspot.com/2016/03/celebrities-in-vanity-fair-coashella.html" title="Celebrities in the Vanity Fair Coashella Studio">
+                                                    Celebrities in the Vanity Fair Coashella Studio
+                                                </a>
+                                            </h2>
+                                            <div class="entry-meta">
+                                                <span class="entry-time mi"><time class="published" datetime="2016-03-17T00:46:00-07:00">March 17, 2016</time></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="widget HTML"  id="HTML8">
+                                <div class="widget-title title-wrap"><h3 class="title">Latest Reviews</h3></div>
+                                <div class="widget-content">
+                                    <div class="mini-items">
+                                        <div class="mini-item item-0">
+                                            <a title="Where a “story” is being told without world" class="entry-image-wrap is-image" href="https://selary-templateify.blogspot.com/2016/03/where-story-is-being-told-without-world.html">
+                                                <span
+                                                    class="entry-thumb lazy-ify"
+                                                    data-image="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZF1xWuaIeZoNv1JXLx-uV73u3xN50klM4HcFg22TaRlRG2CxrjWAevp9oDa9kNDGgH0AwEAWScbCBoKZxo0afFITNUE1hJRPanamZZy5LzimU1FniWH42_i1sOVUWULuvx238423erYAlGzm61Oh91fvy8uIuqdl5JY4r-5oCKa-ODQzHvRfrBHGWTZzC/w72-h72-p-k-no-nu/R10.jpg"
+                                                    style="
+                                                        background-image: url(https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZF1xWuaIeZoNv1JXLx-uV73u3xN50klM4HcFg22TaRlRG2CxrjWAevp9oDa9kNDGgH0AwEAWScbCBoKZxo0afFITNUE1hJRPanamZZy5LzimU1FniWH42_i1sOVUWULuvx238423erYAlGzm61Oh91fvy8uIuqdl5JY4r-5oCKa-ODQzHvRfrBHGWTZzC/w143-h92-p-k-no-nu/R10.jpg);
+                                                    "
+                                                ></span>
+                                            </a>
+                                            <div class="entry-header">
+                                                <h2 class="entry-title">
+                                                    <a href="https://selary-templateify.blogspot.com/2016/03/where-story-is-being-told-without-world.html" title="Where a “story” is being told without world">
+                                                        Where a “story” is being told without world
+                                                    </a>
+                                                </h2>
+                                                <div class="entry-meta">
+                                                    <span class="entry-time mi"><time class="published" datetime="2016-03-17T00:57:00.000-07:00">March 17, 2016</time></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mini-item item-1">
+                                            <a title="Pixar Unveils Disney Land of the Dead in New Drama" class="entry-image-wrap is-image" href="https://selary-templateify.blogspot.com/2016/03/pixar-unveils-disney-land-of-dead-in.html">
+                                                <span
+                                                    class="entry-thumb lazy-ify"
+                                                    data-image="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh9-niv8G0B5KVhGJHAxd_iHjfhKh5AEkw0aWbGwdhQ24p-bwN6ciW6lUXfM6-SlVKyWC58up-sEI9vGN9ANNfc8OBaTKS50fcOmO0Vrn9JNOlLuPV3y8B81h8JPqGiKueyIF071_SmroHPFpWXOozWZG04AOhrL4VJ4fW7NA5lo-dabiBpH5IbUWynK-ao/w72-h72-p-k-no-nu/27.jpeg"
+                                                    style="
+                                                        background-image: url(https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh9-niv8G0B5KVhGJHAxd_iHjfhKh5AEkw0aWbGwdhQ24p-bwN6ciW6lUXfM6-SlVKyWC58up-sEI9vGN9ANNfc8OBaTKS50fcOmO0Vrn9JNOlLuPV3y8B81h8JPqGiKueyIF071_SmroHPFpWXOozWZG04AOhrL4VJ4fW7NA5lo-dabiBpH5IbUWynK-ao/w143-h92-p-k-no-nu/27.jpeg);
+                                                    "
+                                                ></span>
+                                            </a>
+                                            <div class="entry-header">
+                                                <h2 class="entry-title">
+                                                    <a href="https://selary-templateify.blogspot.com/2016/03/pixar-unveils-disney-land-of-dead-in.html" title="Pixar Unveils Disney Land of the Dead in New Drama">
+                                                        Pixar Unveils Disney Land of the Dead in New Drama
+                                                    </a>
+                                                </h2>
+                                                <div class="entry-meta">
+                                                    <span class="entry-time mi"><time class="published" datetime="2016-03-17T00:47:00.000-07:00">March 17, 2016</time></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mini-item item-2">
+                                            <a title="Where a “story” is being told without words" class="entry-image-wrap is-image" href="https://selary-templateify.blogspot.com/2016/03/where-story-is-being-told-without-words.html">
+                                                <span
+                                                    class="entry-thumb lazy-ify"
+                                                    data-image="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjfKFPLxb7LyEe7RjfeEnWboz0-0W00N1l8eGnz8hpUg0xUivQnHQBpLCvI1mxEGFjqhJcfbK3SQbcKWYutMPCNjaZ6ZKvi2oSA7doSjIouZzXeRA8OvrjFbR7iCiFq3mPESmkyP387jb0zwFP8UyvzKXkpPzbXO_FBuoX4JUD0wyuGJYyNWisyQ-AfBy3Z/w72-h72-p-k-no-nu/29.jpeg"
+                                                    style="
+                                                        background-image: url(https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjfKFPLxb7LyEe7RjfeEnWboz0-0W00N1l8eGnz8hpUg0xUivQnHQBpLCvI1mxEGFjqhJcfbK3SQbcKWYutMPCNjaZ6ZKvi2oSA7doSjIouZzXeRA8OvrjFbR7iCiFq3mPESmkyP387jb0zwFP8UyvzKXkpPzbXO_FBuoX4JUD0wyuGJYyNWisyQ-AfBy3Z/w143-h92-p-k-no-nu/29.jpeg);
+                                                    "
+                                                ></span>
+                                            </a>
+                                            <div class="entry-header">
+                                                <h2 class="entry-title">
+                                                    <a href="https://selary-templateify.blogspot.com/2016/03/where-story-is-being-told-without-words.html" title="Where a “story” is being told without words">
+                                                        Where a “story” is being told without words
+                                                    </a>
+                                                </h2>
+                                                <div class="entry-meta">
+                                                    <span class="entry-time mi"><time class="published" datetime="2016-03-17T00:42:00.000-07:00">March 17, 2016</time></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mini-item item-3">
+                                            <a title="We Are Best Friends And We Been Every Where Together" class="entry-image-wrap is-image" href="https://selary-templateify.blogspot.com/2016/03/we-are-best-friends-and-we-been-every.html">
+                                                <span
+                                                    class="entry-thumb lazy-ify"
+                                                    data-image="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZF1xWuaIeZoNv1JXLx-uV73u3xN50klM4HcFg22TaRlRG2CxrjWAevp9oDa9kNDGgH0AwEAWScbCBoKZxo0afFITNUE1hJRPanamZZy5LzimU1FniWH42_i1sOVUWULuvx238423erYAlGzm61Oh91fvy8uIuqdl5JY4r-5oCKa-ODQzHvRfrBHGWTZzC/w72-h72-p-k-no-nu/R10.jpg"
+                                                    style="
+                                                        background-image: url(https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZF1xWuaIeZoNv1JXLx-uV73u3xN50klM4HcFg22TaRlRG2CxrjWAevp9oDa9kNDGgH0AwEAWScbCBoKZxo0afFITNUE1hJRPanamZZy5LzimU1FniWH42_i1sOVUWULuvx238423erYAlGzm61Oh91fvy8uIuqdl5JY4r-5oCKa-ODQzHvRfrBHGWTZzC/w143-h92-p-k-no-nu/R10.jpg);
+                                                    "
+                                                ></span>
+                                            </a>
+                                            <div class="entry-header">
+                                                <h2 class="entry-title">
+                                                    <a href="https://selary-templateify.blogspot.com/2016/03/we-are-best-friends-and-we-been-every.html" title="We Are Best Friends And We Been Every Where Together">
+                                                        We Are Best Friends And We Been Every Where Together
+                                                    </a>
+                                                </h2>
+                                                <div class="entry-meta">
+                                                    <span class="entry-time mi"><time class="published" datetime="2016-03-17T00:37:00.000-07:00">March 17, 2016</time></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="widget HTML"  id="HTML19">
+                                <div />
+                            </div>
+                        </div>
+                        <div class="widget Label"  id="Label2">
+                            <div class="widget-title title-wrap"><h3 class="title">Main Tags</h3></div>
+                            <div class="widget-content cloud-label">
+                                <ul class="cloud-style">
+                                    @foreach ($tags as $tag)
+                                    <li>
+                                        <a class="label-name btn has-count" href="{{ url('news-'.$tag->slug) }}">{{$tag->category_name}} <span class="label-count count-style">({{$tag->number_of_articles}})</span></a>
+                                    </li>   
+                                    @endforeach                                  
+                                  
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    </aside>
+                </div>
+            </div>
+            <!-- Footer Ads -->
+            <div class="flex-center" id="footer-ads-wrap">
+                <div class="footer-ads container row-x1 section" id="footer-ads" name="Footer ADS">
+                    <div class="widget HTML"  id="HTML3">
+                        <div class="widget-content">
+                            <a class="ads-here" href="https://www.templateify.com/">Responsive Advertisement</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer Wrapper -->
+            <footer id="footer-wrapper">
+                <div class="primary-footer flex-center">
+                    <div class="container row-x1">
+                        <div class="selary-pro-about-section section" id="selary-pro-about-section" name="About Section">
+                            <div class="widget Image"  id="Image101">
+                                <a class="footer-logo custom-image" href="/">
+                                    <img
+                                        alt="Selary"
+                                        id="Image101_img"
+                                        src="{{asset('assets/images/logo-light.png')}}"
+                                    />
+                                </a>
+                                <div class="footer-info">
+                                    <h3 class="title">About Us</h3>
+                                    <p class="image-caption excerpt">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.</p>
+                                </div>
+                            </div>
+                            <div class="widget LinkList"  id="LinkList103">
+                                <ul class="social-icons social social-bg-hover">
+                                    <li class="facebook link-0"><a alt="facebook" class="facebook btn" href="https://www.facebook.com/templateify" rel="noopener noreferrer" target="_blank" title="facebook"></a></li>
+                                    <li class="twitter link-1"><a alt="twitter" class="twitter btn" href="https://twitter.com/LiveBlogger1" rel="noopener noreferrer" target="_blank" title="twitter"></a></li>
+                                    <li class="youtube link-2"><a alt="youtube" class="youtube btn" href="https://www.youtube.com/liveblogger" rel="noopener noreferrer" target="_blank" title="youtube"></a></li>
+                                    <li class="instagram link-3"><a alt="instagram" class="instagram btn" href="https://www.instagram.com/livebloggerofficial/" rel="noopener noreferrer" target="_blank" title="instagram"></a></li>
+                                    <li class="rss link-4"><a alt="rss" class="rss btn" href="#" rel="noopener noreferrer" target="_blank" title="rss"></a></li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="footerbar flex-center">
+                    <div class="container row-x1">
+                        <div class="footer-copyright" id="footer-copyright">
+                            <span class="copyright-text"><p>Copyright (c) 2023 <a href='{{url('/>')}}'>VandeMatram News</a> All Right Reseved</p>
 
-                <!-- Navbar  -->
-                @include('layouts.front.categories')
-                @include('layouts.front.flash-news')                
+                            <div style='font-size:1px; opacity:0;'>
 
-              @yield('main-content')
-            </div>
-            <div class="col-md-2 px-3">
-                <div class="card bg-light"  style="height: 500px;">
-                    <div class="card-body">
-                        Responsive Advertisement
+                                <span class="copyright-text"><a href="{{url('/')}}" id="mycontent" title="VandeMatram News">VandeMatram News</a></span>
+
+
+
+                            </div></span>
+                        </div>
+                        <div class="footer-menu section" id="footer-menu" name="Footer Menu">
+                            <div class="widget LinkList"  id="LinkList104">
+                                <ul class="link-list list-style">
+                                    <li><a href="{{url('/')}}">Home</a></li>
+                                    <li><a href="{{url('about-us')}}">About Us</a></li>
+                                    <li><a href="{{url('contact-us')}}">Contact Us</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!-- Cookie Consent -->
+            <div id="selary-pro-cookie-ify">
+                <div class="section" id="selary-pro-cookie-ify-section" name="Cookie Consent">
+                    <div class="widget Text"  id="Text1">
+                        <p class="selary-pro-cookie-ify-content excerpt">Our website uses cookies to improve your experience. <a href="#">Learn more</a></p>
+                        <a class="btn" href="javascript:;" id="selary-pro-cookie-ify-accept" role="button" title="Ok">Ok</a>
                     </div>
                 </div>
             </div>
         </div>
-
-        <footer class="py-5 bg-dark mt-2">
-            <div class="mx-5">
-                <div class="d-flex flex-column flex-sm-row justify-content-between border-bottom">
-                    <img src="{{asset('assets/images/logo-light.png')}}" alt="" />
-                    <p>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.
-                    </p>
-                    <ul class="list-unstyled d-flex">
-                        <li class="ms-3">
-                            <a class="link-dark" href="#">
-                                <div class="icon-item">
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width="24"
-                                        height="24"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        stroke-width="2"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        class="feather feather-facebook icon-dual"
-                                    >
-                                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                                    </svg>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="ms-3">
-                            <a class="link-dark" href="#">
-                                <div class="icon-item">
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width="24"
-                                        height="24"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        stroke-width="2"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        class="feather feather-twitter icon-dual"
-                                    >
-                                        <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
-                                    </svg>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="ms-3">
-                            <a class="link-dark" href="#">
-                                <div class="icon-item">
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width="24"
-                                        height="24"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        stroke-width="2"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        class="feather feather-youtube icon-dual"
-                                    >
-                                        <path
-                                            d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"
-                                        ></path>
-                                        <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
-                                    </svg>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
+        <!-- Mobile Menu and Back Top -->
+        <div id="slide-menu">
+            <div class="slide-menu-header">
+                <div class="mobile-search">
+                    <form action="" class="search-form" role="search">
+                        <input autocomplete="off" class="search-input" name="q" placeholder="Search" type="search" value="" />
+                        <button class="search-action" type="submit" value=""></button>
+                    </form>
                 </div>
-                <div class="row">
-                    <div class="col-6 col-md-2">
-                        <h5>Section</h5>
-                        <ul class="nav flex-column">
-                            <li class="nav-item mb-1"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
-                            <li class="nav-item mb-1"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
-                            <li class="nav-item mb-1"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
-                            <li class="nav-item mb-1"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
-                            <li class="nav-item mb-1"><a href="#" class="nav-link p-0 text-muted">About</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-6 col-md-2">
-                        <h5>Section</h5>
-                        <ul class="nav flex-column">
-                            <li class="nav-item mb-1"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
-                            <li class="nav-item mb-1"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
-                            <li class="nav-item mb-1"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
-                            <li class="nav-item mb-1"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
-                            <li class="nav-item mb-1"><a href="#" class="nav-link p-0 text-muted">About</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-6 col-md-2">
-                        <h5>Section</h5>
-                        <ul class="nav flex-column">
-                            <li class="nav-item mb-1"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
-                            <li class="nav-item mb-1"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
-                            <li class="nav-item mb-1"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
-                            <li class="nav-item mb-1"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
-                            <li class="nav-item mb-1"><a href="#" class="nav-link p-0 text-muted">About</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-md-5 offset-md-1 mb-3">
-                        <form>
-                            <h5>Subscribe to our newsletter</h5>
-                            <p>Monthly digest of what's new and exciting from us.</p>
-                            <div class="d-flex flex-column flex-sm-row w-100 gap-2">
-                                <label for="newsletter1" class="visually-hidden">Email address</label>
-                                <input id="newsletter1" type="text" class="form-control" placeholder="Email address" />
-                                <button class="btn load-btn" type="button">Subscribe</button>
+                <a class="hide-selary-pro-mobile-menu" href="javascript:;" role="button"></a>
+            </div>
+            <div class="slide-menu-flex">
+                <div class="selary-pro-mobile-menu" id="selary-pro-mobile-menu"></div>
+                <div class="hidden-widgets-side section" id="hidden-widgets-side">
+                    <div class="widget PopularPosts"  id="PopularPosts1">
+                        <div class="widget-title"><h3 class="title">Popular Items</h3></div>
+                        <div class="widget-content default-items">
+                            <div class="default-item card-style item-0">
+                                <a class="entry-image-wrap before-mask is-image" href="https://selary-templateify.blogspot.com/2023/02/celebrities-in-vanity-fair-coashella.html" title="Celebrities in the Vanity Fair Coashella Studio">
+                                    <span
+                                        class="entry-thumb"
+                                        data-image="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhQ9HudXu-xNRnx-hIVwuiAHQB-TQOXsyOn3tJ0zUI_uExNg84xH494oUvzYEF8e64okRFday3jM2sgiHKfulUfAM3iL6Tx7BMA2TwDsgv9PGPhSB4sMAJdZQ7hNPBoG4yzsT8XlqovlYouCFDdLA6eUoBpFmbEzgvgFK5L0_fLVtQNEIaGNT6_PcPtx8jn/w72-h72-p-k-no-nu/21.jpeg"
+                                    ></span>
+                                </a>
+                                <div class="entry-header entry-info">
+                                    <span class="entry-category">Health</span>
+                                    <h2 class="entry-title">
+                                        <a href="https://selary-templateify.blogspot.com/2023/02/celebrities-in-vanity-fair-coashella.html" title="Celebrities in the Vanity Fair Coashella Studio">
+                                            Celebrities in the Vanity Fair Coashella Studio
+                                        </a>
+                                    </h2>
+                                    <div class="entry-meta">
+                                        <span class="entry-author mi"><span class="sp">by</span><span class="author-name">Sora Blogging Tips</span></span>
+                                        <span class="entry-time mi"><span class="sp">-</span><time class="published" datetime="2023-02-25T19:19:00-08:00">February 25, 2023</time></span>
+                                    </div>
+                                </div>
                             </div>
-                        </form>
+                            <div class="default-item item-1">
+                                <a class="entry-image-wrap is-image" href="https://selary-templateify.blogspot.com/2017/03/where-story-is-being-told-without-words.html" title="Where a “story” is being told without words">
+                                    <span
+                                        class="entry-thumb"
+                                        data-image="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgwuTDTMAj5K8YCV-CJHkRdw6aHfFwfVLb2GGRzuzv26NqGimOiWqQyIwveIfdF5pP29Vf9l5BANUJfgKKFnJu34UjSrCqWHw69fDUrLKN9xq93mhj869DCB7pitRceiY0x_NLTMjcRBtbgvgcNqByJaaaBSuMT0vVw4ZN_-jTXObWHr2nkvQk1rbPrNH99/w72-h72-p-k-no-nu/22.jpeg"
+                                    ></span>
+                                </a>
+                                <div class="entry-header">
+                                    <h2 class="entry-title">
+                                        <a href="https://selary-templateify.blogspot.com/2017/03/where-story-is-being-told-without-words.html" title="Where a “story” is being told without words">
+                                            Where a &#8220;story&#8221; is being told without words
+                                        </a>
+                                    </h2>
+                                    <div class="entry-meta">
+                                        <span class="entry-time mi"><time class="published" datetime="2017-03-17T00:59:00-07:00">March 17, 2017</time></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="default-item item-2">
+                                <a class="entry-image-wrap is-image" href="https://selary-templateify.blogspot.com/2016/03/where-story-is-being-told-without-world.html" title="Where a “story” is being told without world">
+                                    <span
+                                        class="entry-thumb"
+                                        data-image="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZF1xWuaIeZoNv1JXLx-uV73u3xN50klM4HcFg22TaRlRG2CxrjWAevp9oDa9kNDGgH0AwEAWScbCBoKZxo0afFITNUE1hJRPanamZZy5LzimU1FniWH42_i1sOVUWULuvx238423erYAlGzm61Oh91fvy8uIuqdl5JY4r-5oCKa-ODQzHvRfrBHGWTZzC/w72-h72-p-k-no-nu/R10.jpg"
+                                    ></span>
+                                </a>
+                                <div class="entry-header">
+                                    <h2 class="entry-title">
+                                        <a href="https://selary-templateify.blogspot.com/2016/03/where-story-is-being-told-without-world.html" title="Where a “story” is being told without world">
+                                            Where a &#8220;story&#8221; is being told without world
+                                        </a>
+                                    </h2>
+                                    <div class="entry-meta">
+                                        <span class="entry-time mi"><time class="published" datetime="2016-03-17T00:57:00-07:00">March 17, 2016</time></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="default-item item-3">
+                                <a class="entry-image-wrap is-image" href="https://selary-templateify.blogspot.com/2016/03/celebrities-in-vanity-fair-coashella.html" title="Celebrities in the Vanity Fair Coashella Studio">
+                                    <span
+                                        class="entry-thumb"
+                                        data-image="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh4aHP_7dO11ll28G4n89ncdJS3lKqObQ_eyLhDC5MVyMxeFOCfZ3Iohy1y5dZ-oZvJNOXoiSkgtwk-IDGMHbzRMfCCcJrLqftieCxr8WFsBxKv78_2MoRH4bPKPe6cUUxzYY9QAjbfEsESA9yMQOKo8y6apLyUG2t8WUeALVhrcMoTErvxA0VevWrBGQSi/w72-h72-p-k-no-nu/28.jpeg"
+                                    ></span>
+                                </a>
+                                <div class="entry-header">
+                                    <h2 class="entry-title">
+                                        <a href="https://selary-templateify.blogspot.com/2016/03/celebrities-in-vanity-fair-coashella.html" title="Celebrities in the Vanity Fair Coashella Studio">
+                                            Celebrities in the Vanity Fair Coashella Studio
+                                        </a>
+                                    </h2>
+                                    <div class="entry-meta">
+                                        <span class="entry-time mi"><time class="published" datetime="2016-03-17T00:46:00-07:00">March 17, 2016</time></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                </div>
+                <div class="mm-footer">
+                    <div class="mm-social"></div>
+                    <div class="mm-menu"></div>
                 </div>
             </div>
-        </footer>
+        </div>
+        <div class="overlay"></div>
+        <a class="btn" href="javascript:;" id="back-top" role="button" title="Back To Top"></a>
+        <!-- Hosted Plugins -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" type="text/javascript"></script>
+        <!-- Local Plugins -->
+       <!-- Local Plugins -->
 
+    <!-- Theme Scripts -->
+ 
+    <!-- Blogger Scripts -->
+
+       <script src="{{asset('assets/js/custom.js')}}"></script>   
+       <script src="{{asset('assets/js/theme.js')}}"></script>   
+        <script type="text/javascript" src="https://www.blogger.com/static/v1/widgets/4222370799-widgets.js"></script>
     </body>
-    <script src="{{asset('assets/libs/bootstrap/js/bootstrap.min.js')}}"></script>
-    <script src="{{asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{asset('assets/libs/jquery/jquery.min.js')}}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            var owl = $(".owl-carousel");
-            owl.owlCarousel({
-                loop: true,
-                margin: 10,
-                nav: false,
-                items: 1,
-                dots: false,
-                autoplay: true,
-                autoPlaySpeed: 5000,
-                autoPlayTimeout: 5000,
-                autoplayHoverPause: true,
-            });
-
-            // Custom Button
-            $(".customNextBtn").click(function () {
-                owl.trigger("next.owl.carousel");
-            });
-            $(".customPreviousBtn").click(function () {
-                owl.trigger("prev.owl.carousel");
-            });
-        });
-    </script>
 </html>

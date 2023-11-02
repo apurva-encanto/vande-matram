@@ -4,7 +4,7 @@
         <ul id="selary-pro-main-nav-menu" role="menubar">
             <li><a href="{{url('/')}}" role="menuitem">Home</a></li>           
             @foreach ($categories->take(7) as $category)
-            <li><a href="https://www.templateify.com/2023/10/selary-blogger-template.html" role="menuitem">{{ $category->name }}</a></li>
+            <li><a href="{{ url('news-'.$category->slug) }}" role="menuitem">{{ $category->name }}</a></li>
             @endforeach
             @if(count($categories) >7)
 
@@ -13,7 +13,7 @@
                 <ul class="sub-menu m-sub"></ul>
                 <ul class="sub-menu2 m-sub">
                     @foreach ($categories->slice(7) as $category)
-                    <li><a href="href="{{ url('news-'.$category->slug) }}"" role="menuitem">{{ $category->name }}</a></li>
+                    <li><a href="{{ url('news-'.$category->slug) }}" role="menuitem">{{ $category->name }}</a></li>
                     @endforeach
               </ul>
             </li>

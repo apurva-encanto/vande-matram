@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller
 {
+
+
+
     public function addArticle()
     {
         $data['categories'] = Category::where(['is_delete' => '0', 'status' => 'active'])->get();
@@ -52,7 +55,6 @@ class ArticleController extends Controller
             'popular' => 'required',
             'top_new' => 'required',
             'publish_date' => 'required|date|after_or_equal:today',
-            'file' => 'required|file|mimes:jpeg,png,jpg,gif|max:2048',
         ], [
             'publish_date.after_or_equal' => 'The publish date must be greater than or equal to the current date.',
         ]);

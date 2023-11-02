@@ -20,10 +20,10 @@ use App\Http\Controllers\Admin\JournalistController;
 |
 */
 
-Route::get('/', [MainController::class, 'index']);
+Route::get('/', [MainController::class, 'index'])->name('main');
 
 
-Route::get('/news/{categoryName}/{articleSlug}', [MainController::class, 'getSingleArticle']);
+Route::get('/news-{categoryName}/{articleSlug}', [MainController::class, 'getSingleArticle']);
 Route::get('/news-{categoryName}', [MainController::class, 'getArticleByCategory']);
 
 
