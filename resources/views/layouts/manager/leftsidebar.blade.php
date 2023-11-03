@@ -66,12 +66,12 @@
                 </div>
             </li> 
             
-            <li>
+            {{-- <li>
                 <a href="#sidebarDashboards" data-bs-toggle="collapse"  >
                     <i class="mdi  mdi-tools"></i>                                    
                     <span> Settings </span>
                 </a> 
-            </li>
+            </li> --}}
            <!-- <li>
                 <a href="#sidebarProjects" data-bs-toggle="collapse">
                     <i class="mdi mdi-briefcase-check-outline"></i>

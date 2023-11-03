@@ -3608,7 +3608,7 @@ margin:0
 }
 .default-items .entry-image-wrap{
 width:100px;
-height:65px;
+height:100px;
 z-index:1;
 margin:0 13px 0 0
 }
@@ -5043,4 +5043,8 @@ font-size:25px
     font-size:22px;
     {{-- overflow: hidden;
     text-overflow: ellipsis; --}}
+  }
+
+  .view-icon:before{
+    padding:6px;
   }

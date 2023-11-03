@@ -68,3 +68,89 @@
 
 
 @endsection
+
+
+@section('popular-posts')
+<div class="widget-content default-items">
+    @foreach ($popular_posts as  $key=>$post)
+    @if($key==0)
+    <div class="default-item card-style item-0">
+        <a
+            class="entry-image-wrap before-mask is-image"
+            href="{{url('news-'.$post->category_slug.'/'.$post->title_slug)}}"
+            title="{{$post->title}}"
+        >
+            <span
+                class="entry-thumb"
+                data-image="{{ asset('storage/uploads/article_'.$post->user_id.'/'.$post->image)}}"
+            ></span>
+        </a>
+        <div class="entry-header entry-info">
+            <span class="entry-category">{{$post->category_name}}</span>
+            <h2 class="entry-title" style="font-size: 14px;">
+                <a href="{{url('news-'.$post->category_slug.'/'.$post->title_slug)}}" title="{{$post->title}}">
+                    {{$post->title}}
+                </a>
+            </h2>
+            <div class="entry-meta">
+                <span class="entry-author mi"><span class="sp">by</span><span class="author-name">{{$post->user_name}}</span></span>
+                <span class="entry-time mi"><span class="sp">-</span><time class="published" datetime="{{$post->publish_date}}">{{ getconvertedDate($post->publish_date) }}</time></span>
+            </div>
+        </div>
+    </div>
+    @endif
+    @if($key > 0)
+    <div class="default-item item-$key">
+        <a class="entry-image-wrap is-image" href="{{url('news-'.$post->category_slug.'/'.$post->title_slug)}}" title="{{$post->title}}">
+            <span
+                class="entry-thumb"
+                data-image="{{ asset('storage/uploads/article_'.$post->user_id.'/'.$post->image)}}"
+            ></span>
+        </a>
+        <div class="entry-header">
+            <h2 class="entry-title">
+                <a href="{{url('news-'.$post->category_slug.'/'.$post->title_slug)}}" title="{{$post->title}}">
+                    {{$post->title}}
+                </a>
+            </h2>
+            <div class="entry-meta">
+                <span class="entry-time mi"><time class="published" datetime="{{$post->publish_date}}">{{ getconvertedDate($post->publish_date) }}</time></span>
+            </div>
+        </div>
+    </div>
+    @endif
+ 
+    @endforeach
+</div>
+@endsection
+
+
+@section('latest-news')
+<div class="mini-items">
+
+    @foreach ($latest_posts as $key=>$post)
+    <div class="mini-item item-{{$key}}">
+        <a title="{{$post->title}}" class="entry-image-wrap is-image" href="{{url('news-'.$post->category_slug.'/'.$post->title_slug)}}">
+            <span
+                class="entry-thumb lazy-ify"
+                data-image="{{ asset('storage/uploads/article_'.$post->user_id.'/'.$post->image)}}"
+                style="
+                    background-image: url({{ asset('storage/uploads/article_'.$post->user_id.'/'.$post->image)}});
+                "
+            ></span>
+        </a>
+        <div class="entry-header">
+            <h2 class="entry-title">
+                <a href="{{url('news-'.$post->category_slug.'/'.$post->title_slug)}}" title="{{$post->title}}">
+                    {{$post->title}}
+                </a>
+            </h2>
+            <div class="entry-meta">
+                <span class="entry-time mi"><time class="published" datetime="{{$post->publish_date}}">{{ getconvertedDate($post->publish_date) }}</time></span>
+            </div>
+        </div>
+    </div>
+    @endforeach   
+ 
+</div>
+@endsection

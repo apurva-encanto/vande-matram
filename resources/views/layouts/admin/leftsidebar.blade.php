@@ -11,7 +11,7 @@
             <li class="menu-title">Navigation</li>
 
             <li>
-                <a href="#sidebarDashboards" data-bs-toggle="collapse"  class="active">
+                <a href="{{route('admin.home')}}"   class="active">
                     <i class="mdi mdi-view-dashboard-outline"></i>                                    
                     <span> Dashboards </span>
                 </a> 

@@ -19,7 +19,7 @@
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Vandemataram</a></li> 
                                             
                                             
-                                            <li class="breadcrumb-item"><a href="dashboard.html"> Dashoard</a></li> 
+                                            <li class="breadcrumb-item"><a href="{{route('admin.home')}}"> Dashoard</a></li> 
                                             <li class="breadcrumb-item active">Add New Article</li>
                                         </ol>
                                     </div>

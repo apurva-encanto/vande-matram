@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use DB;
+use App\Models\Article;
 use App\Models\Category;
 
 trait ArticleTrait
@@ -19,4 +20,61 @@ trait ArticleTrait
             ->get();
         // Your logic here
     }
+
+    public function getPopularArticlesByCategory($category = null)
+    {
+
+        $where['articles.is_approved'] = '1';
+        $where['articles.status'] = 'active';
+        $where['articles.is_delete'] = '0';
+        $where['articles.publish'] = '1';
+        if (!empty($category)) {
+            $where['articles.category_slug'] = $category;
+        }
+        $items =  Article::leftJoin('users', 'users.id', '=', 'articles.user_id')
+            ->leftJoin('categories', 'categories.id', '=', 'articles.category_id')
+            ->select('articles.*', 'users.name as user_name', 'categories.name as category_name')
+            ->where($where)->orderBy('articles.views', 'desc')->take(4)->get();
+
+        return $items;
+    }
+
+    public function getLatestArticlesByCategory($category = null)
+    {
+
+        $where['articles.is_approved'] = '1';
+        $where['articles.status'] = 'active';
+        $where['articles.is_delete'] = '0';
+        $where['articles.publish'] = '1';
+        if (!empty($category)) {
+            $where['articles.category_slug'] = $category;
+        }
+        $items =  Article::leftJoin('users', 'users.id', '=', 'articles.user_id')
+            ->leftJoin('categories', 'categories.id', '=', 'articles.category_id')
+            ->select('articles.*', 'users.name as user_name', 'categories.name as category_name')
+            ->where($where)->orderBy('articles.created_at', 'desc')->take(4)->get();
+
+        return $items;
+    }
+
+    public function getSimilarArticlesByCategory($category = null)
+    {
+
+        $where['articles.is_approved'] = '1';
+        $where['articles.status'] = 'active';
+        $where['articles.is_delete'] = '0';
+        $where['articles.publish'] = '1';
+        $where['articles.category_slug'] = $category;
+
+        $items =  Article::leftJoin('users', 'users.id', '=', 'articles.user_id')
+        ->leftJoin('categories', 'categories.id', '=', 'articles.category_id')
+        ->select('articles.*', 'users.name as user_name', 'categories.name as category_name')
+        ->where($where)->orderBy('articles.created_at', 'desc')->take(4)->get();
+
+        return $items;
+
+
+
+    }
+
 }

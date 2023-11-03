@@ -53,7 +53,8 @@ class MainController extends Controller
         }
 
         $data['tags'] = $this->getPublishedArticlesCountByCategory();
-
+        $data['popular_posts'] = $this->getPopularArticlesByCategory();
+        $data['latest_posts'] = $this->getLatestArticlesByCategory();
         $data['items'] = $items;
         $data['articles'] = $groupedItems;
         return view('welcome', $data);
@@ -62,32 +63,34 @@ class MainController extends Controller
     public function getSingleArticle(Request $request, $category, $title)
     {
 
-        $article = Article::where('title_slug', $title)->increment('views');;
+        print_r(session()->get('visited_posts'));
 
         $data['categories'] = Category::where(['is_delete' => '0', 'status' => 'active'])->get();
 
         $data['article'] = Article::leftJoin('users', 'users.id', '=', 'articles.user_id')
-            ->leftJoin('journalist_details', 'journalist_details.id', '=', 'articles.user_id')
+            ->leftJoin('journalist_details', 'journalist_details.user_id', '=', 'articles.user_id')
             ->leftJoin('categories', 'categories.id', '=', 'articles.category_id')
             ->select('articles.*', 'users.name as user_name', 'journalist_details.photo as photo', 'categories.name as category_name')
-
             ->where([
                 'articles.is_approved' => '1', 'articles.status' => 'active',
                 'articles.is_delete' => '0', 'articles.publish' => '1',
                 'articles.category_slug' => $category, 'title_slug' => $title
             ])->first();
 
+        Article::where('title_slug', $title)->increment('views');
         if (empty($data['article'])) {
             return redirect()->route('main');
         }
-        // echo "<pre>";
-        // print_r($data['article']);
-        // exit;
+
         $data['tags'] = $this->getPublishedArticlesCountByCategory();
-
-
+        $data['popular_posts'] = $this->getPopularArticlesByCategory($category);
+        $data['latest_posts'] = $this->getLatestArticlesByCategory($category);
+        $data['similar_posts'] = $this->getSimilarArticlesByCategory($category);
         return view('single-article', $data);
     }
+
+
+
     public function getArticleByCategory(Request $request, $id)
     {
         $data['categories'] = Category::where(['is_delete' => '0', 'status' => 'active'])->get();
@@ -100,7 +103,11 @@ class MainController extends Controller
                 'articles.is_approved' => '1', 'articles.status' => 'active',
                 'articles.is_delete' => '0', 'articles.publish' => '1', 'category_slug' => $id
             ])->orderBy('articles.id', 'desc')->get();
+        $data['popular_posts'] = $this->getPopularArticlesByCategory($id);
+        $data['latest_posts'] = $this->getLatestArticlesByCategory($id);
+
 
         return view('category-article', $data);
     }
+
 }

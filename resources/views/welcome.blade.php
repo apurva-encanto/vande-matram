@@ -113,7 +113,7 @@
         <div class="widget HTML is-visible"  id="HTML18">
             <div class="widget-title title-wrap"><h3 class="title">Technology</h3>
             
-                <a class="wt-l" href="/search">View all</a></div>
+                <a class="wt-l" href="{{ url('news-technology') }}">View all</a></div>
             <div class="widget-content">
                 <div class="content-block block1-items">
 
@@ -278,7 +278,7 @@
         <div class="widget HTML is-visible"  id="HTML12">
             <div class="widget-title title-wrap"><h3 class="title">Latest</h3>
             
-                <a class="wt-l" href="/search">View all</a></div>
+                <a class="wt-l" href="{{ url('news-latest') }}">View all</a></div>
             <div class="widget-content">
                 <div class="content-block col-items colLeft-items">
 
@@ -345,7 +345,7 @@
 
         <div class="widget HTML is-visible"  id="HTML12">
             <div class="widget-title title-wrap"><h3 class="title">Business</h3>
-                <a class="wt-l" href="/search">View all</a></div>
+                <a class="wt-l" href="{{ url('news-technology') }}">View all</a></div>
             <div class="widget-content">
                 <div class="content-block col-items colLeft-items">
 
@@ -499,7 +499,7 @@
                 <div class="blog-pager" id="blog-pager">
                     <a
                         class="blog-pager-older-link load-more btn"
-                        data-load="https://selary-templateify.blogspot.com/search?updated-max=2016-03-17T00:46:00-07:00&amp;max-results=7"
+                        data-load=""
                         href="javascript:;"
                         id="selary-pro-load-more-link"
                     >
@@ -527,10 +527,95 @@
     <div class="main-ads section" id="main-ads-2" name="Main Ads 2">
         <div class="widget HTML"  id="HTML15">
             <div class="widget-content">
-                <a class="ads-here" href="https://www.templateify.com/">Responsive Advertisement</a>
+                <a class="ads-here" href="">Responsive Advertisement</a>
             </div>
         </div>
     </div>
   
 </main>
+@endsection
+
+
+@section('popular-posts')
+<div class="widget-content default-items">
+    @foreach ($popular_posts as  $key=>$post)
+    @if($key==0)
+    <div class="default-item card-style item-0">
+        <a
+            class="entry-image-wrap before-mask is-image" 
+            href="{{url('news-'.$post->category_slug.'/'.$post->title_slug)}}"
+            title="{{$post->title}}"
+        >
+            <span
+                class="entry-thumb"
+                data-image="{{ asset('storage/uploads/article_'.$post->user_id.'/'.$post->image)}}"
+            ></span>
+        </a>
+        <div class="entry-header entry-info">
+            <span class="entry-category">{{$post->category_name}}</span>
+            <h2 class="entry-title" style="font-size:14px !important;">
+                <a href="{{url('news-'.$post->category_slug.'/'.$post->title_slug)}}" title="{{$post->title}}">
+                    {{$post->title}}
+                </a>
+            </h2>
+            <div class="entry-meta">
+                <span class="entry-author mi"><span class="sp">by</span><span class="author-name">{{$post->user_name}}</span></span>
+                <span class="entry-time mi"><span class="sp">-</span><time class="published" datetime="{{$post->publish_date}}">{{ getconvertedDate($post->publish_date) }}</time></span>
+            </div>
+        </div>
+    </div>
+    @endif
+    @if($key >0)
+    <div class="default-item item-{{$key}}">
+        <a class="entry-image-wrap is-image" href="{{url('news-'.$post->category_slug.'/'.$post->title_slug)}}" title="{{$post->title}}">
+            <span
+                class="entry-thumb"
+                data-image="{{ asset('storage/uploads/article_'.$post->user_id.'/'.$post->image)}}"
+            ></span>
+        </a>
+        <div class="entry-header">
+            <h2 class="entry-title">
+                <a href="{{url('news-'.$post->category_slug.'/'.$post->title_slug)}}" title="{{$post->title}}">
+                    {{$post->title}}
+                </a>
+            </h2>
+            <div class="entry-meta">
+                <span class="entry-time mi"><time class="published" datetime="{{$post->publish_date}}">{{ getconvertedDate($post->publish_date) }}</time></span>
+            </div>
+        </div>
+    </div>
+ 
+    @endif
+    @endforeach
+</div>
+@endsection
+
+@section('latest-news')
+<div class="mini-items">
+
+    @foreach ($latest_posts as $key=>$post)
+    <div class="mini-item item-{{$key}}">
+        <a title="{{$post->title}}" class="entry-image-wrap is-image" href="{{url('news-'.$post->category_slug.'/'.$post->title_slug)}}">
+            <span
+                class="entry-thumb lazy-ify"
+                data-image="{{ asset('storage/uploads/article_'.$post->user_id.'/'.$post->image)}}"
+                style="
+                    background-image: url({{ asset('storage/uploads/article_'.$post->user_id.'/'.$post->image)}});
+                "
+            ></span>
+        </a>
+        <div class="entry-header">
+            <h2 class="entry-title">
+                <a href="{{url('news-'.$post->category_slug.'/'.$post->title_slug)}}" title="{{$post->title}}">
+                    {{$post->title}}
+                </a>
+            </h2>
+            <div class="entry-meta">
+                <span class="entry-time mi"><time class="published" datetime="{{$post->publish_date}}">{{ getconvertedDate($post->publish_date) }}</time></span>
+            </div>
+        </div>
+    </div>
+    @endforeach   
+ 
+</div>
 @endsection

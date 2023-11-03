@@ -53,7 +53,7 @@
                         </li>
      
      
-                        <li class="dropdown notification-list topbar-dropdown">
+                        {{-- <li class="dropdown notification-list topbar-dropdown">
                             <a class="nav-link dropdown-toggle waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                                 <i class="fe-bell noti-icon"></i>
                                 <span class="badge bg-danger rounded-circle noti-icon-badge">9</span>
@@ -123,7 +123,7 @@
                                 </a>
     
                             </div>
-                        </li>
+                        </li> --}}
     
                         <li class="dropdown notification-list topbar-dropdown">
                             <a class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
@@ -151,10 +151,10 @@
                                 </a>
     
                                 <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                {{-- <a href="javascript:void(0);" class="dropdown-item notify-item">
                                     <i class="fe-lock"></i>
                                     <span>Lock Screen</span>
-                                </a>
+                                </a> --}}
     
                                 <div class="dropdown-divider"></div>
     
