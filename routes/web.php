@@ -22,6 +22,10 @@ use App\Http\Controllers\Admin\JournalistController;
 
 Route::get('/', [MainController::class, 'index'])->name('main');
 
+Route::get('/contact-us', [MainController::class, 'contact_us']);
+Route::get('/about-us', [MainController::class, 'about_us']);
+
+
 
 Route::get('/news-{categoryName}/{articleSlug}', [MainController::class, 'getSingleArticle']);
 Route::get('/news-{categoryName}', [MainController::class, 'getArticleByCategory']);

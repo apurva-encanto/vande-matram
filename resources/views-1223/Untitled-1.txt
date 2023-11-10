@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Vandemataram News</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta content="" name="description" />
+        <meta content="Vandemataram News" name="author" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico')}}" />
+
+        <!-- Plugins css -->
+        <!-- Bootstrap css -->
+        <link href="{{ asset('assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
+        <!-- App css -->
+        <link href="{{ asset('assets/css/app.min.css')}}" rel="stylesheet" type="text/css" id="app-style" />
+        <!-- icons -->
+        <link href="{{ asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('assets/css/main.css')}}" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.carousel.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.theme.default.css" />
+    </head>
+
+    <!-- body start -->
+    <body>
+        <div style="height: 50px;"></div>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="height: 35px;">
+            <div class="container">
+                <a class="navbar-brand" href="#"></a>
+
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact Us</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex">
+                        <a class="nav-link mx-1" href="#">
+                            <div class="icon-item">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="feather feather-facebook icon-dual"
+                                >
+                                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                                </svg>
+                            </div>
+                        </a>
+                        <a href="#" class="nav-link mx-1">
+                            <div class="icon-item">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="feather feather-twitter icon-dual"
+                                >
+                                    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                                </svg>
+                            </div>
+                        </a>
+                        <a href="#" class="nav-link mx-1">
+                            <div class="icon-item">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="feather feather-youtube icon-dual"
+                                >
+                                    <path
+                                        d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"
+                                    ></path>
+                                    <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+                                </svg>
+                            </div>
+                        </a>
+                    </form>
+                </div>
+            </div>
+        </nav>
+
+        <div class="content-wrapper">
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="{{asset('assets/images/logo-light.png')}}" alt="" />
+                </div>
+                <div class="col-md-8">
+                    <div class="card bg-light">
+                        <div class="card-body">
+                            Responsive Advertisement
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-1">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    Responsive Advertisement
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-10">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <nav class="navbar navbar-expand-lg navbar-dark bg-dark main-navbar" st>
+                                            <div class="container-fluid">
+                                                <a class="navbar-brand home-active text-center" href="#">
+                                                    <span class="material-symbols-outlined mt-2" style="font-size: 24px;">
+                                                        home
+                                                    </span>
+                                                </a>
+                                                <button
+                                                    class="navbar-toggler text-light"
+                                                    type="button"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#navbarSupportedContent"
+                                                    aria-controls="navbarSupportedContent"
+                                                    aria-expanded="false"
+                                                    aria-label="Toggle navigation"
+                                                >
+                                                    <span class="navbar-toggler-icon"></span>
+                                                </button>
+                                                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                                        <li class="nav-item">
+                                                            <a class="nav-link active" aria-current="page" href="#">LATEST NEWS</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="#">World Cup</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="#">Entertainment</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="#">Andhra Predesh</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="#">Telangana</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="#">Bigg Boss 7</a>
+                                                        </li>
+
+                                                        <li class="nav-item dropdown">
+                                                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> More <i class="material-symbols-outlined">arrow_drop_down</i> </a>
+                                                            <ul class="dropdown-menu">
+                                                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                                                <li><hr class="dropdown-divider" /></li>
+                                                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                    <form class="d-flex" role="search">
+                                                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                                                        <button class="btn btn-outline-light text-light" type="submit">Search</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </nav>
+                                    </div>
+                                </div>
+
+                                <div class="feature-news m-2" style="position: relative;">
+                                    <div class="row mb-3">
+                                        <div class="col-md-10">
+                                            <button class="label ripple">Top News</button>
+                                            <div class="owl-carousel owl-theme">
+                                                <div class="item"><p class="topNews-title">Economic Growth Is Essential. So Is Resilience</p></div>
+                                                <div class="item"><p class="topNews-title">The Perfect Candidate for a Fallen Party</p></div>
+                                                <div class="item"><p class="topNews-title">Latest blown lead for Raiders signals enough is enough of McDaniels</p></div>
+                                                <div class="item"><p class="topNews-title">The Most Important Amicus Brief in the History of the World</p></div>
+                                                <div class="item"><p class="topNews-title">5</p></div>
+                                                <div class="item"><p class="topNews-title">6</p></div>
+                                                <div class="item"><p class="topNews-title">7</p></div>
+                                                <div class="item"><p class="topNews-title">8</p></div>
+                                                <div class="item"><p class="topNews-title">9</p></div>
+                                                <div class="item"><p class="topNews-title">10</p></div>
+                                                <div class="item"><p class="topNews-title">11</p></div>
+                                                <div class="item"><p class="topNews-title">12</p></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="list-count">
+                                                <span class="customPreviousBtn material-symbols-outlined">
+                                                    chevron_left
+                                                </span>
+                                                <span class="customNextBtn material-symbols-outlined">
+                                                    chevron_right
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="widget-title title-wrap">
+                                            <h3 class="title">Trending News</h3>
+                                            <span class="view-all list-count">view all</span>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <div class="card bg-dark text-white">
+                                                    <img class="card-img zoom-img" height="420" src="https://codingyaar.com/wp-content/uploads/chair-image.jpg" alt="Card image" />
+                                                    <div class="card-img-overlay">
+                                                        <div class="feature-title">
+                                                            <h3>What My Mother Taught Me About Black Conservatives</h3>
+                                                            <p class="text-muted">May 23,2018</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-7">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="card bg-dark text-white">
+                                                            <img class="card-img zoom-img" height="200" src="https://codingyaar.com/wp-content/uploads/chair-image.jpg" alt="Card image" />
+                                                            <div class="card-img-overlay">
+                                                                <div class="feature-title">
+                                                                    <h3>What My Mother Taught Me About Black Conservatives</h3>
+                                                                    <p class="text-muted"><i class="material-symbols-outlined">schedule</i> May 23,2018</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="card bg-dark text-white">
+                                                            <img class="card-img zoom-img" height="200" src="https://codingyaar.com/wp-content/uploads/chair-image.jpg" alt="Card image" />
+                                                            <div class="card-img-overlay">
+                                                                <div class="feature-title">
+                                                                    <h3>What My Mother Taught Me About Black Conservatives</h3>
+                                                                    <p class="text-muted"><i class="material-symbols-outlined">schedule</i> May 23,2018</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="card bg-dark text-white">
+                                                            <img class="card-img zoom-img" height="200" src="https://codingyaar.com/wp-content/uploads/chair-image.jpg" alt="Card image" />
+                                                            <div class="card-img-overlay">
+                                                                <div class="feature-title">
+                                                                    <h3>What My Mother Taught Me About Black Conservatives</h3>
+                                                                    <p class="text-muted"><i class="material-symbols-outlined">schedule</i> May 23,2018</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="card bg-dark text-white">
+                                                            <img class="card-img zoom-img" height="200" src="https://codingyaar.com/wp-content/uploads/chair-image.jpg" alt="Card image" />
+                                                            <div class="card-img-overlay">
+                                                                <div class="feature-title">
+                                                                    <h3>What My Mother Taught Me About Black Conservatives</h3>
+                                                                    <p class="text-muted"><i class="material-symbols-outlined">schedule</i>May 23,2018</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mainContentWrapper">
+                                    <div class="col-md-8 leftContentSection">
+                                        <div class="widget-title title-wrap">
+                                            <h3 class="title">Game</h3>
+                                            <span class="view-all list-count">view all</span>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="card card-bg" style="max-height: 340px;">
+                                                    <img src="https://codingyaar.com/wp-content/uploads/chair-image.jpg" style="height: 200px; width: 100%;" class="card-img-top" alt="..." />
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">What My Mother Taught Me About Black Conservatives</h5>
+                                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="card border-0 card-tab">
+                                                    <img src="https://codingyaar.com/wp-content/uploads/chair-image.jpg" class="card-img-top" alt="..." />
+                                                    <div class="card-body">
+                                                        <div class="text-section">
+                                                            <h5 class="card-title">What My Mother Taught Me About Black Conservatives</h5>
+
+                                                            <p class="card-text"><i class="material-symbols-outlined">schedule</i><small class="text-muted">May 23, 2018</small></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card border-0 card-tab">
+                                                    <img src="https://codingyaar.com/wp-content/uploads/chair-image.jpg" class="card-img-top" alt="..." />
+                                                    <div class="card-body">
+                                                        <div class="text-section">
+                                                            <h5 class="card-title">What My Mother Taught Me About Black Conservatives</h5>
+
+                                                            <p class="card-text"><i class="material-symbols-outlined">schedule</i><small class="text-muted">May 23, 2018</small></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="card border-0 card-tab">
+                                                    <img src="https://codingyaar.com/wp-content/uploads/chair-image.jpg" class="card-img-top" alt="..." />
+                                                    <div class="card-body">
+                                                        <div class="text-section">
+                                                            <h5 class="card-title">What My Mother Taught Me About Black Conservatives</h5>
+
+                                                            <p class="card-text"><i class="material-symbols-outlined">schedule</i><small class="text-muted">May 23, 2018</small></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="card border-0 card-tab">
+                                                    <div class="widget-title title-wrap">
+                                                        <h3 class="title">BITCOIN</h3>
+                                                        <span class="view-all list-count">view all</span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="card border-0 card-tab">
+                                                    <img src="https://codingyaar.com/wp-content/uploads/chair-image.jpg" class="card-img-top" alt="..." />
+                                                    <div class="card-body">
+                                                        <div class="text-section">
+                                                            <h5 class="card-title">What My Mother Taught Me About Black Conservatives</h5>
+
+                                                            <p class="card-text"><i class="material-symbols-outlined">schedule</i><small class="text-muted">May 23, 2018</small></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card border-0 card-tab">
+                                                    <img src="https://codingyaar.com/wp-content/uploads/chair-image.jpg" class="card-img-top" alt="..." />
+                                                    <div class="card-body">
+                                                        <div class="text-section">
+                                                            <h5 class="card-title">What My Mother Taught Me About Black Conservatives</h5>
+
+                                                            <p class="card-text"><i class="material-symbols-outlined">schedule</i><small class="text-muted">May 23, 2018</small></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card border-0 card-tab">
+                                                    <img src="https://codingyaar.com/wp-content/uploads/chair-image.jpg" class="card-img-top" alt="..." />
+                                                    <div class="card-body">
+                                                        <div class="text-section">
+                                                            <h5 class="card-title">What My Mother Taught Me About Black Conservatives</h5>
+
+                                                            <p class="card-text"><i class="material-symbols-outlined">schedule</i><small class="text-muted">May 23, 2018</small></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="card border-0 card-tab">
+                                                    <div class="widget-title title-wrap">
+                                                        <h3 class="title">BUSINESS</h3>
+                                                        <span class="view-all list-count">view all</span>
+                                                    </div>
+                                                </div>
+                                                <div class="card border-0 card-tab">
+                                                    <img src="https://codingyaar.com/wp-content/uploads/chair-image.jpg" class="card-img-top" alt="..." />
+                                                    <div class="card-body">
+                                                        <div class="text-section">
+                                                            <h5 class="card-title">What My Mother Taught Me About Black Conservatives</h5>
+
+                                                            <p class="card-text"><i class="material-symbols-outlined">schedule</i><small class="text-muted">May 23, 2018</small></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card border-0 card-tab">
+                                                    <img src="https://codingyaar.com/wp-content/uploads/chair-image.jpg" class="card-img-top" alt="..." />
+                                                    <div class="card-body">
+                                                        <div class="text-section">
+                                                            <h5 class="card-title">What My Mother Taught Me About Black Conservatives</h5>
+
+                                                            <p class="card-text"><i class="material-symbols-outlined">schedule</i><small class="text-muted">May 23, 2018</small></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card border-0 card-tab">
+                                                    <img src="https://codingyaar.com/wp-content/uploads/chair-image.jpg" class="card-img-top" alt="..." />
+                                                    <div class="card-body">
+                                                        <div class="text-section">
+                                                            <h5 class="card-title">What My Mother Taught Me About Black Conservatives</h5>
+
+                                                            <p class="card-text"><i class="material-symbols-outlined">schedule</i><small class="text-muted">May 23, 2018</small></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="widget-title title-wrap">
+                                            <h3 class="title">Technology</h3>
+                                            <span class="view-all list-count">view all</span>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="card card-bg">
+                                                    <img src="https://codingyaar.com/wp-content/uploads/chair-image.jpg" class="card-img-top" alt="..." />
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">What My Mother Taught Me About Black Conservatives</h5>
+                                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="card card-bg">
+                                                    <img src="https://codingyaar.com/wp-content/uploads/chair-image.jpg" class="card-img-top" alt="..." />
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">What My Mother Taught Me About Black Conservatives</h5>
+                                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="card card-bg">
+                                                    <img src="https://codingyaar.com/wp-content/uploads/chair-image.jpg" class="card-img-top" alt="..." />
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">What My Mother Taught Me About Black Conservatives</h5>
+                                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="card card-bg">
+                                                    <img src="https://codingyaar.com/wp-content/uploads/chair-image.jpg" class="card-img-top" alt="..." />
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">What My Mother Taught Me About Black Conservatives</h5>
+                                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="card card-bg">
+                                                    <img src="https://codingyaar.com/wp-content/uploads/chair-image.jpg" class="card-img-top" alt="..." />
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">What My Mother Taught Me About Black Conservatives</h5>
+                                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="card card-bg">
+                                                    <img src="https://codingyaar.com/wp-content/uploads/chair-image.jpg" class="card-img-top" alt="..." />
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">What My Mother Taught Me About Black Conservatives</h5>
+                                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="widget-title title-wrap">
+                                            <h3 class="title">Nature</h3>
+                                            <span class="view-all list-count">view all</span>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="card card-bg mb-3" style="max-height: 240px;">
+                                                    <div class="row g-0">
+                                                        <div class="col-md-4">
+                                                            <img src="https://codingyaar.com/wp-content/uploads/chair-image.jpg" style="height: 200px; width: 100%;" class="img-fluid rounded-start" alt="..." />
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            <div class="card-body">
+                                                                <h5 class="card-title">What My Mother Taught Me About Black Conservatives</h5>
+                                                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="card card-bg">
+                                                    <img src="https://codingyaar.com/wp-content/uploads/chair-image.jpg" class="card-img-top" alt="..." />
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">What My Mother Taught Me About Black Conservatives</h5>
+                                                        <p class="card-text"><i class="material-symbols-outlined">schedule</i><small class="text-muted">May 23, 2018</small></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="card card-bg">
+                                                    <img src="https://codingyaar.com/wp-content/uploads/chair-image.jpg" class="card-img-top" alt="..." />
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">What My Mother Taught Me About Black Conservatives</h5>
+                                                        <p class="card-text"><i class="material-symbols-outlined">schedule</i><small class="text-muted">May 23, 2018</small></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="card card-bg">
+                                                    <img src="https://codingyaar.com/wp-content/uploads/chair-image.jpg" class="card-img-top" alt="..." />
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">What My Mother Taught Me About Black Conservatives</h5>
+                                                        <p class="card-text"><i class="material-symbols-outlined">schedule</i><small class="text-muted">May 23, 2018</small></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="widget-title title-wrap">
+                                            <h3 class="title">Read More</h3>
+                                            <span class="view-all list-count">view all</span>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="card border-0 card-tab">
+                                                    <img src="https://codingyaar.com/wp-content/uploads/chair-image.jpg" class="card-img-top" alt="..." />
+                                                    <div class="card-body">
+                                                        <div class="text-section">
+                                                            <h5 class="card-title">What My Mother Taught Me About Black Conservatives</h5>
+                                                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                                            <p class="card-text"><i class="material-symbols-outlined">schedule</i><small class="text-muted">May 23, 2018</small></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <hr />
+                                                <div class="card border-0 card-tab">
+                                                    <img src="https://codingyaar.com/wp-content/uploads/chair-image.jpg" class="card-img-top" alt="..." />
+                                                    <div class="card-body">
+                                                        <div class="text-section">
+                                                            <h5 class="card-title">What My Mother Taught Me About Black Conservatives</h5>
+                                                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                                            <p class="card-text"><i class="material-symbols-outlined">schedule</i><small class="text-muted">May 23, 2018</small></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <hr />
+
+                                                <div class="card border-0 card-tab">
+                                                    <img src="https://codingyaar.com/wp-content/uploads/chair-image.jpg" class="card-img-top" alt="..." />
+                                                    <div class="card-body">
+                                                        <div class="text-section">
+                                                            <h5 class="card-title">What My Mother Taught Me About Black Conservatives</h5>
+                                                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                                            <p class="card-text"><i class="material-symbols-outlined">schedule</i><small class="text-muted">May 23, 2018</small></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <hr />
+                                                <div class="card border-0 card-tab">
+                                                    <img src="https://codingyaar.com/wp-content/uploads/chair-image.jpg" class="card-img-top" alt="..." />
+                                                    <div class="card-body">
+                                                        <div class="text-section">
+                                                            <h5 class="card-title">What My Mother Taught Me About Black Conservatives</h5>
+                                                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                                            <p class="card-text"><i class="material-symbols-outlined">schedule</i><small class="text-muted">May 23, 2018</small></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <hr />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 text-center align-content-center align-items-center">
+                                            <button class="btn load-btn">Load More</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 rightSection">
+                                        <div class="widget-title title-wrap">
+                                            <h3 class="title">Follow Us</h3>
+                                        </div>
+                                        <div class="row">
+                                            <div class="row">
+                                                <div class="col-md-6 mb-1">
+                                                    <button class="btn btn-primary btn-gradient btn-facebook">Share on Facebook</button>
+                                                </div>
+                                                <div class="col-md-6 mb-1">
+                                                    <button class="btn btn-primary btn-gradient btn-twitter">Share on Twitter</button>
+                                                </div>
+                                                <div class="col-md-6 mb-1">
+                                                    <button class="btn btn-primary btn-gradient btn-youtube">Watch on YouTube</button>
+                                                </div>
+                                                <div class="col-md-6 mb-1">
+                                                    <button class="btn btn-primary btn-gradient btn-instagram">Follow on Instagram</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="card bg-light" style="content: ''; height: 200px;">
+                                                <div class="card-body">
+                                                    Responsive Advertisement
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <ul class="nav nav-pills navbar-dark bg-dark mb-3" id="pills-tab" role="tablist">
+                                                <li class="nav-item" role="presentation">
+                                                    <button class="nav-link text-white active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">
+                                                        Popular
+                                                    </button>
+                                                </li>
+                                                <li class="nav-item" role="presentation">
+                                                    <button
+                                                        class="nav-link text-white"
+                                                        id="pills-profile-tab"
+                                                        data-bs-toggle="pill"
+                                                        data-bs-target="#pills-profile"
+                                                        type="button"
+                                                        role="tab"
+                                                        aria-controls="pills-profile"
+                                                        aria-selected="false"
+                                                    >
+                                                        Recent
+                                                    </button>
+                                                </li>
+                                                <li class="nav-item" role="presentation">
+                                                    <button
+                                                        class="nav-link text-white"
+                                                        id="pills-contact-tab"
+                                                        data-bs-toggle="pill"
+                                                        data-bs-target="#pills-contact"
+                                                        type="button"
+                                                        role="tab"
+                                                        aria-controls="pills-contact"
+                                                        aria-selected="false"
+                                                    >
+                                                        Latest
+                                                    </button>
+                                                </li>
+                                            </ul>
+                                            <div class="tab-content" id="pills-tabContent">
+                                                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="card border-0 card-tab">
+                                                                <img src="https://codingyaar.com/wp-content/uploads/chair-image.jpg" class="card-img-top" alt="..." />
+                                                                <div class="card-body">
+                                                                    <div class="text-section">
+                                                                        <h5 class="card-title">What My Mother Taught Me About Black Conservatives</h5>
+
+                                                                        <p class="card-text"><i class="material-symbols-outlined">schedule</i><small class="text-muted">May 23, 2018</small></p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="card card-tab">
+                                                                <img src="https://codingyaar.com/wp-content/uploads/chair-image.jpg" class="card-img-top" alt="..." />
+                                                                <div class="card-body">
+                                                                    <div class="text-section">
+                                                                        <h5 class="card-title fw-bold">Economic Growth Is Essential. So Is Resilience</h5>
+                                                                        <p class="card-text"><i class="material-symbols-outlined">schedule</i><small class="text-muted">May 23, 2018</small></p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="card card-tab">
+                                                                <img src="https://codingyaar.com/wp-content/uploads/chair-image.jpg" class="card-img-top" alt="..." />
+                                                                <div class="card-body">
+                                                                    <div class="text-section">
+                                                                        <h5 class="card-title fw-bold">The Perfect Candidate for a Fallen Party</h5>
+                                                                        <p class="card-text"><i class="material-symbols-outlined">schedule</i><small class="text-muted">May 23, 2018</small></p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="card border-0 card-tab">
+                                                                <img src="https://codingyaar.com/wp-content/uploads/chair-image.jpg" class="card-img-top" alt="..." />
+                                                                <div class="card-body">
+                                                                    <div class="text-section">
+                                                                        <h5 class="card-title">What My Mother Taught Me About Black Conservatives</h5>
+
+                                                                        <p class="card-text"><i class="material-symbols-outlined">schedule</i><small class="text-muted">May 23, 2018</small></p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="card card-tab">
+                                                                <img src="https://codingyaar.com/wp-content/uploads/chair-image.jpg" class="card-img-top" alt="..." />
+                                                                <div class="card-body">
+                                                                    <div class="text-section">
+                                                                        <h5 class="card-title fw-bold">Economic Growth Is Essential. So Is Resilience</h5>
+                                                                        <p class="card-text"><i class="material-symbols-outlined">schedule</i><small class="text-muted">May 23, 2018</small></p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="card card-tab">
+                                                                <img src="https://codingyaar.com/wp-content/uploads/chair-image.jpg" class="card-img-top" alt="..." />
+                                                                <div class="card-body">
+                                                                    <div class="text-section">
+                                                                        <h5 class="card-title fw-bold">The Perfect Candidate for a Fallen Party</h5>
+                                                                        <p class="card-text"><i class="material-symbols-outlined">schedule</i><small class="text-muted">May 23, 2018</small></p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="card border-0 card-tab">
+                                                                <img src="https://codingyaar.com/wp-content/uploads/chair-image.jpg" class="card-img-top" alt="..." />
+                                                                <div class="card-body">
+                                                                    <div class="text-section">
+                                                                        <h5 class="card-title">What My Mother Taught Me About Black Conservatives</h5>
+
+                                                                        <p class="card-text"><i class="material-symbols-outlined">schedule</i><small class="text-muted">May 23, 2018</small></p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="card card-tab">
+                                                                <img src="https://codingyaar.com/wp-content/uploads/chair-image.jpg" class="card-img-top" alt="..." />
+                                                                <div class="card-body">
+                                                                    <div class="text-section">
+                                                                        <h5 class="card-title fw-bold">Economic Growth Is Essential. So Is Resilience</h5>
+                                                                        <p class="card-text"><i class="material-symbols-outlined">schedule</i><small class="text-muted">May 23, 2018</small></p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="card card-tab">
+                                                                <img src="https://codingyaar.com/wp-content/uploads/chair-image.jpg" class="card-img-top" alt="..." />
+                                                                <div class="card-body">
+                                                                    <div class="text-section">
+                                                                        <h5 class="card-title fw-bold">The Perfect Candidate for a Fallen Party</h5>
+                                                                        <p class="card-text"><i class="material-symbols-outlined">schedule</i><small class="text-muted">May 23, 2018</small></p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="widget-title title-wrap mt-2">
+                                            <h3 class="title">Categories</h3>
+                                        </div>
+                                        <div class="row">
+                                            <ul>
+                                                <li>Bitcoin <span class="list-count text-muted">(4)</span></li>
+                                                <li>Business <span class="list-count text-muted">(3)</span></li>
+                                                <li>Drones <span class="list-count text-muted">(5)</span></li>
+                                                <li>Economy <span class="list-count text-muted">(4)</span></li>
+                                                <li>Nature <span class="list-count text-muted">(2)</span></li>
+                                                <li>Smartphones <span class="list-count text-muted">(3)</span></li>
+                                                <li>Technology <span class="list-count text-muted">(1)</span></li>
+                                                <li>Works <span class="list-count text-muted">(4)</span></li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="widget-title title-wrap mt-2">
+                                            <h3 class="title">Trending Topics</h3>
+                                        </div>
+                                        <div class="row">
+                                            <ul>
+                                                <span class="btn tag-btn bg-light mb-2"># Bitcoin </span>
+                                                <span class="btn tag-btn bg-light mb-2"># Business </span>
+                                                <span class="btn tag-btn bg-light mb-2"># Drones </span>
+                                                <span class="btn tag-btn bg-light mb-2"># Economy </span>
+                                                <span class="btn tag-btn bg-light mb-2"># Nature </span>
+                                                <span class="btn tag-btn bg-light mb-2"># Smartphones </span>
+                                                <span class="btn tag-btn bg-light mb-2"># Technology</span>
+                                                <span class="btn tag-btn bg-light mb-2"># Works </span>
+                                            </ul>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="card border-0 card-tab">
+                                                        <img src="https://codingyaar.com/wp-content/uploads/chair-image.jpg" class="card-img-top" alt="..." />
+                                                        <div class="card-body">
+                                                            <div class="text-section">
+                                                                <h5 class="card-title">What My Mother Taught Me About Black Conservatives</h5>
+
+                                                                <p class="card-text"><i class="material-symbols-outlined">schedule</i><small class="text-muted">May 23, 2018</small></p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card card-tab">
+                                                        <img src="https://codingyaar.com/wp-content/uploads/chair-image.jpg" class="card-img-top" alt="..." />
+                                                        <div class="card-body">
+                                                            <div class="text-section">
+                                                                <h5 class="card-title fw-bold">Economic Growth Is Essential. So Is Resilience</h5>
+                                                                <p class="card-text"><i class="material-symbols-outlined">schedule</i><small class="text-muted">May 23, 2018</small></p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card card-tab">
+                                                        <img src="https://codingyaar.com/wp-content/uploads/chair-image.jpg" class="card-img-top" alt="..." />
+                                                        <div class="card-body">
+                                                            <div class="text-section">
+                                                                <h5 class="card-title fw-bold">The Perfect Candidate for a Fallen Party</h5>
+                                                                <p class="card-text"><i class="material-symbols-outlined">schedule</i><small class="text-muted">May 23, 2018</small></p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card bg-light" style="content: ''; height: 200px;">
+                                            <div class="card-body">
+                                                Responsive Advertisement
+                                            </div>
+                                        </div>
+
+                                        <div class="widget-title title-wrap mt-2">
+                                            <h3 class="title">Videos</h3>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="card card-bg" style="max-height: 340px;">
+                                                <img src="https://codingyaar.com/wp-content/uploads/chair-image.jpg" style="height: 200px; width: 100%;" class="card-img-top" alt="..." />
+                                                <div class="card-body">
+                                                    <h5 class="card-title">What My Mother Taught Me About Black Conservatives</h5>
+                                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                </div>
+                                            </div>
+                                            <div class="card card-bg" style="max-height: 340px;">
+                                                <img src="https://codingyaar.com/wp-content/uploads/chair-image.jpg" style="height: 200px; width: 100%;" class="card-img-top" alt="..." />
+                                                <div class="card-body">
+                                                    <h5 class="card-title">What My Mother Taught Me About Black Conservatives</h5>
+                                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                </div>
+                                            </div>
+                                            <div class="card card-bg" style="max-height: 340px;">
+                                                <img src="https://codingyaar.com/wp-content/uploads/chair-image.jpg" style="height: 200px; width: 100%;" class="card-img-top" alt="..." />
+                                                <div class="card-body">
+                                                    <h5 class="card-title">What My Mother Taught Me About Black Conservatives</h5>
+                                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                </div>
+                                            </div>
+                                            <div class="card card-bg" style="max-height: 340px;">
+                                                <img src="https://codingyaar.com/wp-content/uploads/chair-image.jpg" style="height: 200px; width: 100%;" class="card-img-top" alt="..." />
+                                                <div class="card-body">
+                                                    <h5 class="card-title">What My Mother Taught Me About Black Conservatives</h5>
+                                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    Responsive Advertisement
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div></div>
+
+        <footer class="py-5 bg-dark">
+            <div class="mx-5">
+                <div class="d-flex flex-column flex-sm-row justify-content-between border-bottom">
+                    <img src="{{asset('assets/images/logo-light.png')}}" alt="" />
+                    <p>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.
+                    </p>
+                    <ul class="list-unstyled d-flex">
+                        <li class="ms-3">
+                            <a class="link-dark" href="#">
+                                <div class="icon-item">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="24"
+                                        height="24"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        class="feather feather-facebook icon-dual"
+                                    >
+                                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                                    </svg>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="ms-3">
+                            <a class="link-dark" href="#">
+                                <div class="icon-item">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="24"
+                                        height="24"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        class="feather feather-twitter icon-dual"
+                                    >
+                                        <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                                    </svg>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="ms-3">
+                            <a class="link-dark" href="#">
+                                <div class="icon-item">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="24"
+                                        height="24"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        class="feather feather-youtube icon-dual"
+                                    >
+                                        <path
+                                            d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"
+                                        ></path>
+                                        <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+                                    </svg>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="row">
+                    <div class="col-6 col-md-2">
+                        <h5>Section</h5>
+                        <ul class="nav flex-column">
+                            <li class="nav-item mb-1"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
+                            <li class="nav-item mb-1"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
+                            <li class="nav-item mb-1"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
+                            <li class="nav-item mb-1"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
+                            <li class="nav-item mb-1"><a href="#" class="nav-link p-0 text-muted">About</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-6 col-md-2">
+                        <h5>Section</h5>
+                        <ul class="nav flex-column">
+                            <li class="nav-item mb-1"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
+                            <li class="nav-item mb-1"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
+                            <li class="nav-item mb-1"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
+                            <li class="nav-item mb-1"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
+                            <li class="nav-item mb-1"><a href="#" class="nav-link p-0 text-muted">About</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-6 col-md-2">
+                        <h5>Section</h5>
+                        <ul class="nav flex-column">
+                            <li class="nav-item mb-1"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
+                            <li class="nav-item mb-1"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
+                            <li class="nav-item mb-1"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
+                            <li class="nav-item mb-1"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
+                            <li class="nav-item mb-1"><a href="#" class="nav-link p-0 text-muted">About</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-5 offset-md-1 mb-3">
+                        <form>
+                            <h5>Subscribe to our newsletter</h5>
+                            <p>Monthly digest of what's new and exciting from us.</p>
+                            <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+                                <label for="newsletter1" class="visually-hidden">Email address</label>
+                                <input id="newsletter1" type="text" class="form-control" placeholder="Email address" />
+                                <button class="btn load-btn" type="button">Subscribe</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Begin page -->
+    </body>
+    <script src="{{asset('assets/libs/bootstrap/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('assets/libs/jquery/jquery.min.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var owl = $(".owl-carousel");
+            owl.owlCarousel({
+                loop: true,
+                margin: 10,
+                nav: false,
+                items: 1,
+                dots: false,
+                autoplay: true,
+                autoPlaySpeed: 5000,
+                autoPlayTimeout: 5000,
+                autoplayHoverPause: true,
+            });
+
+            // Custom Button
+            $(".customNextBtn").click(function () {
+                owl.trigger("next.owl.carousel");
+            });
+            $(".customPreviousBtn").click(function () {
+                owl.trigger("prev.owl.carousel");
+            });
+        });
+    </script>
+</html>

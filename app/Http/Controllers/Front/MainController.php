@@ -26,19 +26,18 @@ class MainController extends Controller
 
     public function index()
     {
-        $data['top_news'] = Article::leftJoin('users', 'users.id', '=', 'articles.user_id')
-            ->leftJoin('categories', 'categories.id', '=', 'articles.category_id')
-            ->select('articles.*', 'users.name as user_name', 'categories.name as category_name')
-            ->where(['articles.is_approved' => '1', 'articles.status' => 'active', 'articles.is_delete' => '0', 'articles.publish' => '1', 'top_new' => '1'])
-            ->orderBy('articles.id', 'desc')->take(3)->get();
-        // echo "<pre>";
-        // print_r($data);
-        // exit;
+        $data['top_news'] =  $this->getTopNewsArticles();
+ 
         $data['categories'] = Category::where(['is_delete' => '0', 'status' => 'active'])->orderBy('is_main', 'desc')->get();
-        $items =  Article::leftJoin('users', 'users.id', '=', 'articles.user_id')
-            ->leftJoin('categories', 'categories.id', '=', 'articles.category_id')
-            ->select('articles.*', 'users.name as user_name', 'categories.name as category_name')
-            ->where(['articles.is_approved' => '1', 'articles.status' => 'active', 'articles.is_delete' => '0', 'articles.publish' => '1'])->orderBy('articles.id', 'desc')->get();
+         $items = Article::leftJoin('users', 'users.id', '=', 'articles.user_id')
+        ->leftJoin('categories', 'categories.id', '=', 'articles.category_id')
+        ->select('articles.*', 'users.name as user_name', 'categories.name as category_name')
+        ->where(['articles.is_approved' => '1', 'articles.status' => 'active', 'articles.is_delete' => '0', 'articles.publish' => '1'])
+        ->whereRaw('(SELECT COUNT(*) FROM articles AS sub_articles WHERE sub_articles.category_id = articles.category_id AND sub_articles.id >= articles.id) <= 10')
+        ->orderBy('articles.category_id')
+        ->orderBy('articles.id', 'desc')
+        ->get();
+
 
         $groupedItems = array();
         // Iterate through the original array and group items by category_slug
@@ -55,16 +54,20 @@ class MainController extends Controller
         $data['tags'] = $this->getPublishedArticlesCountByCategory();
         $data['popular_posts'] = $this->getPopularArticlesByCategory();
         $data['latest_posts'] = $this->getLatestArticlesByCategory();
+        
         $data['items'] = $items;
         $data['articles'] = $groupedItems;
+        
+        // echo "<pre>";
+        // print_r($groupedItems);
+        // exit;
+        
         return view('welcome', $data);
     }
 
     public function getSingleArticle(Request $request, $category, $title)
     {
-
-        print_r(session()->get('visited_posts'));
-
+     
         $data['categories'] = Category::where(['is_delete' => '0', 'status' => 'active'])->get();
 
         $data['article'] = Article::leftJoin('users', 'users.id', '=', 'articles.user_id')
@@ -82,11 +85,15 @@ class MainController extends Controller
             return redirect()->route('main');
         }
 
+        $data['top_news'] =  $this->getTopNewsArticles();
         $data['tags'] = $this->getPublishedArticlesCountByCategory();
-        $data['popular_posts'] = $this->getPopularArticlesByCategory($category);
-        $data['latest_posts'] = $this->getLatestArticlesByCategory($category);
-        $data['similar_posts'] = $this->getSimilarArticlesByCategory($category);
-        return view('single-article', $data);
+        $data['popular_posts'] = $this->getPopularArticlesByCategory($category,$title);
+        $data['latest_posts'] = $this->getLatestArticlesByCategory($category,$title);
+        $data['similar_posts'] = $this->getSimilarArticlesByCategory($category,$title);
+        $data['next_article'] = $this->getNextArticle()->toArray();
+    
+        // Your original array of 8 items
+           return view('single-article', $data);
     }
 
 
@@ -99,15 +106,35 @@ class MainController extends Controller
         $data['items'] =  Article::leftJoin('users', 'users.id', '=', 'articles.user_id')
             ->leftJoin('categories', 'categories.id', '=', 'articles.category_id')
             ->select('articles.*', 'users.name as user_name', 'categories.name as category_name')
+            ->inRandomOrder()
             ->where([
                 'articles.is_approved' => '1', 'articles.status' => 'active',
                 'articles.is_delete' => '0', 'articles.publish' => '1', 'category_slug' => $id
-            ])->orderBy('articles.id', 'desc')->get();
+            ])->orderBy('articles.id', 'desc')->paginate(9);
+          
         $data['popular_posts'] = $this->getPopularArticlesByCategory($id);
         $data['latest_posts'] = $this->getLatestArticlesByCategory($id);
 
-
+        $data['top_news'] =  $this->getTopNewsArticles();
         return view('category-article', $data);
     }
+    
+    public function contact_us()
+    {
+        
+        $data['top_news'] =  $this->getTopNewsArticles();
+        $data['categories'] = Category::where(['is_delete' => '0', 'status' => 'active'])->get();
+        return view('contact-us', $data);
+    }
+    
+      public function about_us()
+    {
+        
+        $data['top_news'] =  $this->getTopNewsArticles();
+        $data['categories'] = Category::where(['is_delete' => '0', 'status' => 'active'])->get();
+        return view('about-us', $data);
+    }
+    
+    
 
 }

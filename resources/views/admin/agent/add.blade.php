@@ -167,7 +167,7 @@
 
                                                      <p class="text-muted font-14">Recommended thumbnail size 800x400 (px).</p>
                                                         <label class="image-input">
-                                                            <input type="file" name="file" accept="image/png,image/jpeg" max-size="10000000">
+                                                            <input type="file" name="file" accept="" max-size="10000000">
                                                             <input type="hidden" name="">
                                                             <img src="" alt="">
                                                         </label>
@@ -269,8 +269,8 @@ function ImageInput(element){
   function checkValidity(file) {
     var errors = [];
     
-    types.includes(file.type) || errors.push('Format file harus: ' + types.map(humanizeFormat).join(', '));
-    file.size < maxSize || errors.push('Ukuran file maksimal ' + maxSize/1000000 + 'MB');
+    // types.includes(file.type) || errors.push('Format file harus: ' + types.map(humanizeFormat).join(', '));
+    // file.size < maxSize || errors.push('Ukuran file maksimal ' + maxSize/1000000 + 'MB');
     
     return errors.length ? errors : false;
   }

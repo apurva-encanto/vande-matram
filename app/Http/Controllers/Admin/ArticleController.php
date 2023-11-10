@@ -65,17 +65,30 @@ class ArticleController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
-        // Generate a dynamic folder name based on user ID or any unique identifier
-        $dynamicFolderName = 'article_' . auth()->user()->id; // Example: 'user_1'
+     
+        
 
-        // Check if the folder exists, create it if not
-        if (!Storage::disk('public')->exists('uploads/' . $dynamicFolderName)) {
-            Storage::disk('public')->makeDirectory('uploads/' . $dynamicFolderName);
-        }
-
-        $file = $request->file('file');
-        $fileName = time() . '_' . $file->getClientOriginalName();
-        $file->storeAs('uploads/' . $dynamicFolderName, $fileName, 'public'); // The uploaded file will be stored in storage/app/public/uploads
+            
+                    $coverfile = $request->file('file');
+            
+                    // $request->validate([
+                    //   'file' => 'required|mimes:jpeg,png,jpg,webp|max:2048', // Validate file type and size
+                    // ]);
+            
+                    $dynamicFolderName = 'article_' . auth()->user()->id;
+                    $coverpath = public_path('uploads/' . $dynamicFolderName);
+            
+                   // Ensure the directory exists, create it if not
+                    if (!file_exists($coverpath)) {
+                        mkdir($coverpath, 0755, true);
+                    }
+            
+                    // Generate a unique file name
+                    $fileName = '/' . time() . '_' . Str::random(10) . '_' . $coverfile->getClientOriginalName();
+            
+                   // Move the uploaded file to the destination directory
+                   $coverfile->move($coverpath, $fileName);
+      
 
         $category = Category::find($request->category_id);
 
@@ -162,19 +175,29 @@ class ArticleController extends Controller
         $article->title = $request->title;
         $article->title_slug = $this->createSlug($request->title);
         $article->content = $this->dataready($request->editor1);
+        
         if (!empty($request->file('file'))) {
-            // Generate a dynamic folder name based on user ID or any unique identifier
-            $dynamicFolderName = 'article_' . auth()->user()->id; // Example: 'user_1'
-
-            // Check if the folder exists, create it if not
-            if (!Storage::disk('public')->exists('uploads/' . $dynamicFolderName)) {
-                Storage::disk('public')->makeDirectory('uploads/' . $dynamicFolderName);
-            }
-
-            $file = $request->file('file');
-            $fileName = time() . '_' . $file->getClientOriginalName();
-            $file->storeAs('uploads/' . $dynamicFolderName, $fileName, 'public'); // The uploaded file will be stored in storage/app/public/uploads
-            $article->image = $fileName;
+            
+                $coverfile = $request->file('file');
+            
+                    // $request->validate([
+                    //   'file' => 'required|mimes:jpeg,png,jpg,webp|max:2048', // Validate file type and size
+                    // ]);
+            
+                    $dynamicFolderName = 'article_' . $article->user_id;
+                    $coverpath = public_path('uploads/' . $dynamicFolderName);
+            
+                   // Ensure the directory exists, create it if not
+                    if (!file_exists($coverpath)) {
+                        mkdir($coverpath, 0755, true);
+                    }
+            
+                    // Generate a unique file name
+                    $coverimg_name = '/' . time() . '_' . Str::random(10) . '_' . $coverfile->getClientOriginalName();
+            
+                   // Move the uploaded file to the destination directory
+                   $coverfile->move($coverpath, $coverimg_name);
+                   $article->image = $coverimg_name;
         }
         $article->category_id =  $request->category_id;
         $article->category_slug = $category->slug;
@@ -233,17 +256,25 @@ class ArticleController extends Controller
                 ->withInput();
         }
 
-        // Generate a dynamic folder name based on user ID or any unique identifier
-        $dynamicFolderName = 'article_' . auth()->user()->id; // Example: 'user_1'
-
-        // Check if the folder exists, create it if not
-        if (!Storage::disk('public')->exists('uploads/' . $dynamicFolderName)) {
-            Storage::disk('public')->makeDirectory('uploads/' . $dynamicFolderName);
-        }
-
-        $file = $request->file('file');
-        $fileName = time() . '_' . $file->getClientOriginalName();
-        $file->storeAs('uploads/' . $dynamicFolderName, $fileName, 'public'); // The uploaded file will be stored in storage/app/public/uploads
+                    $coverfile = $request->file('file');
+            
+                    // $request->validate([
+                    //   'file' => 'required|mimes:jpeg,png,jpg,webp|max:2048', // Validate file type and size
+                    // ]);
+            
+                    $dynamicFolderName = 'article_' . auth()->user()->id;
+                    $coverpath = public_path('uploads/' . $dynamicFolderName);
+            
+                   // Ensure the directory exists, create it if not
+                    if (!file_exists($coverpath)) {
+                        mkdir($coverpath, 0755, true);
+                    }
+            
+                    // Generate a unique file name
+                    $fileName = '/' . time() . '_' . Str::random(10) . '_' . $coverfile->getClientOriginalName();
+            
+                   // Move the uploaded file to the destination directory
+                   $coverfile->move($coverpath, $fileName);
         $category = Category::find($request->category_id);
 
 
@@ -295,19 +326,28 @@ class ArticleController extends Controller
         $article->title = $request->title;
         $article->title_slug = $this->createSlug($request->title);
         $article->content = $this->dataready($request->editor1);
-        if (!empty($request->file('file'))) {
-            // Generate a dynamic folder name based on user ID or any unique identifier
-            $dynamicFolderName = 'article_' . auth()->user()->id; // Example: 'user_1'
-
-            // Check if the folder exists, create it if not
-            if (!Storage::disk('public')->exists('uploads/' . $dynamicFolderName)) {
-                Storage::disk('public')->makeDirectory('uploads/' . $dynamicFolderName);
-            }
-
-            $file = $request->file('file');
-            $fileName = time() . '_' . $file->getClientOriginalName();
-            $file->storeAs('uploads/' . $dynamicFolderName, $fileName, 'public'); // The uploaded file will be stored in storage/app/public/uploads
-            $article->image = $fileName;
+       if (!empty($request->file('file'))) {
+            
+                $coverfile = $request->file('file');
+            
+                    // $request->validate([
+                    //   'file' => 'required|mimes:jpeg,png,jpg,webp|max:2048', // Validate file type and size
+                    // ]);
+            
+                    $dynamicFolderName = 'article_' . $article->user_id;
+                    $coverpath = public_path('uploads/' . $dynamicFolderName);
+            
+                   // Ensure the directory exists, create it if not
+                    if (!file_exists($coverpath)) {
+                        mkdir($coverpath, 0755, true);
+                    }
+            
+                    // Generate a unique file name
+                    $coverimg_name = '/' . time() . '_' . Str::random(10) . '_' . $coverfile->getClientOriginalName();
+            
+                   // Move the uploaded file to the destination directory
+                   $coverfile->move($coverpath, $coverimg_name);
+                   $article->image = $coverimg_name;
         }
         $article->category_id =  $request->category_id;
         $article->category_slug = $category->slug;
@@ -358,17 +398,25 @@ class ArticleController extends Controller
                 ->withInput();
         }
 
-        // Generate a dynamic folder name based on user ID or any unique identifier
-        $dynamicFolderName = 'article_' . auth()->user()->id; // Example: 'user_1'
-
-        // Check if the folder exists, create it if not
-        if (!Storage::disk('public')->exists('uploads/' . $dynamicFolderName)) {
-            Storage::disk('public')->makeDirectory('uploads/' . $dynamicFolderName);
-        }
-
-        $file = $request->file('file');
-        $fileName = time() . '_' . $file->getClientOriginalName();
-        $file->storeAs('uploads/' . $dynamicFolderName, $fileName, 'public'); // The uploaded file will be stored in storage/app/public/uploads
+                   $coverfile = $request->file('file');
+            
+                    // $request->validate([
+                    //   'file' => 'required|mimes:jpeg,png,jpg,webp|max:2048', // Validate file type and size
+                    // ]);
+            
+                    $dynamicFolderName = 'article_' . auth()->user()->id;
+                    $coverpath = public_path('uploads/' . $dynamicFolderName);
+            
+                   // Ensure the directory exists, create it if not
+                    if (!file_exists($coverpath)) {
+                        mkdir($coverpath, 0755, true);
+                    }
+            
+                    // Generate a unique file name
+                    $fileName = '/' . time() . '_' . Str::random(10) . '_' . $coverfile->getClientOriginalName();
+            
+                   // Move the uploaded file to the destination directory
+                   $coverfile->move($coverpath, $fileName);
         $category = Category::find($request->category_id);
 
 
@@ -414,18 +462,27 @@ class ArticleController extends Controller
         $article->title_slug = $this->createSlug($request->title);
         $article->content = $this->dataready($request->editor1);
         if (!empty($request->file('file'))) {
-            // Generate a dynamic folder name based on user ID or any unique identifier
-            $dynamicFolderName = 'article_' . auth()->user()->id; // Example: 'user_1'
-
-            // Check if the folder exists, create it if not
-            if (!Storage::disk('public')->exists('uploads/' . $dynamicFolderName)) {
-                Storage::disk('public')->makeDirectory('uploads/' . $dynamicFolderName);
-            }
-
-            $file = $request->file('file');
-            $fileName = time() . '_' . $file->getClientOriginalName();
-            $file->storeAs('uploads/' . $dynamicFolderName, $fileName, 'public'); // The uploaded file will be stored in storage/app/public/uploads
-            $article->image = $fileName;
+            
+                $coverfile = $request->file('file');
+            
+                    // $request->validate([
+                    //   'file' => 'required|mimes:jpeg,png,jpg,webp|max:2048', // Validate file type and size
+                    // ]);
+            
+                    $dynamicFolderName = 'article_' . $article->user_id;
+                    $coverpath = public_path('uploads/' . $dynamicFolderName);
+            
+                   // Ensure the directory exists, create it if not
+                    if (!file_exists($coverpath)) {
+                        mkdir($coverpath, 0755, true);
+                    }
+            
+                    // Generate a unique file name
+                    $coverimg_name = '/' . time() . '_' . Str::random(10) . '_' . $coverfile->getClientOriginalName();
+            
+                   // Move the uploaded file to the destination directory
+                   $coverfile->move($coverpath, $coverimg_name);
+                   $article->image = $coverimg_name;
         }
         $article->category_id =  $request->category_id;
         $article->category_slug = $category->slug;

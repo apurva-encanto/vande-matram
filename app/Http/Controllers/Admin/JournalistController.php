@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 
+use Illuminate\Support\Str;
 class JournalistController extends Controller
 {
 
@@ -57,23 +58,22 @@ class JournalistController extends Controller
         $user->device_token = ' ';
         $user->save();
 
-        // Generate a dynamic folder name based on user ID or any unique identifier
-        $dynamicFolderName = 'user_' . $user->id; // Example: 'user_1'
-
-        // Check if the folder exists, create it if not
-        if (!Storage::disk('public')->exists('uploads/' . $dynamicFolderName)) {
-            Storage::disk('public')->makeDirectory('uploads/' . $dynamicFolderName);
-        }
-
-        try {
-            $file = $request->file('file');
-            $fileName = time() . '_' . $file->getClientOriginalName();
-            $file->storeAs('uploads/' . $dynamicFolderName, $fileName, 'public'); // The uploaded file will be stored in storage/app/public/uploads
-        } catch (\Exception $e) {
-            $user_exists = User::find($user->id);
-            $user_exists->delete();
-            return back()->with('error', 'File upload failed: ' . $e->getMessage());
-        }
+                    $coverfile = $request->file('file');
+                    $request->validate([
+                      'file' => 'required|mimes:jpeg,png,jpg,webp|max:2048', // Validate file type and size
+                    ]);
+                    // Generate a dynamic folder name based on user ID or any unique identifier
+                    $dynamicFolderName = 'user_' . $user->id; // Example: 'user_1'
+                    $coverpath = public_path('uploads/' . $dynamicFolderName);
+                   // Ensure the directory exists, create it if not
+                    if (!file_exists($coverpath)) {
+                        mkdir($coverpath, 0755, true);
+                    }
+                    // Generate a unique file name
+                    $fileName = '/' . time() . '_' . Str::random(10) . '_' . $coverfile->getClientOriginalName();
+                   // Move the uploaded file to the destination directory
+                   $coverfile->move($coverpath, $fileName);
+                   
         try {
 
 
@@ -167,21 +167,24 @@ class JournalistController extends Controller
         }
 
         if (!empty($request->file('file'))) {
-            // Generate a dynamic folder name based on user ID or any unique identifier
-            $dynamicFolderName = 'user_' . $id; // Example: 'user_1'
-            // Check if the folder exists, create it if not
-            if (!Storage::disk('public')->exists('uploads/' . $dynamicFolderName)) {
-                Storage::disk('public')->makeDirectory('uploads/' . $dynamicFolderName);
-            }
-
-            try {
-                $file = $request->file('file');
-                $fileName = time() . '_' . $file->getClientOriginalName();
-                $file->storeAs('uploads/' . $dynamicFolderName, $fileName, 'public'); // The uploaded file will be stored in storage/app/public/uploads
-                JournalistDetail::where('user_id', $id)->update(['photo' => $fileName]);
-            } catch (\Exception $e) {
-                return back()->with('error', 'File upload failed: ' . $e->getMessage());
-            }
+            
+                    $coverfile = $request->file('file');
+                    $request->validate([
+                      'file' => 'required|mimes:jpeg,png,jpg,webp|max:2048', // Validate file type and size
+                    ]);
+                    // Generate a dynamic folder name based on user ID or any unique identifier
+                    $dynamicFolderName = 'user_' . $id; // Example: 'user_1'
+                    $coverpath = public_path('uploads/' . $dynamicFolderName);
+                   // Ensure the directory exists, create it if not
+                    if (!file_exists($coverpath)) {
+                        mkdir($coverpath, 0755, true);
+                    }
+                    // Generate a unique file name
+                    $fileName = '/' . time() . '_' . Str::random(10) . '_' . $coverfile->getClientOriginalName();
+                   // Move the uploaded file to the destination directory
+                   $coverfile->move($coverpath, $fileName);
+                   JournalistDetail::where('user_id', $id)->update(['photo' => $fileName]);
+          
         }
 
         $userUpdate = User::find($id);
@@ -306,24 +309,23 @@ class JournalistController extends Controller
         $user->status = 'active';
         $user->device_token = ' ';
         $user->save();
-
-        // Generate a dynamic folder name based on user ID or any unique identifier
-        $dynamicFolderName = 'user_' . $user->id; // Example: 'user_1'
-
-        // Check if the folder exists, create it if not
-        if (!Storage::disk('public')->exists('uploads/' . $dynamicFolderName)) {
-            Storage::disk('public')->makeDirectory('uploads/' . $dynamicFolderName);
-        }
-
-        try {
-            $file = $request->file('file');
-            $fileName = time() . '_' . $file->getClientOriginalName();
-            $file->storeAs('uploads/' . $dynamicFolderName, $fileName, 'public'); // The uploaded file will be stored in storage/app/public/uploads
-        } catch (\Exception $e) {
-            $user_exists = User::find($user->id);
-            $user_exists->delete();
-            return back()->with('error', 'File upload failed: ' . $e->getMessage());
-        }
+        
+                    $coverfile = $request->file('file');
+                    $request->validate([
+                      'file' => 'required|mimes:jpeg,png,jpg,webp|max:2048', // Validate file type and size
+                    ]);
+                    // Generate a dynamic folder name based on user ID or any unique identifier
+                    $dynamicFolderName = 'user_' . $user->id; // Example: 'user_1'
+                    $coverpath = public_path('uploads/' . $dynamicFolderName);
+                   // Ensure the directory exists, create it if not
+                    if (!file_exists($coverpath)) {
+                        mkdir($coverpath, 0755, true);
+                    }
+                    // Generate a unique file name
+                    $fileName = '/' . time() . '_' . Str::random(10) . '_' . $coverfile->getClientOriginalName();
+                   // Move the uploaded file to the destination directory
+                   $coverfile->move($coverpath, $fileName);
+       
         try {
 
 
@@ -401,21 +403,24 @@ class JournalistController extends Controller
         }
 
         if (!empty($request->file('file'))) {
-            // Generate a dynamic folder name based on user ID or any unique identifier
-            $dynamicFolderName = 'user_' . $id; // Example: 'user_1'
-            // Check if the folder exists, create it if not
-            if (!Storage::disk('public')->exists('uploads/' . $dynamicFolderName)) {
-                Storage::disk('public')->makeDirectory('uploads/' . $dynamicFolderName);
-            }
-
-            try {
-                $file = $request->file('file');
-                $fileName = time() . '_' . $file->getClientOriginalName();
-                $file->storeAs('uploads/' . $dynamicFolderName, $fileName, 'public'); // The uploaded file will be stored in storage/app/public/uploads
-                JournalistDetail::where('user_id', $id)->update(['photo' => $fileName]);
-            } catch (\Exception $e) {
-                return back()->with('error', 'File upload failed: ' . $e->getMessage());
-            }
+            
+                     $coverfile = $request->file('file');
+                    $request->validate([
+                      'file' => 'required|mimes:jpeg,png,jpg,webp|max:2048', // Validate file type and size
+                    ]);
+                    // Generate a dynamic folder name based on user ID or any unique identifier
+                    $dynamicFolderName = 'user_' . $user->id; // Example: 'user_1'
+                    $coverpath = public_path('uploads/' . $dynamicFolderName);
+                   // Ensure the directory exists, create it if not
+                    if (!file_exists($coverpath)) {
+                        mkdir($coverpath, 0755, true);
+                    }
+                    // Generate a unique file name
+                    $fileName = '/' . time() . '_' . Str::random(10) . '_' . $coverfile->getClientOriginalName();
+                   // Move the uploaded file to the destination directory
+                   $coverfile->move($coverpath, $fileName);
+                    JournalistDetail::where('user_id', $id)->update(['photo' => $fileName]);
+           
         }
 
         $userUpdate = User::find($id);

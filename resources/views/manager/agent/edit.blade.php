@@ -168,7 +168,7 @@
                                                         <label class="image-input">
                                                             <input type="file" name="file" accept="image/png,image/jpeg" max-size="10000000">
                                                             <input type="hidden" name="">
-                                                            <img src="{{ asset('storage/uploads/user_' . $user->user_id . '/' . $user->photo) }}" alt="">
+                                                            <img src="{{ asset('uploads/user_' . $user->user_id . '/' . $user->photo) }}" alt="">
                                                         </label>
 
                                                         @error('file')

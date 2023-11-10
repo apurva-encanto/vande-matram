@@ -1,24 +1,37 @@
-<div class="selary-pro-main-nav section" id="selary-pro-main-nav" name="Header Menu">
-    <div class="widget LinkList show-menu"  id="LinkList101">
-        <a class="mobile-menu-toggle" href="javascript:;" role="button" title="Menu"></a>
-        <ul id="selary-pro-main-nav-menu" role="menubar">
-            <li><a href="{{url('/')}}" role="menuitem">Home</a></li>           
-            @foreach ($categories->take(7) as $category)
-            <li><a href="{{ url('news-'.$category->slug) }}" role="menuitem">{{ $category->name }}</a></li>
-            @endforeach
-            @if(count($categories) >7)
-
-            <li class="has-sub">
-                <a href="#" role="menuitem">More</a>
-                <ul class="sub-menu m-sub"></ul>
-                <ul class="sub-menu2 m-sub">
-                    @foreach ($categories->slice(7) as $category)
-                    <li><a href="{{ url('news-'.$category->slug) }}" role="menuitem">{{ $category->name }}</a></li>
-                    @endforeach
-              </ul>
-            </li>
-            @endif
-
-        </ul>
-    </div>
-</div>
+<nav class="navbar navbar-expand-lg nav-header">
+               <div class="main-header">
+                  <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                     data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                     aria-label="Toggle navigation">
+                  <i class="fa fa-bars text-white" aria-hidden="true"></i>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                     <ul class="navbar-nav">
+                        <li class="nav-item text-center bg-dark">
+                           <a class="nav-link active" aria-current="page" href="{{url('/')}}"><i style="font-size: 24px;"
+                              class="fa fa-home" aria-hidden="true"></i></a>
+                        </li>
+                         @foreach ($categories->take(7) as $category)
+                            <li class="nav-item">
+                               <a class="nav-link" href="{{ url('news-'.$category->slug) }}">{{ $category->name }}</a>
+                            </li>
+                         @endforeach
+                          @if(count($categories) >7)
+                        
+                        <li class="nav-item dropdown">
+                           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                              data-bs-toggle="dropdown" aria-expanded="false">
+                           More
+                           </a>
+                           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                             @foreach ($categories->slice(7) as $category)
+                               <li><a class="dropdown-item" href="{{ url('news-'.$category->slug) }}">{{ $category->name }}</a></li>
+                              @endforeach 
+                           </ul>
+                        </li>
+                         @endif
+                     </ul>
+                  </div>
+               </div>
+</nav>

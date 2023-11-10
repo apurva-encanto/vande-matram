@@ -148,9 +148,9 @@
 
                                                  <p class="text-muted font-14">Recommended Image size 800x400 (px).</p>
                                                     <label class="image-input">
-                                                        <input type="file" name="file" id="file-upload" accept="image/png,image/jpeg" max-size="10000000">
+                                                        <input type="file" name="file" id="file-upload" accept="" max-size="10000000">
                                                         <input type="hidden" name="">
-                                                        <img src="{{ asset('storage/uploads/article_' . $article->user_id . '/' . $article->image) }}" alt="">
+                                                        <img src="{{ asset('uploads/article_' . $article->user_id . '/' . $article->image) }}" alt="">
                                                     </label>
 
                                                     <p class="file-error d-none text-danger" >Please select a file before submitting the form.</p>
@@ -264,8 +264,8 @@ function ImageInput(element){
   function checkValidity(file) {
     var errors = [];
     
-    types.includes(file.type) || errors.push('Format file harus: ' + types.map(humanizeFormat).join(', '));
-    file.size < maxSize || errors.push('Ukuran file maksimal ' + maxSize/1000000 + 'MB');
+    // types.includes(file.type) || errors.push('Format file harus: ' + types.map(humanizeFormat).join(', '));
+    // file.size < maxSize || errors.push('Ukuran file maksimal ' + maxSize/1000000 + 'MB');
     
     return errors.length ? errors : false;
   }

@@ -17,7 +17,7 @@ function getShortContent($content)
     // Array to store the first 10 words
     $firstTenWords = [];
     // Loop through the words and store the first 10 words in an array
-    while ($words !== false && $wordCount < 10) {
+    while ($words !== false && $wordCount < 8) {
         $firstTenWords[] = $words;
         $words = strtok(" ");
         $wordCount++;
