@@ -21,7 +21,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('agent.dashboard');
+        
+        $data['pending_articles'] = Article::where(['is_approved' => 0, 'is_delete' => '0', 'created_by' => auth()->user()->id])->get();
+        $data['pending_users'] = User::where(['is_approved' => 0, 'is_delete' => '0', 'is_assign' => auth()->user()->id])->get();
+        $data['total_articles'] = Article::where(['is_delete' => '0', 'created_by' => auth()->user()->id])->get();
+        $data['total_users'] = User::where(['is_delete' => '0', 'is_assign' => auth()->user()->id])->get();
+
+        return view('agent.dashboard',$data);
     }
 
     /**
@@ -38,6 +44,7 @@ class HomeController extends Controller
     public function managerHome()
     {
         $data['pending_articles'] = Article::where(['is_approved' => 0, 'is_delete' => '0', 'created_by' => auth()->user()->id])->get();
+  
         $data['pending_users'] = User::where(['is_approved' => 0, 'is_delete' => '0', 'is_assign' => auth()->user()->id])->get();
         $data['total_articles'] = Article::where(['is_delete' => '0', 'created_by' => auth()->user()->id])->get();
         $data['total_users'] = User::where(['is_delete' => '0', 'is_assign' => auth()->user()->id])->get();

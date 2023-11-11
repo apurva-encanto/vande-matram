@@ -82,7 +82,8 @@
                                                 <thead>
                                                 <tr>
                                                     <th data-toggle="true" style="background: #eee;">Name</th>
-                                                    <th style="background: #eee;">Slug</th>
+                                                    <th style="background: #eee;">Image</th>
+                                                    <th style="background: #eee;">Category</th>
                                                     <th style="background: #eee;">Approved</th>
                                                     <th style="background: #eee;">Status</th>
                                                     <th style="background: #eee;">Action</th>
@@ -91,9 +92,11 @@
                                                 <tbody>
 
                                                 @foreach ($articles as $article )
+                                                
                                                 <tr>
                                                     <td>{{$article->title}}</td>
-                                                    <td>{{$article->title_slug}}</td>
+                                                    <td><img src="{{ asset('uploads/article_'.$article->user_id.'/'.$article->image)}}" onerror="this.src='{{ asset('assets/images/default-img.jpg') }}';" width="100" /></td>
+                                                    <td>{{$article->category_name}}</td>
                                                     <td>
                                                         @if ($article->is_approved ==1)
                                                         <span class="material-symbols-outlined text-bg-success border-3">
@@ -140,7 +143,7 @@
                                                 </tbody>
                                                 <tfoot>
                                                 <tr class="active">
-                                                    <td colspan="5">
+                                                    <td colspan="6">
                                                         <div class="text-end">
                                                             <ul class="pagination pagination-rounded justify-content-end footable-pagination mb-0"></ul>
                                                         </div>

@@ -45,21 +45,21 @@ class LoginController extends Controller
 
                 if (auth()->user()->is_approved == '0') {
                     Auth::logout();
-                    return redirect()->route('admin.login')->with('error', 'Your account has not been approved yet.');
+                    return redirect()->route('admin.login')->with('error', 'Your account has not been approved yet.')->withInput();
                 }
                 if (auth()->user()->is_delete == '1') {
                     Auth::logout();
-                    return redirect()->route('admin.login')->with('error', 'Your account has been deleted by Authorite.');
+                    return redirect()->route('admin.login')->with('error', 'Your account has been deleted by Authorite.')->withInput();
                 }
 
                 if (auth()->user()->status == 'inactive') {
                     Auth::logout();
-                    return redirect()->route('admin.login')->with('error', 'Your account is inactive.');
+                    return redirect()->route('admin.login')->with('error', 'Your account is inactive.')->withInput();
                 }
             }
         } else {
             return redirect()->route('admin.login')
-                ->with('error', 'Email-Address And Password Are Wrong.');
+                ->with('error', 'Email-Address And Password Are Wrong.')->withInput();
         }
     }
 

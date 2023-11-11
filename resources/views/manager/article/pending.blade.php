@@ -82,18 +82,20 @@
                                                 <thead>
                                                 <tr>
                                                     <th data-toggle="true" style="background: #eee;">Name</th>
-                                                    <th style="background: #eee;">Slug</th>
+                                                    <th style="background: #eee;">Image</th>
+                                                    <th style="background: #eee;">Catgeory</th>
                                                     <th style="background: #eee;">Approved</th>
                                                     <th style="background: #eee;">Status</th>
                                                     <th style="background: #eee;">Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-
+                                                    
                                                 @foreach ($articles as $article )
                                                 <tr>
                                                     <td>{{$article->title}}</td>
-                                                    <td>{{$article->title_slug}}</td>
+                                                    <td><img src="{{ asset('uploads/article_'.$article->user_id.'/'.$article->image)}}" onerror="this.src='{{ asset('assets/images/default-img.jpg') }}';" width="100" /></td>
+                                                    <td></td>
                                                     <td>
                                                         @if ($article->is_approved ==1)
                                                         <span class="material-symbols-outlined text-bg-success border-3">

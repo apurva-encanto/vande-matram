@@ -51,7 +51,7 @@
                                             <div class="col-6">
                                                 <div class="text-end">
                                                     <h3 class="text-dark mt-1"><span data-plugin="counterup">{{$pending_articles->count()}}</span></h3>
-                                                    <p class="text-muted mb-1 text-truncate">Pending Article</p>
+                                                    <p class="text-muted mb-1 text-truncate">Your Pending Article</p>
                                                 </div>
                                             </div>
                                         </div> <!-- end row-->
@@ -187,7 +187,7 @@
                                         </div>
                                         
     
-                                        <h4 class="header-title mb-3 px-1">Pending Article</h4>
+                                        <h4 class="header-title mb-3 px-1">Your Pending Articles</h4>
     
                                         <div class="table-responsive">
                                             <table class="table table-borderless table-nowrap table-hover table-centered m-0">

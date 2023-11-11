@@ -151,9 +151,11 @@ class ArticleController extends Controller
     public function listArticle()
     {
 
-        $data['articles'] = Article::where('is_delete', '0')
+        $data['articles'] = Article::where('articles.is_delete', '0')
+            ->select('articles.*', 'categories.name as category_name')
             ->where('is_approved', '1')
-            ->orderBy('id', 'desc')
+            ->leftJoin('categories', 'categories.id', '=', 'articles.category_id')
+            ->orderBy('articles.id', 'desc')
             ->get();
         return view("admin.article.list", $data);
     }
@@ -229,9 +231,14 @@ class ArticleController extends Controller
 
     public function listManagerArticle()
     {
-        $data['articles'] = Article::where('is_delete', '0')->where('created_by', auth()->user()->id)
-            ->orderBy('id', 'desc')
+        $data['articles'] = Article::where('articles.is_delete', '0')
+            ->select('articles.*', 'categories.name as category_name')
+            ->where('is_approved', '1')
+            ->where('created_by', auth()->user()->id)
+            ->leftJoin('categories', 'categories.id', '=', 'articles.category_id')
+            ->orderBy('articles.id', 'desc')
             ->get();
+  
         return view('manager.article.list', $data);
     }
 
@@ -302,10 +309,13 @@ class ArticleController extends Controller
 
     public function pendingArticle(Request $request)
     {
-        $data['articles'] = Article::where('is_delete', '0')
+        $data['articles'] = Article::where('articles.is_delete', '0')
+            ->select('articles.*', 'categories.name as category_name')
+            ->leftJoin('categories', 'categories.id', '=', 'articles.category_id')
             ->where('is_approved', 0)
-            ->orderBy('id', 'desc')
+            ->orderBy('articles.id', 'desc')
             ->get();
+     
         return view('admin.article.pending', $data);
     }
 
@@ -371,9 +381,15 @@ class ArticleController extends Controller
 
     public function listAgentArticle()
     {
-        $data['articles'] = Article::where('is_delete', '0')->where('created_by', auth()->user()->id)
-            ->orderBy('id', 'desc')
+        
+             $data['articles'] = Article::where('articles.is_delete', '0')
+            ->select('articles.*', 'categories.name as category_name')
+            ->where('created_by', auth()->user()->id)
+            ->leftJoin('categories', 'categories.id', '=', 'articles.category_id')
+            ->orderBy('articles.id', 'desc')
             ->get();
+            
+        
         return view('agent.article.list', $data);
     }
 
@@ -504,6 +520,8 @@ class ArticleController extends Controller
             ->where('users.is_assign', auth()->user()->id)
             ->orderBy('id', 'desc')
             ->get();
+            
+               
         return view('manager.article.pending', $data);
     }
 }

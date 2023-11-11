@@ -11,7 +11,7 @@
             <li class="menu-title">Navigation</li>
 
             <li>
-                <a href="#sidebarDashboards" data-bs-toggle="collapse"  class="active">
+                <a href="{{url('/manager/home')}}"  class="active">
                     <i class="mdi mdi-view-dashboard-outline"></i>                                    
                     <span> Dashboards </span>
                 </a> 
@@ -66,12 +66,12 @@
                 </div>
             </li> 
             
-            {{-- <li>
-                <a href="#sidebarDashboards" data-bs-toggle="collapse"  >
-                    <i class="mdi  mdi-tools"></i>                                    
-                    <span> Settings </span>
-                </a> 
-            </li> --}}
+            <!--{{-- <li>-->
+            <!--    <a href="#sidebarDashboards" data-bs-toggle="collapse"  >-->
+            <!--        <i class="mdi  mdi-tools"></i>                                    -->
+            <!--        <span> Settings </span>-->
+            <!--    </a> -->
+            <!--</li> --}}-->
            <!-- <li>
                 <a href="#sidebarProjects" data-bs-toggle="collapse">
                     <i class="mdi mdi-briefcase-check-outline"></i>

@@ -60,7 +60,8 @@ marquee{
 }
 
 .main-details{
-    padding: 0.6rem;
+     padding: 20px; 
+     background: #FFF;
 }
 
 .line-item::after{
@@ -71,8 +72,7 @@ marquee{
     
 }
 .main-content{
-    padding-left:4px;
-    padding-right:4px;
+    padding:20px;
 }
 
 .logo-img{
@@ -116,6 +116,8 @@ a{
    }
    .ad-1,.left-section,.right-section{
     display: none;
+    padding:0;
+    margin:0;
    }
 
    .main-header{
@@ -123,6 +125,8 @@ a{
    }
    .main-section{
     padding-right: 0;
+    padding:0;
+    margin:0;
    }
    
    .thick {
@@ -133,6 +137,12 @@ a{
     
     .padded-image{
         display:none;
+    }
+    
+    #main-section{
+    padding:0;
+    margin:0;
+    overflow-x:hidden;
     }
 }
 
@@ -165,7 +175,7 @@ a{
     height: 44px;
     width: 1px;
     right: 0;
-    background: #000;
+    background: #352f2c;
 }
 
 .navbar{

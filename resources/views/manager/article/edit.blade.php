@@ -159,7 +159,7 @@
                                                     <label class="image-input">
                                                         <input type="file" name="file" id="file-upload" accept="" max-size="10000000">
                                                         <input type="hidden" name="">
-                                                        <img src="{{ asset('uploads/article_' . $article->user_id . '/' . $article->image) }}" alt="">
+                                                        <img src="{{ asset('uploads/article_' . $article->user_id . '/' . $article->image) }}" onerror="this.src='{{ asset('assets/images/default-img.jpg') }}';" alt="">
                                                     </label>
 
                                                     <p class="file-error d-none text-danger" >Please select a file before submitting the form.</p>
