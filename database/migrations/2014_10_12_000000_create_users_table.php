@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('phone')->unique();
+            $table->string('phone')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->enum('role', ['admin', 'agent', 'manager', 'user'])->default('user');
@@ -28,6 +28,8 @@ return new class extends Migration
             $table->string('created_by')->nullable();
             $table->string('is_approved')->nullable();
             $table->string('device_token');
+            $table->integer('otp')->nullable();
+            $table->integer('notify')->default('0');
             $table->rememberToken();
             $table->timestamps();
         });

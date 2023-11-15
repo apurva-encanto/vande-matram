@@ -2,8 +2,7 @@
 
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
-// Report all PHP errors
-error_reporting(-1);
+
 define('LARAVEL_START', microtime(true));
 
 /*

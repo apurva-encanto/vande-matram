@@ -6,15 +6,16 @@
                   <div class="row">
                      <div class="col-md-8">
                         <div class="card  text-white feature-card">
-                            
+
                            <img src="{{ asset('uploads/article_'.$popular_posts[0]->user_id.'/'.$popular_posts[0]->image) }}"     onerror="this.src='{{ asset('assets/images/default-img.jpg') }}';" class="card-img feature-img"
                               alt="...">
+                            <div class="overlay"></div>
                            <div class="card-img-overlay">
                              <a class="text-white" href="{{url('news-'.$popular_posts[0]->category_slug.'/'.$popular_posts[0]->title_slug)}}">
                                  <h4 class="card-title">{{$popular_posts[0]->title}}
                               </h4>
-                                 
-                             </a> 
+
+                             </a>
                               <p class="card-text">{{ getconvertedDate($popular_posts[0]->publish_date) }}</p>
                            </div>
                         </div>
@@ -37,21 +38,21 @@
                               <div class="line thin"></div>
                            </div>
                         </div>
-                  
+
                         <div class="row">
                                 @php
-                              
+
                                     $firstColumnCount = floor((count($latest_posts) - 1) / 4) + 1;
                                     $secondColumnCount = (count($latest_posts) - 1) % 4;
                                 @endphp
-                             
-                        
+
+
                             <div class="col-md-3">
-                                
+
                               <div class="block color-dark-blue">
                                  <div class="list-post-block">
                                     <ul class="list-post">
-                                        
+
                                       @foreach($latest_posts->take($firstColumnCount) as $key=>$post)
                                        <li class="clearfix">
                                           <div class="post-block-style post-float clearfix">
@@ -84,8 +85,8 @@
                                   <!--List post block end -->
                               </div>
                            </div>
-                        
-                               
+
+
                            <div class="col-md-9">
                                <div class="row mt-3">
                                    @foreach ($latest_posts->slice($firstColumnCount) as $post)
@@ -110,10 +111,10 @@
                                    @endforeach
                                </div>
                            </div>
-                           
+
                         </div>
                      </div>
-                      @if(array_key_exists('business', $articles)) 
+                      @if(array_key_exists('business', $articles))
                      <div class="col-md-12 mb-4">
                         <div>
                            <span>Business News </span>
@@ -125,7 +126,7 @@
                         </div>
                      </div>
                      <div class="row">
-                         @if($articles['business'][0]) 
+                         @if($articles['business'][0])
                         <div class="col-md-3">
                            <div class="block color-dark-blue">
                               <div class="post-block-style clearfix">
@@ -153,7 +154,7 @@
                            </div>
                         </div>
                          @endif
-                         
+
                            <div class="col-md-9">
                                <div class="row mt-3">
                                     @foreach(array_slice($articles['business'], 1) as $key=>$business)
@@ -186,7 +187,7 @@
                      <div class="col-md-12 mb-2">
                         <div>
                            <span>Latest Videos </span>
-                           
+
                               <a href="{{ url('news-videos') }}" class="see-all text-danger">See all</a>
                         </div>
                         <div class="line-container">
@@ -305,8 +306,8 @@
                         </div>
                      </div>
                   </div>
-                  
-                      @if(array_key_exists('politics', $articles)) 
+
+                      @if(array_key_exists('politics', $articles))
                      <div class="col-md-12 mb-4">
                         <div>
                            <span>Politics News </span>
@@ -318,7 +319,7 @@
                         </div>
                      </div>
                      <div class="row">
-                         @if($articles['politics'][0]) 
+                         @if($articles['politics'][0])
                         <div class="col-md-3">
                            <div class="block color-dark-blue">
                               <div class="post-block-style clearfix">
@@ -346,7 +347,7 @@
                            </div>
                         </div>
                          @endif
-                         
+
                            <div class="col-md-9">
                                <div class="row mt-3">
                                     @foreach(array_slice($articles['politics'], 1) as $key=>$politics)
@@ -374,8 +375,8 @@
                            </div>
                      </div>
                      @endif
-                     
-                         @if(array_key_exists('technology', $articles)) 
+
+                         @if(array_key_exists('technology', $articles))
                      <div class="col-md-12 mb-4 mt-3">
                         <div>
                            <span>Technology News </span>
@@ -387,7 +388,7 @@
                         </div>
                      </div>
                      <div class="row">
-                         @if($articles['technology'][0]) 
+                         @if($articles['technology'][0])
                         <div class="col-md-3">
                            <div class="block color-dark-blue">
                               <div class="post-block-style clearfix">
@@ -415,7 +416,7 @@
                            </div>
                         </div>
                          @endif
-                         
+
                            <div class="col-md-9">
                                <div class="row mt-3">
                                     @foreach(array_slice($articles['technology'], 1) as $key=>$technology)
@@ -443,8 +444,8 @@
                            </div>
                      </div>
                      @endif
-                     
+
                </div>
-         
+
             </main>
-@endsection            
+@endsection

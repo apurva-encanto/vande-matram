@@ -54,6 +54,7 @@ class ArticleController extends Controller
             'editor1' => 'required',
             'popular' => 'required',
             'top_new' => 'required',
+            'city' => 'required',
             'publish_date' => 'required|date|after_or_equal:today',
         ], [
             'publish_date.after_or_equal' => 'The publish date must be greater than or equal to the current date.',
@@ -65,30 +66,30 @@ class ArticleController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
-     
-        
 
-            
+
+
+
                     $coverfile = $request->file('file');
-            
+
                     // $request->validate([
                     //   'file' => 'required|mimes:jpeg,png,jpg,webp|max:2048', // Validate file type and size
                     // ]);
-            
+
                     $dynamicFolderName = 'article_' . auth()->user()->id;
                     $coverpath = public_path('uploads/' . $dynamicFolderName);
-            
+
                    // Ensure the directory exists, create it if not
                     if (!file_exists($coverpath)) {
                         mkdir($coverpath, 0755, true);
                     }
-            
+
                     // Generate a unique file name
                     $fileName = '/' . time() . '_' . Str::random(10) . '_' . $coverfile->getClientOriginalName();
-            
+
                    // Move the uploaded file to the destination directory
                    $coverfile->move($coverpath, $fileName);
-      
+
 
         $category = Category::find($request->category_id);
 
@@ -102,6 +103,7 @@ class ArticleController extends Controller
         $article->category_slug = $category->slug;
         $article->publish_date = $request->publish_date;
         $article->views = 0;
+        $article->city = $request->city;
         $article->popular = $request->popular;
         $article->top_new = $request->top_new;
         $article->publish = $request->publish;
@@ -177,26 +179,26 @@ class ArticleController extends Controller
         $article->title = $request->title;
         $article->title_slug = $this->createSlug($request->title);
         $article->content = $this->dataready($request->editor1);
-        
+
         if (!empty($request->file('file'))) {
-            
+
                 $coverfile = $request->file('file');
-            
+
                     // $request->validate([
                     //   'file' => 'required|mimes:jpeg,png,jpg,webp|max:2048', // Validate file type and size
                     // ]);
-            
+
                     $dynamicFolderName = 'article_' . $article->user_id;
                     $coverpath = public_path('uploads/' . $dynamicFolderName);
-            
+
                    // Ensure the directory exists, create it if not
                     if (!file_exists($coverpath)) {
                         mkdir($coverpath, 0755, true);
                     }
-            
+
                     // Generate a unique file name
                     $coverimg_name = '/' . time() . '_' . Str::random(10) . '_' . $coverfile->getClientOriginalName();
-            
+
                    // Move the uploaded file to the destination directory
                    $coverfile->move($coverpath, $coverimg_name);
                    $article->image = $coverimg_name;
@@ -205,6 +207,7 @@ class ArticleController extends Controller
         $article->category_slug = $category->slug;
         $article->publish_date = $request->publish_date;
         $article->views = 0;
+        $article->city = $request->city;
         $article->popular = $request->popular;
         $article->top_new = $request->top_new;
         $article->publish = $request->publish;
@@ -238,7 +241,7 @@ class ArticleController extends Controller
             ->leftJoin('categories', 'categories.id', '=', 'articles.category_id')
             ->orderBy('articles.id', 'desc')
             ->get();
-  
+
         return view('manager.article.list', $data);
     }
 
@@ -264,22 +267,22 @@ class ArticleController extends Controller
         }
 
                     $coverfile = $request->file('file');
-            
+
                     // $request->validate([
                     //   'file' => 'required|mimes:jpeg,png,jpg,webp|max:2048', // Validate file type and size
                     // ]);
-            
+
                     $dynamicFolderName = 'article_' . auth()->user()->id;
                     $coverpath = public_path('uploads/' . $dynamicFolderName);
-            
+
                    // Ensure the directory exists, create it if not
                     if (!file_exists($coverpath)) {
                         mkdir($coverpath, 0755, true);
                     }
-            
+
                     // Generate a unique file name
                     $fileName = '/' . time() . '_' . Str::random(10) . '_' . $coverfile->getClientOriginalName();
-            
+
                    // Move the uploaded file to the destination directory
                    $coverfile->move($coverpath, $fileName);
         $category = Category::find($request->category_id);
@@ -295,6 +298,7 @@ class ArticleController extends Controller
         $article->category_slug = $category->slug;
         $article->publish_date = $request->publish_date;
         $article->views = 0;
+        $article->city = $request->city;
         $article->popular = $request->popular;
         $article->top_new = $request->top_new;
         $article->publish = $request->publish;
@@ -315,7 +319,7 @@ class ArticleController extends Controller
             ->where('is_approved', 0)
             ->orderBy('articles.id', 'desc')
             ->get();
-     
+
         return view('admin.article.pending', $data);
     }
 
@@ -337,24 +341,24 @@ class ArticleController extends Controller
         $article->title_slug = $this->createSlug($request->title);
         $article->content = $this->dataready($request->editor1);
        if (!empty($request->file('file'))) {
-            
+
                 $coverfile = $request->file('file');
-            
+
                     // $request->validate([
                     //   'file' => 'required|mimes:jpeg,png,jpg,webp|max:2048', // Validate file type and size
                     // ]);
-            
+
                     $dynamicFolderName = 'article_' . $article->user_id;
                     $coverpath = public_path('uploads/' . $dynamicFolderName);
-            
+
                    // Ensure the directory exists, create it if not
                     if (!file_exists($coverpath)) {
                         mkdir($coverpath, 0755, true);
                     }
-            
+
                     // Generate a unique file name
                     $coverimg_name = '/' . time() . '_' . Str::random(10) . '_' . $coverfile->getClientOriginalName();
-            
+
                    // Move the uploaded file to the destination directory
                    $coverfile->move($coverpath, $coverimg_name);
                    $article->image = $coverimg_name;
@@ -363,6 +367,7 @@ class ArticleController extends Controller
         $article->category_slug = $category->slug;
         $article->publish_date = $request->publish_date;
         $article->views = 0;
+        $article->city = $request->city;
         $article->popular = $request->popular;
         $article->top_new = $request->top_new;
         $article->publish = $request->publish;
@@ -381,15 +386,15 @@ class ArticleController extends Controller
 
     public function listAgentArticle()
     {
-        
+
              $data['articles'] = Article::where('articles.is_delete', '0')
             ->select('articles.*', 'categories.name as category_name')
             ->where('created_by', auth()->user()->id)
             ->leftJoin('categories', 'categories.id', '=', 'articles.category_id')
             ->orderBy('articles.id', 'desc')
             ->get();
-            
-        
+
+
         return view('agent.article.list', $data);
     }
 
@@ -415,22 +420,22 @@ class ArticleController extends Controller
         }
 
                    $coverfile = $request->file('file');
-            
+
                     // $request->validate([
                     //   'file' => 'required|mimes:jpeg,png,jpg,webp|max:2048', // Validate file type and size
                     // ]);
-            
+
                     $dynamicFolderName = 'article_' . auth()->user()->id;
                     $coverpath = public_path('uploads/' . $dynamicFolderName);
-            
+
                    // Ensure the directory exists, create it if not
                     if (!file_exists($coverpath)) {
                         mkdir($coverpath, 0755, true);
                     }
-            
+
                     // Generate a unique file name
                     $fileName = '/' . time() . '_' . Str::random(10) . '_' . $coverfile->getClientOriginalName();
-            
+
                    // Move the uploaded file to the destination directory
                    $coverfile->move($coverpath, $fileName);
         $category = Category::find($request->category_id);
@@ -446,6 +451,7 @@ class ArticleController extends Controller
         $article->category_slug = $category->slug;
         $article->publish_date = $request->publish_date;
         $article->views = 0;
+        $article->city = $request->city;
         $article->popular = $request->popular;
         $article->top_new = $request->top_new;
         $article->publish = $request->publish;
@@ -478,24 +484,24 @@ class ArticleController extends Controller
         $article->title_slug = $this->createSlug($request->title);
         $article->content = $this->dataready($request->editor1);
         if (!empty($request->file('file'))) {
-            
+
                 $coverfile = $request->file('file');
-            
+
                     // $request->validate([
                     //   'file' => 'required|mimes:jpeg,png,jpg,webp|max:2048', // Validate file type and size
                     // ]);
-            
+
                     $dynamicFolderName = 'article_' . $article->user_id;
                     $coverpath = public_path('uploads/' . $dynamicFolderName);
-            
+
                    // Ensure the directory exists, create it if not
                     if (!file_exists($coverpath)) {
                         mkdir($coverpath, 0755, true);
                     }
-            
+
                     // Generate a unique file name
                     $coverimg_name = '/' . time() . '_' . Str::random(10) . '_' . $coverfile->getClientOriginalName();
-            
+
                    // Move the uploaded file to the destination directory
                    $coverfile->move($coverpath, $coverimg_name);
                    $article->image = $coverimg_name;
@@ -504,6 +510,7 @@ class ArticleController extends Controller
         $article->category_slug = $category->slug;
         $article->publish_date = $request->publish_date;
         $article->views = 0;
+        $article->city = $request->city;
         $article->popular = $request->popular;
         $article->top_new = $request->top_new;
         $article->publish = $request->publish;
@@ -520,8 +527,8 @@ class ArticleController extends Controller
             ->where('users.is_assign', auth()->user()->id)
             ->orderBy('id', 'desc')
             ->get();
-            
-               
+
+
         return view('manager.article.pending', $data);
     }
 }

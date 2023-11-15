@@ -3,7 +3,7 @@
   svg{
       width:25px;
   }
-  
+
   .post-block-style{
       min-height:370px;
   }
@@ -14,13 +14,13 @@
 @section('main-content')
 
  <main class="bg-white pt-3 main-content pb-5">
-               <div class="news-box mb-4">
+               <div class="news-box mb-4" style="min-height: 250px;">
                   <div class="row mt-3">
-                    
+
                      <div class="col-md-12 mb-2">
                         <div>
                            <h5 class="mx-3">{{$category->name}}</h5>
-                        </div>                        
+                        </div>
                      </div>
                      <div class="row mx-1">
                            @if (count($items) >0)
@@ -51,18 +51,18 @@
                                 </div>
                                 @endforeach
                             @endif
-                            
-                             
+
+
                         <div class="col-md-12 text-center">
-                            
+
                             @if(count($items) >0) {{ $items->links() }}  @else No News Found @endif
                            <!--<button class="btn load-more">Load More</button>-->
                         </div>
-                       
+
                      </div>
                   </div>
                </div>
-         
+
             </main>
-            
-@endsection            
+
+@endsection

@@ -12,22 +12,22 @@
                            <a class="nav-link active" aria-current="page" href="{{url('/')}}"><i style="font-size: 24px;"
                               class="fa fa-home" aria-hidden="true"></i></a>
                         </li>
-                         @foreach ($categories->take(7) as $category)
+                         @foreach ($categories->take(8) as $category)
                             <li class="nav-item">
-                               <a class="nav-link" href="{{ url('news-'.$category->slug) }}">{{ $category->name }}</a>
+                               <a class="nav-link" href="{{ url('news-'.$category->slug) }}">{{ ucfirst(strtolower($category->name)) }}</a>
                             </li>
                          @endforeach
-                          @if(count($categories) >7)
-                        
+                          @if(count($categories) >8)
+
                         <li class="nav-item dropdown">
                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                               data-bs-toggle="dropdown" aria-expanded="false">
                            More
                            </a>
                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                             @foreach ($categories->slice(7) as $category)
-                               <li><a class="dropdown-item" href="{{ url('news-'.$category->slug) }}">{{ $category->name }}</a></li>
-                              @endforeach 
+                             @foreach ($categories->slice(8) as $category)
+                               <li><a class="dropdown-item" href="{{ url('news-'.$category->slug) }}">{{ ucfirst(strtolower($category->name)) }}</a></li>
+                              @endforeach
                            </ul>
                         </li>
                          @endif

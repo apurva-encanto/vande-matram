@@ -32,7 +32,7 @@
                                     </div>
                                 </div>
                                 <!-- Post title end -->
-                
+
                                 <div class="post-content-area">
                                     <div class="post-media post-featured-image">
                                         <a href="{{ asset('uploads/article_'.$article->user_id.'/'.$article->image)}}" class="gallery-popup cboxElement"><img
@@ -40,17 +40,17 @@
                                                 src="{{ asset('uploads/article_'.$article->user_id.'/'.$article->image)}}" class="img-fluid" alt="" /></a>
                                     </div>
                                     <div class="entry-content">
-                                       {!! html_entity_decode($article->content) !!}
+                                     <b>@if(!empty($article->city)){{ $article->city }} : @endif </b>  {!! html_entity_decode($article->content) !!}
                                     </div>
                                     <!-- Entery content end -->
-                
+
                                     <!-- Share items end -->
                                 </div>
                                 <!-- post-content end -->
                             </div>
-                
-                
-                
+
+
+
                         </div>
                         <div class="col-md-4">
                             <div class="row">
@@ -60,11 +60,11 @@
                                         <div class="col-md-12 mt-3 bg-white" style="padding: 2px;">
                                             <div class="widget color-default mb-3 ">
                                                 <h3 class="block-title"><span>Popular News</span></h3>
-                
+
                                                 <div class="list-post-block mb-3">
                                                     <ul class="list-post mb-3">
-                                                        @if(count($popular_posts) >0) 
-                                                      
+                                                        @if(count($popular_posts) >0)
+
                                                         <!-- Li 1 end -->
                                                          @foreach ($popular_posts as $key=>$post)
                                                         <li class="clearfix m-1">
@@ -77,9 +77,9 @@
                                                                     </a>
                                                                 </div>
                                                                 <!-- Post thumb end -->
-                
+
                                                                 <div class="post-content">
-                                                                    <h2 class="post-title title-small" style="overflow: hidden;text-overflow: ellipsis;">
+                                                                    <h2 class="post-title title-small mb-3" style="overflow: hidden;text-overflow: ellipsis;">
                                                                         <a href="{{url('news-'.$post->category_slug.'/'.$post->title_slug)}}"> {{$post->title}}</a>
                                                                     </h2>
                                                                     <div class="post-meta">
@@ -103,23 +103,23 @@
                                                         </li>
                                                         @endif
                                                         <!-- Li 2 end -->
-                
-                                                        
+
+
                                                         <!-- Li 4 end -->
                                                     </ul>
                                                     <!-- List post end -->
                                                 </div>
                                                 <!-- List post block end -->
                                             </div>
-                
+
                                         </div>
                                         <div class="col-md-12 mt-3 bg-white" style="padding: 2px;">
                                             <div class="widget color-default ">
                                                 <h3 class="block-title"><span>You might like</span></h3>
-                
+
                                                 <div class="list-post-block mb-3">
                                                     <ul class="list-post mb-3">
-                                                     @if(count($similar_posts) >0) 
+                                                     @if(count($similar_posts) >0)
                                                      @foreach($similar_posts as $key=>$post)
                                                         <li class="clearfix  m-2">
                                                             <div class="post-block-style post-float clearfix">
@@ -130,12 +130,14 @@
                                                                     </a>
                                                                 </div>
                                                                 <!-- Post thumb end -->
-                
+
                                                                 <div class="post-content">
-                                                                    <h2 class="post-title title-small" style="overflow: hidden;text-overflow: ellipsis;">
+                                                                    <h2 class="post-title title-small mb-3" style="overflow: hidden;text-overflow: ellipsis;">
                                                                         <a href="{{url('news-'.$post->category_slug.'/'.$post->title_slug)}}">{{$post->title}}</a>
                                                                     </h2>
+
                                                                     <div class="post-meta">
+                                                                        {{-- <br> --}}
                                                                         <span class="post-user">By :{{ $post->user_name }}</span>
                                                                         <span class="post-date">{{ getconvertedDate($post->publish_date) }}</span>
                                                                     </div>
@@ -144,7 +146,7 @@
                                                             </div>
                                                             <!-- Post block style end -->
                                                         </li>
-                                                         @endforeach        
+                                                         @endforeach
                                                          @else
                                                           <li class="clearfix m-1">
                                                             <div class="post-block-style post-float clearfix text-center bg-light">
@@ -156,20 +158,20 @@
                                                         </li>
                                                         @endif
                                                         <!-- Li 1 end -->
-                
+
                                                     </ul>
                                                     <!-- List post end -->
                                                 </div>
                                                 <!-- List post block end -->
                                             </div>
-                
+
                                         </div>
                                         <div class="col-md-12"></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
+
                         @php
                         $arrayFirst=array_chunk($next_article, 4)[0];
                         $arraySecond=array_chunk($next_article, 4)[1];
@@ -182,7 +184,7 @@
                                     @foreach($arrayFirst  as $key=>$post)
                                         @if($key==0)
                                            <div class="block color-dark-blue">
-                                    
+
                                             <div class="post-block-style clearfix">
                                                 <div class="post-thumb">
                                                     <a href="{{url('news-'.$post['category_slug'].'/'.$post['title_slug'])}}">
@@ -201,9 +203,11 @@
                                                 </div>
                                                 <!-- Post content end -->
                                             </div>
-                                    
+
                                         </div>
+                                        <hr>
                                         @else
+
                                            <div class="block color-dark-blue mt-2">
                                                     <div class="clearfix">
                                                         <div class="post-block-style post-float clearfix">
@@ -212,7 +216,7 @@
                                                                     <img   onerror="this.src='{{ asset('assets/images/default-img.jpg') }}';" class="img-fluid" src="{{ asset('uploads/article_'.$post['user_id'].'/'.$post['image'])}}" alt="" />
                                                                 </a>
                                                             </div>
-                                    
+
                                                             <div class="post-content">
                                                                 <h2 class="post-title title-small">
                                                                     <a href="{{url('news-'.$post['category_slug'].'/'.$post['title_slug'])}}">{{$post['title']}}</a>
@@ -226,18 +230,18 @@
                                                         </div>
                                                         <!-- Post block style end -->
                                                     </div>
-                                    
+
                                         </div>
-                                        
+
                                         @endif
                                     @endforeach
-                                   
+
                                 </div>
                                <div class="col-lg-6 ">
                                    @foreach($arraySecond  as $key=>$post)
                                         @if($key==0)
                                            <div class="block color-dark-blue">
-                                    
+
                                             <div class="post-block-style clearfix">
                                                 <div class="post-thumb">
                                                     <a href="{{url('news-'.$post['category_slug'].'/'.$post['title_slug'])}}">
@@ -256,8 +260,10 @@
                                                 </div>
                                                 <!-- Post content end -->
                                             </div>
-                                    
+
                                         </div>
+                                        <hr>
+
                                         @else
                                            <div class="block color-dark-blue mt-2">
                                                     <div class="clearfix">
@@ -267,7 +273,7 @@
                                                                     <img   onerror="this.src='{{ asset('assets/images/default-img.jpg') }}';" class="img-fluid" src="{{ asset('uploads/article_'.$post['user_id'].'/'.$post['image'])}}" alt="" />
                                                                 </a>
                                                             </div>
-                                    
+
                                                             <div class="post-content">
                                                                 <h2 class="post-title title-small">
                                                                     <a href="{{url('news-'.$post['category_slug'].'/'.$post['title_slug'])}}">{{$post['title']}}</a>
@@ -281,17 +287,17 @@
                                                         </div>
                                                         <!-- Post block style end -->
                                                     </div>
-                                    
+
                                         </div>
-                                        
+
                                         @endif
                                     @endforeach
-                                     
+
                                 </div>
                             </div>
-                
+
                         </div>
                     </div>
-                
+
                 </main>
-@endsection            
+@endsection
