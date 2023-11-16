@@ -523,7 +523,7 @@ class ArticleController extends Controller
     {
         $data['articles'] = Article::leftJoin('users', 'users.id', '=', 'articles.user_id')
             ->select('articles.*', 'users.is_assign as is_assign')
-            ->where('articles.is_approved', 2)
+            ->where('articles.is_approved',2)
             ->where('users.is_assign', auth()->user()->id)
             ->orderBy('id', 'desc')
             ->get();

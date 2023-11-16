@@ -40,6 +40,8 @@ Route::get('/admin-logincheck', [LoginController::class, 'logincheck'])->name('a
 Route::middleware(['auth', 'user-access:agent'])->group(function () {
 
     Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/account', [HomeController::class, 'agentAccount'])->name('agent.account');
+    Route::post('/account-edit', [HomeController::class, 'agentAccountEdit'])->name('agent.account.edit');
 
     Route::prefix('article')->group(function () {
         Route::get('/add', [ArticleController::class, 'addAgentArticle'])->name('agent.article.add');
@@ -59,6 +61,10 @@ All Admin Routes List
 Route::prefix('admin')->middleware(['auth', 'user-access:admin'])->group(function () {
 
     Route::get('/home', [AdminController::class, 'adminHome'])->name('admin.home');
+    Route::get('/account', [AdminController::class, 'adminAccount'])->name('admin.account');
+    Route::post('/account-edit', [AdminController::class, 'adminAccountEdit'])->name('admin.account.edit');
+
+
     Route::prefix('article')->group(function () {
         Route::get('/add', [ArticleController::class, 'addArticle'])->name('admin.article.add');
         Route::get('/pending', [ArticleController::class, 'pendingArticle'])->name('admin.article.pending');
@@ -99,6 +105,9 @@ All Admin Routes List
 Route::prefix('manager')->middleware(['auth', 'user-access:manager'])->group(function () {
 
     Route::get('/home', [HomeController::class, 'managerHome'])->name('manager.home');
+    Route::get('/account', [HomeController::class, 'managerAccount'])->name('manager.account');
+    Route::post('/account-edit', [HomeController::class, 'managerAccountEdit'])->name('manager.account.edit');
+
     Route::prefix('agent')->group(function () {
         Route::get('/add', [JournalistController::class, 'addAgent'])->name('manager.agent.add');
         Route::post('/create', [JournalistController::class, 'createAgent'])->name('manager.agent.create');

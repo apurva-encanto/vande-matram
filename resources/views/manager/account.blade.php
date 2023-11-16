@@ -19,12 +19,12 @@
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Vandemataram</a></li>
 
 
-                                            <li class="breadcrumb-item"><a href="dashboard.html"> Dashoard</a></li>
-                                            <li class="breadcrumb-item active">Add New Article</li>
+                                            <li class="breadcrumb-item"><a href="{{route('manager.home')}}"> Dashoard</a></li>
+                                            <li class="breadcrumb-item active">My Account Settings</li>
                                         </ol>
                                     </div>
 
-                                    <h4 class="page-title">Add New Article</h4>
+                                    <h4 class="page-title">My Account Settings</h4>
                                 </div>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
 
                                                     <div class="w-100">
                                                         <h5 class="mt-0 mb-0 font-15">
-                                                            Add New Article
+                                                            My Account Settings
                                                         </h5>
                                                     </div>
 
@@ -58,63 +58,34 @@
                                         </div>
 
 
-
                                         <div class="row mt-3">
                                             <div class="col-xl-6">
-                                                <form id="myForm" class="needs-validation" method="post" enctype="multipart/form-data" novalidate action="{{ route('manager.article.create')}}" >
+                                                <form id="myForm" class="needs-validation" method="post" enctype="multipart/form-data" novalidate action="{{ route('manager.account.edit')}}" >
                                                     @csrf
                                                     <div class="mb-3">
-                                                        <label for="Title" class="form-label">Title</label>
-                                                        <input type="text" pattern="[A-Za-z ]+" value="{{old('title')}}" required  name="title" class="form-control" placeholder="News Title" >
+                                                        <label for="Name" class="form-label">Name</label>
+                                                        <input type="text" pattern="[A-Za-z ]+" value="{{auth()->user()->name}}" required  name="name" class="form-control" placeholder="Manager Name" >
+                                                           <div class="invalid-feedback">
+                                                            Please enter a valid Name.
+                                                            </div>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="Email" class="form-label">Email Address</label>
+                                                        <input type="email" value="{{auth()->user()->email}}" required  name="email" class="form-control" placeholder="Manager Email Address" >
+                                                            @error('email')
+                                                                <div class="text-danger">{{ $message }}</div>
+                                                            @enderror
+
                                                             <div class="invalid-feedback">
-                                                             Please enter a valid Title.
+                                                            Please enter a valid Email Address.
                                                             </div>
+
                                                     </div>
-                                                    <div class="mb-3">
-                                                        <label for="Select Category" class="form-label">Select Category</label>
-
-                                                        <select name="category_id" id="" required class="form-control">
-                                                            <option value="">Select Category</option>
-                                                            @foreach ($categories as $category )
-                                                            <option value="{{$category->id}}">{{$category->name}}</option>
-                                                            @endforeach
-                                                        </select>
-
-                                                        <div class="invalid-feedback">
-                                                             Please select a category.
-                                                            </div>
+                                                   <div class="mb-3">
+                                                        <label for="Password" class="form-label">Password</label>
+                                                        <input type="password" value="{{old('password')}}"   name="password" class="form-control" placeholder="Manager Password" >
                                                     </div>
 
-                                                    <div class="mb-3">
-                                                        <label class="form-label">City</label> <br/>
-                                                        <div class="form-group">
-                                                            <input  value="" type="text" placeholder="Enter City" id=""  name="city" class="form-control">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Popular New</label> <br/>
-                                                        <div class="form-check form-check-inline">
-                                                            <input  value="1" type="radio" id="customRadio1"  name="popular" class="form-check-input">
-                                                            <label class="form-check-label" for="customRadio1">Yes</label>
-                                                        </div>
-                                                        <div class="form-check form-check-inline">
-                                                            <input  value="0" type="radio" id="customRadio2" checked name="popular" class="form-check-input">
-                                                            <label class="form-check-label" for="customRadio2"  >No</label>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Top New</label> <br/>
-                                                        <div class="form-check form-check-inline">
-                                                            <input  value="1" type="radio" id="customRadio1"  name="top_new" class="form-check-input">
-                                                            <label class="form-check-label" for="customRadio1">Yes</label>
-                                                        </div>
-                                                        <div class="form-check form-check-inline">
-                                                            <input  value="0" type="radio" id="customRadio2" checked  name="top_new" class="form-check-input">
-                                                            <label class="form-check-label" for="customRadio2" >No</label>
-                                                        </div>
-                                                    </div>
 
                                             </div> <!-- end col-->
 
@@ -123,45 +94,25 @@
                                                 <div class="row">
                                                     <div class="col-lg-6">
                                                         <!-- Date View -->
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Publish Date</label>
-                                                            <input  value="{{date('Y-m-d')}}" required type="date" class="form-control" name="publish_date"  data-toggle="flatpicker" placeholder="June 9, 2023">
-
-                                                            <div class="invalid-feedback">
-                                                             Please enter a Publish Date.
-                                                            </div>
-
-                                                            @error('publish_date')
+                                                    <div class="mb-3">
+                                                        <label for="Phone" class="form-label">Phone</label>
+                                                        <input type="number" value="{{auth()->user()->phone}}" required  name="phone" class="form-control" placeholder="Admin Phone Number" >
+                                                           @error('phone')
                                                                 <div class="text-danger">{{ $message }}</div>
                                                             @enderror
-                                                        </div>
 
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Publish Status</label>
-                                                            <p class="text-muted font-14">You can set time for publish.</p>
-
-                                                           <select name="publish" id="" class="form-control">
-                                                               <option value="1">Publish</option>
-                                                               <option value="0" selected>Unpublish</option>
-                                                           </select>
                                                             <div class="invalid-feedback">
-                                                             Please enter a Publish Date.
+                                                            Please enter a valid Phone Number.
                                                             </div>
-
-                                                        </div>
-
                                                     </div>
-
-                                                </div>
-
-                                            <div class="my-3 mt-xl-0">
-                                            <label for="projectname" class="mb-0 form-label">Article Main Image</label>
+                                                    <div class="my-3 mt-xl-0">
+                                                <label for="projectname" class="mb-0 form-label">Admin Image</label>
 
                                                  <p class="text-muted font-14">Recommended Image size 800x400 (px).</p>
                                                     <label class="image-input">
                                                         <input type="file" name="file" id="file-upload" accept="image/*"  max-size="10000000">
                                                         <input type="hidden" name="">
-                                                        <img src="" alt="">
+                                                        <img  src="@if(!empty(auth()->user()->image)){{ asset('uploads/user_' . auth()->user()->id . '/' . auth()->user()->image) }}@endif"   alt="">
                                                     </label>
 
                                                     <p class="file-error d-none text-danger" >Please select a file before submitting the form.</p>
@@ -171,20 +122,15 @@
                                                     @enderror
                                                 <!-- end file preview template -->
                                                </div>
+                                                    </div>
+
+                                                </div>
+
+
 
 
 
                                         </div> <!-- end col-->
-                                            <div class="col-xl-12">
-                                                <div class="mb-3">
-                                                    <label for="project-overview" class="form-label">Article Content</label>
-                                                    <textarea  value="{{old('editor1')}}" class="form-control" name="editor1" id="project-overview"  rows="5" placeholder="Article Content"></textarea>
-
-                                                            <div class="invalid-feedback">
-                                                             Please enter a Article Content.
-                                                            </div>
-                                                </div>
-                                            </div>
 
                                         </div>
 
@@ -238,12 +184,12 @@
         var fileUpload = document.getElementById('file-upload');
 
         // Check if the file input is empty
-        if (fileUpload.files.length === 0) {
-            // Prevent the form from being submitted
-            event.preventDefault();
+        // if (fileUpload.files.length === 0) {
+        //     // Prevent the form from being submitted
+        //     event.preventDefault();
 
-            $('.file-error').removeClass('d-none')
-        }
+        //     $('.file-error').removeClass('d-none')
+        // }
     });
 
 
@@ -370,7 +316,7 @@ document.querySelectorAll('.image-input').forEach(_ => {
     CKEDITOR.replace('editor1', {
     });
     function redirectToRoute() {
-        window.location.href = "{{ route('manager.article.list') }}";
+        window.location.href = "{{ route('manager.home') }}";
     }
 </script>
 

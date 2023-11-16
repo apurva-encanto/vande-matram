@@ -2,7 +2,7 @@
 
 <div class="h-100" data-simplebar>
 
-    <!-- User box --> 
+    <!-- User box -->
     <!--- Sidemenu -->
     <div id="sidebar-menu">
 
@@ -12,13 +12,13 @@
 
             <li>
                 <a href="{{route('admin.home')}}"   class="active">
-                    <i class="mdi mdi-view-dashboard-outline"></i>                                    
+                    <i class="mdi mdi-view-dashboard-outline"></i>
                     <span> Dashboards </span>
-                </a> 
+                </a>
             </li>
             <li>
                 <a href="#Category" data-bs-toggle="collapse">
-                    <i class="mdi mdi-clipboard-multiple-outline"></i>    
+                    <i class="mdi mdi-clipboard-multiple-outline"></i>
                     <span>  Category </span>
                     <span class="menu-arrow"></span>
                 </a>
@@ -30,15 +30,15 @@
                         <li>
                             <a href="{{route('admin.category.list')}}">Category's List</a>
                         </li>
-                        
+
                     </ul>
                 </div>
             </li>
 
-             
+
             <li>
                 <a href="#Article" data-bs-toggle="collapse">
-                    <i class="mdi mdi-clipboard-multiple-outline"></i>    
+                    <i class="mdi mdi-clipboard-multiple-outline"></i>
                     <span>  Article </span>
                     <span class="menu-arrow"></span>
                 </a>
@@ -53,21 +53,21 @@
                         <li>
                             <a href="{{route('admin.article.list')}}">Article's List</a>
                         </li>
-                        
+
                     </ul>
                 </div>
             </li>
 
             {{-- <li>
                 <a href="#sidebarDashboards" data-bs-toggle="collapse"  >
-                    <i class="mdi mdi-briefcase-check-outline"></i>                                    
+                    <i class="mdi mdi-briefcase-check-outline"></i>
                     <span> Create New Page </span>
-                </a> 
+                </a>
             </li> --}}
-            
+
             <li>
                 <a href="#sidebarCrm" data-bs-toggle="collapse">
-                    <i class="mdi mdi-account-multiple"></i>    
+                    <i class="mdi mdi-account-multiple"></i>
                     <span>  Journalist </span>
                     <span class="menu-arrow"></span>
                 </a>
@@ -82,17 +82,17 @@
                         <li>
                             <a href="{{route('admin.journalist.list')}}">Journalist's List</a>
                         </li>
-                        
+
                     </ul>
                 </div>
-            </li> 
-            
-            <li>
-                <a href="#sidebarDashboards" data-bs-toggle="collapse"  >
-                    <i class="mdi  mdi-tools"></i>                                    
-                    <span> Settings </span>
-                </a> 
             </li>
+
+            {{-- <li>
+                <a href="#sidebarDashboards" data-bs-toggle="collapse"  >
+                    <i class="mdi  mdi-tools"></i>
+                    <span> Settings </span>
+                </a>
+            </li> --}}
            <!-- <li>
                 <a href="#sidebarProjects" data-bs-toggle="collapse">
                     <i class="mdi mdi-briefcase-check-outline"></i>

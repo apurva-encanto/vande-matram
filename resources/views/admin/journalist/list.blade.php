@@ -5,26 +5,26 @@
 
                     <!-- Start Content-->
                     <div class="container-fluid">
-                        
+
                         <!-- start page title -->
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box">
                                       <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Vandemataram</a></li> 
-                                            
-                                            
-                                            <li class="breadcrumb-item"><a href="{{route('admin.home')}}"> Dashoard</a></li> 
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Vandemataram</a></li>
+
+
+                                            <li class="breadcrumb-item"><a href="{{route('admin.home')}}"> Dashoard</a></li>
                                             <li class="breadcrumb-item active">Journalist's List</li>
                                         </ol>
                                     </div>
-                                   
+
                                     <h4 class="page-title">View Journalist's List</h4>
                                 </div>
                             </div>
-                        </div>     
-                        <!-- end page title --> 
+                        </div>
+                        <!-- end page title -->
 
                         <!-- end row-->
 
@@ -39,30 +39,30 @@
                                         <!-- Left sidebar -->
                                         <!-- End Left sidebar -->
 
-                                        <div class=" "> 
+                                        <div class=" ">
                                             <div class="row mt-2 border-bottom border-light">
                                                 <div class="d-flex align-items-start mb-2 ">
-                                                    
+
                                                     <div class="w-100">
                                                         <h5 class="mt-0 mb-0 font-15">
                                                             View Journalist's List
-                                                        </h5> 
-                                                        
+                                                        </h5>
+
                                                     </div>
                                                     <a href="{{route('admin.journalist.add')}}" class="btn btn-primary">Add</a>
                                                 </div>
 
-                                            </div>  
+                                            </div>
                                         </div>
                                         <div class="mb-2 p-2">
                                             <div class="row row-cols-sm-auto g-2 align-items-center">
-                                          
+
                                                 <div class="col-12 text-sm-center">
                                                     <select id="demo-foo-filter-status" class="form-select form-select-sm">
                                                         <option value="">Show all</option>
                                                         <option value="active">Active</option>
                                                         <option value="inactive">Inactive</option>
-                                                        <option value="suspended">Suspended</option>
+                                                        {{-- <option value="suspended">Suspended</option> --}}
                                                     </select>
                                                 </div>
                                                 <div class="col-12">
@@ -70,13 +70,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        @if ($message = Session::get('success'))
-                                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                                <strong>Success</strong> {{ $message }}.
-                                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                            </div>
-                                         @endif   
-                                        
+
                                         <div class="table-responsive">
                                             <table id="demo-foo-filtering" class="table table-bordered toggle-circle mb-0" data-page-size="7">
                                                 <thead>
@@ -122,14 +116,14 @@
                                                                     <h4 class="mt-2 text-white">Delete User</h4>
                                                                     <p class="mt-3 text-white">Are you sure you want to delete <strong>{{$user->name}}</strong> .</p>
                                                                     <button type="submit" class="btn btn-light my-2" >Continue</button>
-                                                                </form>  
+                                                                </form>
                                                                 </div>
                                                             </div>
                                                         </div><!-- /.modal-content -->
                                                     </div><!-- /.modal-dialog -->
                                                 </div>
-                                                @endforeach                                                
-                                              
+                                                @endforeach
+
                                                 </tbody>
                                                 <tfoot>
                                                 <tr class="active">
@@ -141,8 +135,8 @@
                                                 </tr>
                                                 </tfoot>
                                             </table>
-                                        </div> <!-- end .table-responsive 
-                                        
+                                        </div> <!-- end .table-responsive
+
                                         <div class="row mt-3">
                                             <div class="col-12 text-center">
                                                 <button type="button" class="btn btn-success waves-effect waves-light m-1"><i class="fe-check-circle me-1"></i> Submit</button>
@@ -162,9 +156,9 @@
 
 
 
-                         
 
-                        
+
+
                     </div> <!-- container -->
 
                 </div> <!-- content -->
@@ -176,7 +170,7 @@
                             <div class="col-md-6">
                                 <script>document.write(new Date().getFullYear())</script> &copy;  Vandemataram News. All Rights Reserved.
                             </div>
-                             
+
                         </div>
                     </div>
                 </footer>

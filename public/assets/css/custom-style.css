@@ -80,6 +80,8 @@
   border-radius: 12px;
   cursor: pointer;
 }
+
+
 .image-input .image-remove::before, .image-input .image-remove::after {
   content: "";
   display: block;

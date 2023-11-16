@@ -73,7 +73,7 @@ class JournalistController extends Controller
                     $fileName = '/' . time() . '_' . Str::random(10) . '_' . $coverfile->getClientOriginalName();
                    // Move the uploaded file to the destination directory
                    $coverfile->move($coverpath, $fileName);
-                   
+
         try {
 
 
@@ -87,7 +87,7 @@ class JournalistController extends Controller
             $journalistUser->photo = $fileName;
             $journalistUser->team_member_id = (!empty($input['team_member_id'])) ? implode('|', $input['team_member_id']) : ' ';
             $journalistUser->save();
-
+            User::where('id', $user->id)->update(['image'=> $fileName]);
             if (!empty($input['team_member_id'])) {
 
                 foreach ($input['team_member_id'] as $team_id) {
@@ -113,6 +113,7 @@ class JournalistController extends Controller
         $data['users'] = User::leftJoin('journalist_details', 'users.id', '=', 'journalist_details.user_id')
             ->select('users.*', 'journalist_details.*')
             ->where('role', '!=', 'admin')
+            ->where('role', '!=', 'user')
             ->where('is_delete', '0')
             ->where('is_approved', 1)
             ->orderBy('users.id', 'desc')
@@ -167,7 +168,7 @@ class JournalistController extends Controller
         }
 
         if (!empty($request->file('file'))) {
-            
+
                     $coverfile = $request->file('file');
                     $request->validate([
                       'file' => 'required|mimes:jpeg,png,jpg,webp|max:2048', // Validate file type and size
@@ -184,7 +185,8 @@ class JournalistController extends Controller
                    // Move the uploaded file to the destination directory
                    $coverfile->move($coverpath, $fileName);
                    JournalistDetail::where('user_id', $id)->update(['photo' => $fileName]);
-          
+                   User::where('id', $id)->update(['image' => $fileName]);
+
         }
 
         $userUpdate = User::find($id);
@@ -309,7 +311,7 @@ class JournalistController extends Controller
         $user->status = 'active';
         $user->device_token = ' ';
         $user->save();
-        
+
                     $coverfile = $request->file('file');
                     $request->validate([
                       'file' => 'required|mimes:jpeg,png,jpg,webp|max:2048', // Validate file type and size
@@ -325,7 +327,7 @@ class JournalistController extends Controller
                     $fileName = '/' . time() . '_' . Str::random(10) . '_' . $coverfile->getClientOriginalName();
                    // Move the uploaded file to the destination directory
                    $coverfile->move($coverpath, $fileName);
-       
+
         try {
 
 
@@ -348,6 +350,7 @@ class JournalistController extends Controller
             $journalistUser->team_member_id = 0;
             $journalistUser->save();
 
+            User::where('id', $user->id)->update(['image' => $fileName]);
 
             return redirect()->route('manager.agent.list')->with('success', 'Agent Save successfully!');
         } catch (\Exception $e) {
@@ -365,6 +368,7 @@ class JournalistController extends Controller
         $data['users'] = User::leftJoin('journalist_details', 'users.id', '=', 'journalist_details.user_id')
             ->select('users.*', 'journalist_details.*')
             ->where('created_by', auth()->user()->id)
+            ->where('role', '!=', 'user')
             ->where('is_delete', '0')
             ->orWhere('is_assign', auth()->user()->id)
             ->orderBy('users.id', 'desc')
@@ -403,13 +407,13 @@ class JournalistController extends Controller
         }
 
         if (!empty($request->file('file'))) {
-            
+
                      $coverfile = $request->file('file');
                     $request->validate([
                       'file' => 'required|mimes:jpeg,png,jpg,webp|max:2048', // Validate file type and size
                     ]);
                     // Generate a dynamic folder name based on user ID or any unique identifier
-                    $dynamicFolderName = 'user_' . $user->id; // Example: 'user_1'
+                    $dynamicFolderName = 'user_' . $id; // Example: 'user_1'
                     $coverpath = public_path('uploads/' . $dynamicFolderName);
                    // Ensure the directory exists, create it if not
                     if (!file_exists($coverpath)) {
@@ -420,7 +424,8 @@ class JournalistController extends Controller
                    // Move the uploaded file to the destination directory
                    $coverfile->move($coverpath, $fileName);
                     JournalistDetail::where('user_id', $id)->update(['photo' => $fileName]);
-           
+
+                    User::where('id', $id)->update(['image' => $fileName]);
         }
 
         $userUpdate = User::find($id);

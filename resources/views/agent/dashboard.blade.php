@@ -6,17 +6,17 @@
 
                     <!-- Start Content-->
                     <div class="container-fluid">
-                        
+
                         <!-- start page title -->
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box">
-                                    
+
                                     <h4 class="page-title">Agent Dashboard</h4>
                                 </div>
                             </div>
-                        </div>     
-                        <!-- end page title --> 
+                        </div>
+                        <!-- end page title -->
 
                         <div class="row">
                             <div class="col-md-6 col-xl-3">
@@ -59,28 +59,28 @@
                                 </div> <!-- end widget-rounded-circle-->
                             </div> <!-- end col-->
 
-                        
+
                         </div>
                         <!-- end row-->
 
-                        
+
 
                             <div class="col-xl-12">
                                 <div class="card m-2">
                                     <div class="card-body p-2">
                                         <div class="dropdown float-end">
-                                            <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
+                                            {{-- <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
                                               <small class="btn btn-secondary btn-sm">view all</small>
-                                            </a>
+                                            </a> --}}
                                            </div>
                                         </div>
-                                        
-    
+
+
                                         <h4 class="header-title mb-3 px-1">Your Pending Articles</h4>
-    
+
                                         <div class="table-responsive">
                                             <table class="table table-borderless table-nowrap table-hover table-centered m-0">
-    
+
                                                 <thead class="table-light">
                                                     <tr>
                                                         <th>Article</th>
@@ -95,22 +95,22 @@
                                                         <td>
                                                             <h5 class="m-0 fw-normal">{{$article->title }}</h5>
                                                         </td>
-        
+
                                                         <td>
                                                             {{getconvertedDate($article->publish_date)}}
                                                         </td>
-        
+
                                                         <td>
                                                            <span class="badge bg-soft-warning text-warning">Pending</span>
-                                                       
+
                                                         </td>
-        
+
                                                         <td>
                                                             <a href="{{ route('manager.article.edit',$article->id) }}" class="btn btn-xs btn-light"><i class="mdi mdi-pencil"></i></a>
                                                         </td>
                                                     </tr>
                                                     @endforeach
-    
+
                                                 </tbody>
                                             </table>
                                         </div> <!-- end .table-responsive-->
@@ -119,7 +119,7 @@
                             </div> <!-- end col -->
                         </div>
                         <!-- end row -->
-                        
+
                     </div> <!-- container -->
 
                 </div> <!-- content -->
@@ -131,11 +131,11 @@
                             <div class="col-md-6">
                                 <script>document.write(new Date().getFullYear())</script> &copy; Vandemataram News. All Rights Reserved.
                             </div>
-                            
+
                         </div>
                     </div>
                 </footer>
                 <!-- end Footer -->
 
             </div>
- @endsection           
+ @endsection

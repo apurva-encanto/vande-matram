@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 
 class LoginController extends Controller
 {
@@ -30,7 +32,9 @@ class LoginController extends Controller
             'email' => 'required|email',
             'password' => 'required',
         ]);
-
+        $userExists = User::where('email', $request->email)
+            ->first();
+        if ($userExists) {
 
         if (auth()->attempt(array('email' => $input['email'], 'password' => $input['password']))) {
 
@@ -46,22 +50,29 @@ class LoginController extends Controller
 
                 if (auth()->user()->is_approved == '0') {
                     Auth::logout();
-                    return redirect()->route('admin.login')->with('error', 'Your account has not been approved yet.')->withInput();
+                    return redirect()->route('login')->with('error', 'Your account has not been approved yet.')->withInput();
                 }
                 if (auth()->user()->is_delete == '1') {
                     Auth::logout();
-                    return redirect()->route('admin.login')->with('error', 'Your account has been deleted by Authorite.')->withInput();
+                    return redirect()->route('login')->with('error', 'Your account has been deleted by Authorite.')->withInput();
                 }
 
                 if (auth()->user()->status == 'inactive') {
                     Auth::logout();
-                    return redirect()->route('admin.login')->with('error', 'Your account is inactive.')->withInput();
+                    return redirect()->route('login')->with('error', 'Your account is inactive.')->withInput();
                 }
             }
         } else {
-            return redirect()->route('admin.login')
-                ->with('error', 'Email-Address And Password Are Wrong.')->withInput();
+
+            $errors['password'] = 'Password is Incorrect !';
+
+            return redirect()->route('login')->withInput()->withErrors($errors);
         }
+       }else{
+            $errors['email']='User not Found';
+            return redirect()->route('login')->withInput()->withErrors($errors);
+
+       }
     }
 
 

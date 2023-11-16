@@ -65,7 +65,7 @@
                                                     @csrf
                                                     <div class="mb-3">
                                                         <label for="Title" class="form-label">Title</label>
-                                                        <input type="text" value="{{$article->title}}" required  name="title" class="form-control" placeholder="News Title" >
+                                                        <input type="text" pattern="[A-Za-z ]+" value="{{$article->title}}" required  name="title" class="form-control" placeholder="News Title" >
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="Select Category" class="form-label">Select Category</label>
@@ -162,7 +162,7 @@
 
                                                  <p class="text-muted font-14">Recommended Image size 800x400 (px).</p>
                                                     <label class="image-input">
-                                                        <input type="file" name="file" id="file-upload" accept="" max-size="10000000">
+                                                        <input type="file" name="file" id="file-upload" accept="image/*"  max-size="10000000">
                                                         <input type="hidden" name="">
                                                         <img src="{{ asset('uploads/article_' . $article->user_id . '/' . $article->image) }}" onerror="this.src='{{ asset('assets/images/default-img.jpg') }}';" alt="">
                                                     </label>

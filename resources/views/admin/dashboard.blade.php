@@ -6,17 +6,17 @@
 
                     <!-- Start Content-->
                     <div class="container-fluid">
-                        
+
                         <!-- start page title -->
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box">
-                                    
+
                                     <h4 class="page-title">Admin Dashboard</h4>
                                 </div>
                             </div>
-                        </div>     
-                        <!-- end page title --> 
+                        </div>
+                        <!-- end page title -->
 
                         <div class="row">
                             <div class="col-md-6 col-xl-3">
@@ -101,24 +101,24 @@
                         </div>
                         <!-- end row-->
 
-                        
+
 
                         <div class="row">
                             <div class="col-xl-12">
                                 <div class="card m-2">
                                     <div class="card-body p-2">
                                         <div class="dropdown float-end">
-                                            <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <a href="{{ route('admin.journalist.pending') }}" >
                                               <small class="btn  btn-secondary btn-sm">view all</small>
                                             </a>
                                            </div>
                                         </div>
-    
-                                        <h4 class="header-title mb-3 px-1">Journalist's Details</h4>
-    
+
+                                        <h4 class="header-title mb-3 px-1">Pending Journalist's Details</h4>
+
                                         <div class="table-responsive">
                                             <table class="table table-borderless table-hover table-nowrap table-centered m-0">
-    
+
                                                 <thead class="table-light">
                                                     <tr>
                                                         <th data-toggle="true" style="background: #eee;">User Name</th>
@@ -145,9 +145,9 @@
                                                             <a href="{{ route('admin.journalist.edit',$user->id) }}" class="btn btn-xs btn-info mb-1"><i class="mdi mdi-pencil"></i></a>
                                                             <a  data-bs-toggle="modal" data-bs-target="#danger-alert-modal{{$user->id}}" class="btn btn-xs btn-danger mb-1"><i class="mdi mdi-delete"></i></a>
                                                         </td>
-                                                        
+
                                                     </tr>
-    
+
                                                     <div id="danger-alert-modal{{$user->id}}" class="modal fade" tabindex="-1" style="display: none;" aria-hidden="true">
                                                         <div class="modal-dialog modal-sm">
                                                             <div class="modal-content modal-filled bg-danger">
@@ -160,15 +160,15 @@
                                                                         <h4 class="mt-2 text-white">Delete User</h4>
                                                                         <p class="mt-3 text-white">Are you sure you want to delete <strong>{{$user->name}}</strong> .</p>
                                                                         <button type="submit" class="btn btn-light my-2" >Continue</button>
-                                                                    </form>  
+                                                                    </form>
                                                                     </div>
                                                                 </div>
                                                             </div><!-- /.modal-content -->
                                                         </div><!-- /.modal-dialog -->
                                                     </div>
-                                                    @endforeach    
-                                              
-    
+                                                    @endforeach
+
+
                                                 </tbody>
                                             </table>
                                         </div>
@@ -180,18 +180,18 @@
                                 <div class="card m-2">
                                     <div class="card-body p-2">
                                         <div class="dropdown float-end">
-                                            <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <a href="{{ route('admin.article.pending') }}" >
                                               <small class="btn btn-secondary btn-sm">view all</small>
                                             </a>
                                            </div>
                                         </div>
-                                        
-    
+
+
                                         <h4 class="header-title mb-3 px-1">Pending Article</h4>
-    
+
                                         <div class="table-responsive">
                                             <table class="table table-borderless table-nowrap table-hover table-centered m-0">
-    
+
                                                 <thead class="table-light">
                                                     <tr>
                                                         <th>Article</th>
@@ -206,22 +206,22 @@
                                                         <td>
                                                             <h5 class="m-0 fw-normal">{{$article->title }}</h5>
                                                         </td>
-        
+
                                                         <td>
                                                             {{getconvertedDate($article->publish_date)}}
                                                         </td>
-        
+
                                                         <td>
                                                            <span class="badge bg-soft-warning text-warning">Pending</span>
-                                                       
+
                                                         </td>
-        
+
                                                         <td>
                                                             <a href="{{ route('admin.article.edit',$article->id) }}" class="btn btn-xs btn-light"><i class="mdi mdi-pencil"></i></a>
                                                         </td>
                                                     </tr>
                                                     @endforeach
-    
+
                                                 </tbody>
                                             </table>
                                         </div> <!-- end .table-responsive-->
@@ -230,7 +230,7 @@
                             </div> <!-- end col -->
                         </div>
                         <!-- end row -->
-                        
+
                     </div> <!-- container -->
 
                 </div> <!-- content -->
@@ -242,11 +242,11 @@
                             <div class="col-md-6">
                                 <script>document.write(new Date().getFullYear())</script> &copy; Vandemataram News. All Rights Reserved.
                             </div>
-                            
+
                         </div>
                     </div>
                 </footer>
                 <!-- end Footer -->
 
             </div>
- @endsection           
+ @endsection

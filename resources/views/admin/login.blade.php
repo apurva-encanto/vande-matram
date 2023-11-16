@@ -36,13 +36,13 @@
                                     <div class="auth-logo">
                                         <a href="{{ url('/') }}" class="logo logo-dark text-center">
                                             <span  >
-                                                <img src="assets/images/vandemataram-logo.png" alt="" >
+                                                <img src="assets/images/logo-light.png" alt="" >
                                             </span>
                                         </a>
 
                                         <a href="{{ url('/') }}" class="logo logo-light text-center">
                                             <span  >
-                                                <img src="assets/images/vandemataram-logo.png" alt="" >
+                                                <img src="assets/images/logo-light.png" alt="" >
                                             </span>
                                         </a>
                                     </div>
@@ -67,6 +67,9 @@
                                     <div class="mb-3">
                                         <label for="emailaddress" class="form-label">User Email</label>
                                         <input class="form-control" type="email" id="emailaddress" required="" name="email" value="{{ old('email') }}" placeholder="User Email">
+                                    @error('email')
+                                        <div class="text-danger mt-1">{{ $message }}</div>
+                                    @enderror
                                     </div>
 
                                     <div class="mb-3">
@@ -77,6 +80,10 @@
                                                 <span class="password-eye"></span>
                                             </div>
                                         </div>
+
+                                         @error('password')
+                                        <div class="text-danger mt-1">{{ $message }}</div>
+                                        @enderror
                                     </div>
 
                                     <div class="mb-3">

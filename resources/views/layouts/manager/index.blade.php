@@ -25,10 +25,15 @@
 	    <link href="{{ asset('assets/css/custom-style.css')}}" rel="stylesheet" type="text/css" />
 	    <!-- icons -->
 	    <link href="{{ asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
+
+
+        <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.all.min.js"></script>
+
         @stack('custom-style')
 
 	    <!-- Head js -->
-	    <script src="{{ asset('assets/js/head.js')}}"></script>        
+	    <script src="{{ asset('assets/js/head.js')}}"></script>
 
     </head>
 
@@ -38,17 +43,17 @@
         <!-- Begin page -->
         <div id="wrapper">
 
-            
+
             <!-- Topbar Start -->
 
             @include('layouts.manager.topbar')
-           
+
             <!-- end Topbar -->
 
             <!-- ========== Left Sidebar Start ========== -->
 
             @include('layouts.manager.leftsidebar')
- 
+
             <!-- Left Sidebar End -->
 
              <!-- ============================================================== -->
@@ -66,14 +71,28 @@
         <!-- END wrapper -->
 
         <!-- Right Sidebar -->
-         
+
         <!-- /Right-bar -->
 
         <!-- Right bar overlay-->
         <div class="rightbar-overlay"></div>
- 
-         
+
+
          @include('layouts.manager.footer')
-        
+
     </body>
+
+           @if ($message = Session::get('success'))
+            <script>
+                var title='{{ $message }}'
+
+                Swal.fire({
+                icon: "success",
+                title: title,
+                showConfirmButton: false,
+                timer: 1500
+                });
+
+            </script>
+     @endif
 </html>

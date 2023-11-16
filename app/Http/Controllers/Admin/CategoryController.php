@@ -44,7 +44,7 @@ class CategoryController extends Controller
         $category->description = $input['description'];
         $category->slug = $this->createSlug($input['name']);
         $category->save();
-        return redirect()->route('admin.category.list')->with('success', 'category Added successfully!');
+        return redirect()->route('admin.category.list')->with('success', 'Category Added successfully!');
 
 
         //
@@ -100,7 +100,7 @@ class CategoryController extends Controller
         $category->slug = $this->createSlug($request->name);
         $category->status = $request->status;
         $category->save();
-        return redirect()->route('admin.category.list')->with('success', 'category Updated successfully!');
+        return redirect()->route('admin.category.list')->with('success', 'Category Updated successfully!');
     }
 
     /**

@@ -65,7 +65,10 @@
                                                     @csrf
                                                     <div class="mb-3">
                                                         <label for="Title" class="form-label">Title</label>
-                                                        <input type="text" value="{{$article->title}}" required  name="title" class="form-control" placeholder="News Title" >
+                                                        <input type="text"  pattern="[A-Za-z ]+" value="{{$article->title}}" required  name="title" class="form-control" placeholder="News Title" >
+                                                            <div class="invalid-feedback">
+                                                            Please enter a valid Title.
+                                                            </div>
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="Select Category" class="form-label">Select Category</label>
@@ -76,6 +79,10 @@
                                                             <option @if($article->category_id == $category->id) selected @endif value="{{$category->id}}">{{$category->name}}</option>
                                                             @endforeach
                                                         </select>
+
+                                                        <div class="invalid-feedback">
+                                                            Please select a Category.
+                                                            </div>
                                                     </div>
                                                    <div class="mb-3">
                                                         <label class="form-label">City</label> <br/>
@@ -168,7 +175,7 @@
 
                                                  <p class="text-muted font-14">Recommended Image size 800x400 (px).</p>
                                                     <label class="image-input">
-                                                        <input type="file" name="file" id="file-upload" accept="" max-size="10000000">
+                                                        <input type="file" name="file" id="file-upload" accept="image/*"  max-size="10000000">
                                                         <input type="hidden" name="">
                                                         <img src="{{ asset('uploads/article_' . $article->user_id . '/' . $article->image) }}" alt="">
                                                     </label>
@@ -284,8 +291,8 @@ function ImageInput(element){
   function checkValidity(file) {
     var errors = [];
 
-    // types.includes(file.type) || errors.push('Format file harus: ' + types.map(humanizeFormat).join(', '));
-    // file.size < maxSize || errors.push('Ukuran file maksimal ' + maxSize/1000000 + 'MB');
+    types.includes(file.type) || errors.push('Format file harus: ' + types.map(humanizeFormat).join(', '));
+    file.size < maxSize || errors.push('Ukuran file maksimal ' + maxSize/1000000 + 'MB');
 
     return errors.length ? errors : false;
   }
