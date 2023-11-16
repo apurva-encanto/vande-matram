@@ -7,8 +7,9 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    public function login(Request $request)
+    public function login(Request $request,$user=null)
     {
+        $data['user']= $user;
         if (Auth::check()) {
             if (auth()->user()->role == 'admin') {
                 return redirect()->route('admin.home');
@@ -18,7 +19,7 @@ class LoginController extends Controller
                 return redirect()->route('home');
             }
         }
-        return view('admin.login');
+        return view('admin.login',$data);
     }
 
     public function logincheck(Request $request)
@@ -66,7 +67,9 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
+
+        $url= url('/') . '/'.auth()->user()->role.'-login';
         Auth::logout();
-        return redirect()->route('admin.login')->with('success', 'You have been logged out successfully.');
+        return redirect($url)->with('success', 'You have been logged out successfully.');
     }
 }

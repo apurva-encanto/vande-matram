@@ -31,22 +31,22 @@
                         <div class="card bg-pattern">
 
                             <div class="card-body p-4">
-                                
+
                                 <div class="text-center m-auto">
                                     <div class="auth-logo">
-                                        <a href="index.html" class="logo logo-dark text-center">
+                                        <a href="{{ url('/') }}" class="logo logo-dark text-center">
                                             <span  >
                                                 <img src="assets/images/vandemataram-logo.png" alt="" >
                                             </span>
                                         </a>
-                    
-                                        <a href="index.html" class="logo logo-light text-center">
+
+                                        <a href="{{ url('/') }}" class="logo logo-light text-center">
                                             <span  >
                                                 <img src="assets/images/vandemataram-logo.png" alt="" >
                                             </span>
                                         </a>
                                     </div>
-                                    <p class="mb-4 mt-3">Enter your User Name and password to access admin panel.</p>
+                                    <p class="mb-4 mt-3">Enter your User Name and password to access {{ $user }} panel.</p>
                                 </div>
 
                                 @if (session('error'))
@@ -91,7 +91,7 @@
                                     </div>
 
                                 </form>
- 
+
                             </div> <!-- end card-body -->
                         </div>
                         <!-- end card -->
@@ -122,6 +122,6 @@
 
         <!-- App js -->
         <script src="{{ asset('assets/js/app.min.js')}}"></script>
-        
+
     </body>
 </html>

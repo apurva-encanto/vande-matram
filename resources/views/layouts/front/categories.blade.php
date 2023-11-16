@@ -8,12 +8,12 @@
                   </button>
                   <div class="collapse navbar-collapse" id="navbarNavDropdown">
                      <ul class="navbar-nav">
-                        <li class="nav-item text-center bg-dark">
+                        <li class="nav-item text-center @if($active_category =='home') bg-dark @endif">
                            <a class="nav-link active" aria-current="page" href="{{url('/')}}"><i style="font-size: 24px;"
                               class="fa fa-home" aria-hidden="true"></i></a>
                         </li>
                          @foreach ($categories->take(8) as $category)
-                            <li class="nav-item">
+                            <li class="nav-item @if($active_category ==$category->slug) bg-dark @endif">
                                <a class="nav-link" href="{{ url('news-'.$category->slug) }}">{{ ucfirst(strtolower($category->name)) }}</a>
                             </li>
                          @endforeach

@@ -31,7 +31,8 @@ Route::get('/news-{categoryName}/{articleSlug}', [MainController::class, 'getSin
 Route::get('/news-{categoryName}', [MainController::class, 'getArticleByCategory']);
 
 
-Route::get('/admin-login', [LoginController::class, 'login'])->name('admin.login');
+Route::get('/{user}-login', [LoginController::class, 'login'])->name('admin.login');
+
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/admin-logincheck', [LoginController::class, 'logincheck'])->name('admin.logincheck');

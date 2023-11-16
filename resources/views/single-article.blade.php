@@ -1,4 +1,6 @@
 @extends('layouts.front.main')
+
+@section('main-content')
 <style>
     table {
       width: 100%;
@@ -14,9 +16,6 @@
     }
 </style>
 
-@section('main-content')
-
-
 <main class="main-details pb-0 container">
                     <div class="row">
                         <div class="col-md-8 bg-white">
@@ -26,7 +25,7 @@
                                         {{$article->title}}
                                     </h2>
                                     <div class="post-meta">
-                                        <span class="post-author"> By <a href="#">{{$article->user_name}}</a> </span>
+                                       <span class="post-author"><a href="#">{{$article->user_name}}</a></span>
                                         <span class="post-date"><i class="fa fa-clock-o"></i> {{ getconvertedDate($article->publish_date) }}</span>
                                         <span class="post-hits"><i class="fa fa-eye"></i> {{$article->views}}</span>
                                     </div>
@@ -67,7 +66,7 @@
 
                                                         <!-- Li 1 end -->
                                                          @foreach ($popular_posts as $key=>$post)
-                                                        <li class="clearfix m-1">
+                                                        <li class="clearfix">
                                                             <div class="post-block-style post-float clearfix">
                                                                 <div class="post-thumb">
                                                                     <a href="{{url('news-'.$post->category_slug.'/'.$post->title_slug)}}">
@@ -79,13 +78,12 @@
                                                                 <!-- Post thumb end -->
 
                                                                 <div class="post-content">
-                                                                    <h2 class="post-title title-small mb-3" style="overflow: hidden;text-overflow: ellipsis;">
+                                                                    <h2 class="post-title title-small" style="overflow: hidden;text-overflow: ellipsis;">
                                                                         <a href="{{url('news-'.$post->category_slug.'/'.$post->title_slug)}}"> {{$post->title}}</a>
                                                                     </h2>
-                                                                    <div class="post-meta">
-                                                                        <span class="post-user">By :{{ $post->user_name }}</span>
+                                                                    {{-- <div class="post-meta">
                                                                         <span class="post-date">{{ getconvertedDate($post->publish_date) }}</span>
-                                                                    </div>
+                                                                    </div> --}}
                                                                 </div>
                                                                 <!-- Post content end -->
                                                             </div>
@@ -93,7 +91,7 @@
                                                         </li>
                                                         @endforeach
                                                           @else
-                                                          <li class="clearfix m-1">
+                                                          <li class="clearfix">
                                                             <div class="post-block-style post-float clearfix text-center bg-light">
                                                                     <h2 class="post-title title-small" style="overflow: hidden;text-overflow: ellipsis;">
                                                                         <a> No News Found</a>
@@ -121,7 +119,7 @@
                                                     <ul class="list-post mb-3">
                                                      @if(count($similar_posts) >0)
                                                      @foreach($similar_posts as $key=>$post)
-                                                        <li class="clearfix  m-2">
+                                                        <li class="clearfix">
                                                             <div class="post-block-style post-float clearfix">
                                                                 <div class="post-thumb">
                                                                     <a href="{{url('news-'.$post->category_slug.'/'.$post->title_slug)}}">
@@ -132,15 +130,10 @@
                                                                 <!-- Post thumb end -->
 
                                                                 <div class="post-content">
-                                                                    <h2 class="post-title title-small mb-3" style="overflow: hidden;text-overflow: ellipsis;">
+                                                                    <h2 class="post-title title-small" style="overflow: hidden;text-overflow: ellipsis;">
                                                                         <a href="{{url('news-'.$post->category_slug.'/'.$post->title_slug)}}">{{$post->title}}</a>
                                                                     </h2>
 
-                                                                    <div class="post-meta">
-                                                                        {{-- <br> --}}
-                                                                        <span class="post-user">By :{{ $post->user_name }}</span>
-                                                                        <span class="post-date">{{ getconvertedDate($post->publish_date) }}</span>
-                                                                    </div>
                                                                 </div>
                                                                 <!-- Post content end -->
                                                             </div>
@@ -196,7 +189,6 @@
                                                         <a href="{{url('news-'.$post['category_slug'].'/'.$post['title_slug'])}}">{{$post['title']}}</a>
                                                     </h2>
                                                     <div class="post-meta">
-                                                        <span class="post-author"><a href="#">{{$post['user_name']}}</a></span>
                                                         <span class="post-date">{{ getconvertedDate($post['publish_date']) }}</span>
                                                     </div>
                                                     <p>{{getShortContent($post['title'])}}...</p>
@@ -222,7 +214,6 @@
                                                                     <a href="{{url('news-'.$post['category_slug'].'/'.$post['title_slug'])}}">{{$post['title']}}</a>
                                                                 </h2>
                                                                 <div class="post-meta">
-                                                                    <span class="post-author"><a href="#">{{$post['user_name']}}</a></span>
                                                                     <span class="post-date">{{ getconvertedDate($post['publish_date']) }}</span>
                                                                 </div>
                                                             </div>
@@ -253,7 +244,6 @@
                                                         <a href="{{url('news-'.$post['category_slug'].'/'.$post['title_slug'])}}">{{$post['title']}}</a>
                                                     </h2>
                                                     <div class="post-meta">
-                                                        <span class="post-author"><a href="#">{{$post['user_name']}}</a></span>
                                                         <span class="post-date">{{ getconvertedDate($post['publish_date']) }}</span>
                                                     </div>
                                                     <p>{{getShortContent($post['title'])}}...</p>
@@ -279,7 +269,6 @@
                                                                     <a href="{{url('news-'.$post['category_slug'].'/'.$post['title_slug'])}}">{{$post['title']}}</a>
                                                                 </h2>
                                                                 <div class="post-meta">
-                                                                    <span class="post-author"><a href="#">{{$post['user_name']}}</a></span>
                                                                     <span class="post-date">{{ getconvertedDate($post['publish_date']) }}</span>
                                                                 </div>
                                                             </div>

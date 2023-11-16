@@ -1,4 +1,6 @@
 @extends('layouts.front.main')
+
+@section('main-content')
 <style>
   svg{
       width:25px;
@@ -11,8 +13,6 @@
       margin-top:10px;
   }
 </style>
-@section('main-content')
-
  <main class="bg-white pt-3 main-content pb-5">
                <div class="news-box mb-4" style="min-height: 250px;">
                   <div class="row mt-3">

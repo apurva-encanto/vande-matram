@@ -27,9 +27,12 @@ class MainController extends Controller
     public function index()
     {
         $data['top_news'] =  $this->getTopNewsArticles();
- 
+
         $data['categories'] = Category::where(['is_delete' => '0', 'status' => 'active'])->orderBy('is_main', 'desc')->get();
-         $items = Article::leftJoin('users', 'users.id', '=', 'articles.user_id')
+
+
+
+        $items = Article::leftJoin('users', 'users.id', '=', 'articles.user_id')
         ->leftJoin('categories', 'categories.id', '=', 'articles.category_id')
         ->select('articles.*', 'users.name as user_name', 'categories.name as category_name')
         ->where(['articles.is_approved' => '1', 'articles.status' => 'active', 'articles.is_delete' => '0', 'articles.publish' => '1'])
@@ -54,20 +57,21 @@ class MainController extends Controller
         $data['tags'] = $this->getPublishedArticlesCountByCategory();
         $data['popular_posts'] = $this->getPopularArticlesByCategory();
         $data['latest_posts'] = $this->getLatestArticlesByCategory();
-        
+        $data['active_category']='home';
+
         $data['items'] = $items;
         $data['articles'] = $groupedItems;
-        
+
         // echo "<pre>";
         // print_r($groupedItems);
         // exit;
-        
+
         return view('welcome', $data);
     }
 
     public function getSingleArticle(Request $request, $category, $title)
     {
-     
+
         $data['categories'] = Category::where(['is_delete' => '0', 'status' => 'active'])->get();
 
         $data['article'] = Article::leftJoin('users', 'users.id', '=', 'articles.user_id')
@@ -79,6 +83,7 @@ class MainController extends Controller
                 'articles.is_delete' => '0', 'articles.publish' => '1',
                 'articles.category_slug' => $category, 'title_slug' => $title
             ])->first();
+        $data['active_category'] = $category;
 
         Article::where('title_slug', $title)->increment('views');
         if (empty($data['article'])) {
@@ -91,7 +96,7 @@ class MainController extends Controller
         $data['latest_posts'] = $this->getLatestArticlesByCategory($category,$title);
         $data['similar_posts'] = $this->getSimilarArticlesByCategory($category,$title);
         $data['next_article'] = $this->getNextArticle()->toArray();
-    
+
         // Your original array of 8 items
            return view('single-article', $data);
     }
@@ -100,6 +105,8 @@ class MainController extends Controller
 
     public function getArticleByCategory(Request $request, $id)
     {
+        $data['active_category'] = $id;
+
         $data['categories'] = Category::where(['is_delete' => '0', 'status' => 'active'])->get();
         $data['category'] = Category::where(['slug' => $id])->first();
         $data['tags'] = $this->getPublishedArticlesCountByCategory();
@@ -111,30 +118,29 @@ class MainController extends Controller
                 'articles.is_approved' => '1', 'articles.status' => 'active',
                 'articles.is_delete' => '0', 'articles.publish' => '1', 'category_slug' => $id
             ])->orderBy('articles.id', 'desc')->paginate(9);
-          
+
         $data['popular_posts'] = $this->getPopularArticlesByCategory($id);
         $data['latest_posts'] = $this->getLatestArticlesByCategory($id);
-
         $data['top_news'] =  $this->getTopNewsArticles();
         return view('category-article', $data);
     }
-    
+
     public function contact_us()
     {
-        
+
         $data['top_news'] =  $this->getTopNewsArticles();
         $data['categories'] = Category::where(['is_delete' => '0', 'status' => 'active'])->get();
         return view('contact-us', $data);
     }
-    
+
       public function about_us()
     {
-        
+
         $data['top_news'] =  $this->getTopNewsArticles();
         $data['categories'] = Category::where(['is_delete' => '0', 'status' => 'active'])->get();
         return view('about-us', $data);
     }
-    
-    
+
+
 
 }
