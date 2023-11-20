@@ -52,16 +52,26 @@ class CategoryController extends Controller
 
     public function createSlug($string)
     {
-        // Generate slug using Str::slug() method
-        $slug = Str::slug($string);
+       // Generate slug using Str::slug() method
+        $teluguToEnglishMapping = [
+            'అ' => 'a', 'ఆ' => 'aa', 'ఇ' => 'i', 'ఈ' => 'ii', 'ఉ' => 'u',
+            'ఊ' => 'uu', 'ఋ' => 'ru', 'ౠ' => 'rū', 'ఎ' => 'e', 'ఏ' => 'ee',
+            'ఐ' => 'ai', 'ఒ' => 'o', 'ఓ' => 'oo', 'ఔ' => 'au', 'ం' => 'm',
+            'ః' => 'h', 'క' => 'ka', 'ఖ' => 'kha', 'గ' => 'ga', 'ఘ' => 'gha',
+            'ఙ' => 'ṅa', 'చ' => 'ca', 'ఛ' => 'cha', 'జ' => 'ja', 'ఝ' => 'jha',
+            'ఞ' => 'ña', 'ట' => 'ṭa', 'ఠ' => 'ṭha', 'డ' => 'ḍa', 'ఢ' => 'ḍha',
+            'ణ' => 'ṇa', 'త' => 'ta', 'థ' => 'tha', 'ద' => 'da', 'ధ' => 'dha',
+            'న' => 'na', 'ప' => 'pa', 'ఫ' => 'pha', 'బ' => 'ba', 'భ' => 'bha',
+            'మ' => 'ma', 'య' => 'ya', 'ర' => 'ra', 'ఱ' => 'ṟa', 'ల' => 'la',
+            'ళ' => 'ḷa', 'వ' => 'va', 'శ' => 'śa', 'ష' => 'ṣa', 'స' => 'sa',
+            'హ' => 'ha', '్' => '', 'ొ' => 'o', 'ో' => 'oo', 'ౌ' => 'au'
+        ];
 
-        // Check if the generated slug already exists in the database
-        // If it does, append a number to the slug to make it unique
-        $count = 2;
-        while (Category::where('slug', $slug)->exists()) {
-            $slug = Str::slug($string) . '-' . $count;
-            $count++;
-        }
+        // Transliterate Telugu text to English using the mapping
+        $englishText = strtr($string, $teluguToEnglishMapping);
+
+        // Create a URL-friendly slug
+        $slug = Str::slug($englishText, '-');
 
         return $slug;
     }

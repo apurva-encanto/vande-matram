@@ -127,6 +127,7 @@ class MainController extends Controller
 
     public function contact_us()
     {
+        $data['active_category'] = 'home';
 
         $data['top_news'] =  $this->getTopNewsArticles();
         $data['categories'] = Category::where(['is_delete' => '0', 'status' => 'active'])->get();
@@ -135,6 +136,7 @@ class MainController extends Controller
 
       public function about_us()
     {
+        $data['active_category'] = 'home';
 
         $data['top_news'] =  $this->getTopNewsArticles();
         $data['categories'] = Category::where(['is_delete' => '0', 'status' => 'active'])->get();

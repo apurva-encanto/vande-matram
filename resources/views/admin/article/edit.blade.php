@@ -44,7 +44,6 @@
                                         <!-- End Left sidebar -->
 
                                         <div class=" ">
-                                            <div class="row mt-2 border-bottom border-light">
                                                 <div class="d-flex align-items-start mb-2 ">
 
                                                     <div class="w-100">
@@ -65,7 +64,7 @@
                                                     @csrf
                                                     <div class="mb-3">
                                                         <label for="Title" class="form-label">Title</label>
-                                                        <input type="text"  pattern="[A-Za-z ]+" value="{{$article->title}}" required  name="title" class="form-control" placeholder="News Title" >
+                                                        <input type="text"   value="{{$article->title}}" required  name="title" class="form-control" placeholder="News Title" >
                                                             <div class="invalid-feedback">
                                                             Please enter a valid Title.
                                                             </div>

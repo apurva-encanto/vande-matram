@@ -89,7 +89,7 @@
 
                                                     <div class="mb-3">
                                                         <label for="Password" class="form-label">Password</label>
-                                                        <input type="password" value="{{old('password')}}"  name="password" class="form-control" placeholder="Password" required>
+                                                        <input type="password" value="{{old('password')}}" minlength="5" name="password" class="form-control" placeholder="Password" required>
                                                             <div class="invalid-feedback">
                                                             Please enter a Password.
                                                             </div>
@@ -100,7 +100,7 @@
 
                                                     <div class="mb-3">
                                                         <label for="Phone Number" class="form-label">Phone Number</label>
-                                                        <input type="number" value="{{old('phone')}}"  name="phone" class="form-control" placeholder="Phone Number" required>
+                                                        <input type="number" value="{{old('phone')}}"   name="phone" class="form-control" placeholder="Phone Number" required>
                                                             <div class="invalid-feedback">
                                                               Please enter a Phone Number.
                                                             </div>

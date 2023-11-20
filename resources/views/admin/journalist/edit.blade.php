@@ -82,7 +82,7 @@
 
                                                     <div class="mb-3">
                                                         <label for="Password" class="form-label">Password</label>
-                                                        <input type="password" value=""  name="password" class="form-control" placeholder="Password" >
+                                                        <input type="password" value=""  name="password" minlength="5" class="form-control" placeholder="Password" >
                                                             <div class="invalid-feedback">
                                                             Please enter a Password.
                                                             </div>

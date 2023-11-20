@@ -91,6 +91,8 @@
                                     </div>
 
                                 </form>
+                                
+                                <a href="{{url('/forgot-password')}}">Forgot Password</a>
 
                             </div> <!-- end card-body -->
                         </div>

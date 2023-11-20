@@ -5,7 +5,7 @@
 <main class="bg-white pt-3 main-content pb-2">
                <div class="feature-box">
                   <div class="row">
-                     <div class="col-md-7">
+                     <div class="col-md-8">
                         <div class="carousel-wrap">
                                 <div class="owl-carousel">
 
@@ -34,7 +34,7 @@
                             </div>
 
                      </div>
-                     <div class="col-md-5 mb-2 mt-2">
+                     <div class="col-md-4 mb-2 mt-2">
                         <div class="card ad-card">
                         <img src="{{ asset('assets/images/world-cup.jpg')}}"     onerror="this.src='{{ asset('assets/images/default-img.jpg') }}';" width="100%" alt="" srcset="">
 
@@ -48,9 +48,9 @@
                         <div class="card-title">
                            <div>
                               <span>
-తాజా వార్తలు</span>
-                              <a href="{{ url('news-latest') }}" class="see-all text-danger">
-అన్నింటిని చూడు</a>
+                                తాజా వార్తలు</span>
+                                                              <a href="{{ url('news-latest') }}" class="see-all text-danger">
+                                అన్నింటిని చూడు</a>
                            </div>
                            <div class="line-container">
                               <div class="line thick"></div>
@@ -135,7 +135,7 @@
                            <span> 
                            వ్యాపార వార్తలు</span>
                               <a href="{{ url('news-business') }}" class="see-all text-danger">
-అన్నింటిని చూడు
+                                అన్నింటిని చూడు
                                   </a>
                         </div>
                         <div class="line-container">
