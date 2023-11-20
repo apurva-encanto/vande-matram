@@ -58,7 +58,8 @@
                                     <div>
                                         <div class="col-md-12 mt-3 bg-white" style="padding: 2px;">
                                             <div class="widget color-default mb-3 ">
-                                                <h3 class="block-title"><span>Popular News</span></h3>
+                                                <h3 class="block-title"><span>
+                              ప్రముఖ వార్తలు                  </span></h3>
 
                                                 <div class="list-post-block mb-3">
                                                     <ul class="list-post mb-3">
@@ -113,7 +114,9 @@
                                         </div>
                                         <div class="col-md-12 mt-3 bg-white" style="padding: 2px;">
                                             <div class="widget color-default ">
-                                                <h3 class="block-title"><span>You might like</span></h3>
+                                                <h3 class="block-title"><span>
+                              మీరు దీన్ని ఇష్టపడవచ్చు                      
+                                                    </span></h3>
 
                                                 <div class="list-post-block mb-3">
                                                     <ul class="list-post mb-3">
@@ -164,14 +167,20 @@
                                 </div>
                             </div>
                         </div>
-
+@if(!empty($next_article))
                         @php
+                        
+                        $arraySecond=[];
                         $arrayFirst=array_chunk($next_article, 4)[0];
+                        if(count($next_article) >4){
                         $arraySecond=array_chunk($next_article, 4)[1];
+                        }
                         @endphp
 
                         <div class="col-md-12 bg-white mt-3">
-                            <h5 class="card-title pt-2">Read Next</h5>
+                            <h5 class="card-title pt-2">
+                                తదుపరి చదవండి
+                            </h5>
                             <div class="row mb-5">
                                 <div class="col-lg-6 ">
                                     @foreach($arrayFirst  as $key=>$post)
@@ -287,6 +296,6 @@
 
                         </div>
                     </div>
-
+@endif
                 </main>
 @endsection

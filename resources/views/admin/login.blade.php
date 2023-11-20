@@ -31,21 +31,14 @@
                         <div class="card bg-pattern">
 
                             <div class="card-body p-4">
+                                
+                                <div class="text-center m-auto" style="">
+                                    <a href="{{url('/')}}">
+                                        <img src="{{asset('assets/images/logo-light.png')}}"/>
+                                    </a>
+                                </div>
 
-                                <div class="text-center m-auto">
-                                    <div class="auth-logo">
-                                        <a href="{{ url('/') }}" class="logo logo-dark text-center">
-                                            <span  >
-                                                <img src="assets/images/logo-light.png" alt="" >
-                                            </span>
-                                        </a>
-
-                                        <a href="{{ url('/') }}" class="logo logo-light text-center">
-                                            <span  >
-                                                <img src="assets/images/logo-light.png" alt="" >
-                                            </span>
-                                        </a>
-                                    </div>
+                       <div>
                                     <p class="mb-4 mt-3">Enter your User Name and password to access {{ $user }} panel.</p>
                                 </div>
 

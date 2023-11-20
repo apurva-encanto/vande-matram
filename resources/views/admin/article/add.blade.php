@@ -65,7 +65,7 @@
                                                     @csrf
                                                     <div class="mb-3">
                                                         <label for="Title" class="form-label">Title</label>
-                                                        <input type="text" pattern="[A-Za-z ]+" value="{{old('title')}}" required  name="title" class="form-control" placeholder="News Title" >
+                                                        <input type="text"  value="{{old('title')}}" required  name="title" class="form-control" placeholder="News Title" >
                                                             <div class="invalid-feedback">
                                                               Please enter a valid Title.
                                                             </div>
@@ -87,7 +87,7 @@
                                                     <div class="mb-3">
                                                         <label class="form-label">City</label> <br/>
                                                         <div class="form-group">
-                                                            <input  value="" type="text" placeholder="Enter City" id=""  required name="city" class="form-control">
+                                                            <input  value="" type="text"  pattern="[A-Za-z ]+" required placeholder="Enter City" id=""  required name="city" class="form-control">
                                                           <div class="invalid-feedback">
                                                               Please enter a City.
                                                             </div>
@@ -292,7 +292,6 @@ function ImageInput(element){
   function checkValidity(file) {
     var errors = [];
 
-    types.includes(file.type) || errors.push('Format file harus: ' + types.map(humanizeFormat).join(', '));
     file.size < maxSize || errors.push('Ukuran file maksimal ' + maxSize/1000000 + 'MB');
 
     return errors.length ? errors : false;

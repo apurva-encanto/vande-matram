@@ -221,7 +221,7 @@ function ImageInput(element){
     var errors = [];
 
     // types.includes(file.type) || errors.push('Format file harus: ' + types.map(humanizeFormat).join(', '));
-    // file.size < maxSize || errors.push('Ukuran file maksimal ' + maxSize/1000000 + 'MB');
+    file.size < maxSize || errors.push('Ukuran file maksimal ' + maxSize/1000000 + 'MB');
 
     return errors.length ? errors : false;
   }

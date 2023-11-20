@@ -14,7 +14,7 @@
                                     <div class="item">
                                         <div class="card  text-white feature-card">
 
-                                            <img src="{{ asset('uploads/article_'.$post->user_id.'/'.$post->image) }}"     onerror="this.src='{{ asset('assets/images/default-img.jpg') }}';" class="card-img feature-img"
+                                            <img  @if($post->image !='default-img.jpg') src="{{ asset('uploads/article_'.$post->user_id.'/'.$post->image) }}"   @else   src="{{ asset('assets/images/default-img.jpg') }}" @endif class="card-img feature-img"
                                                 alt="...">
                                                 <div class="overlay"></div>
                                             <div class="card-img-overlay">
@@ -47,8 +47,10 @@
                      <div class="col-md-12">
                         <div class="card-title">
                            <div>
-                              <span>Latest News </span>
-                              <a href="{{ url('news-latest') }}" class="see-all text-danger">See all</a>
+                              <span>
+తాజా వార్తలు</span>
+                              <a href="{{ url('news-latest') }}" class="see-all text-danger">
+అన్నింటిని చూడు</a>
                            </div>
                            <div class="line-container">
                               <div class="line thick"></div>
@@ -130,8 +132,11 @@
                       @if(array_key_exists('business', $articles))
                      <div class="col-md-12 mb-4">
                         <div>
-                           <span>Business News </span>
-                              <a href="{{ url('news-business') }}" class="see-all text-danger">See all</a>
+                           <span> 
+                           వ్యాపార వార్తలు</span>
+                              <a href="{{ url('news-business') }}" class="see-all text-danger">
+అన్నింటిని చూడు
+                                  </a>
                         </div>
                         <div class="line-container">
                            <div class="line thick"></div>
@@ -193,9 +198,12 @@
                   <div class="col-md-12 mt-1 mb-4">
                      <div class="col-md-12 mb-2">
                         <div>
-                           <span>Latest Videos </span>
+                           <span>
+                                తాజా వీడియోలు </span>
 
-                              <a href="{{ url('news-videos') }}" class="see-all text-danger">See all</a>
+                              <a href="{{ url('news-videos') }}" class="see-all text-danger">
+అన్నింటిని చూడు
+                                  </a>
                         </div>
                         <div class="line-container">
                            <div class="line thick"></div>
@@ -305,8 +313,11 @@
                       @if(array_key_exists('politics', $articles))
                      <div class="col-md-12 mb-2">
                         <div>
-                           <span>Politics News </span>
-                           <span class="see-all  text-danger">See all</span>
+                           <span>  
+                           రాజకీయ వార్తలు
+                           </span>
+                           <span class="see-all  text-danger">
+అన్నింటిని చూడు</span>
                         </div>
                         <div class="line-container">
                            <div class="line thick"></div>
@@ -368,8 +379,11 @@
                          @if(array_key_exists('technology', $articles))
                      <div class="col-md-12 mb-4 mt-3">
                         <div>
-                           <span>Technology News </span>
-                           <a href="{{ url('news-technology') }}" class="see-all  text-danger">See all</a>
+                           <span> 
+                           సాంకేతిక వార్తలు</span>
+                           <a href="{{ url('news-technology') }}" class="see-all  text-danger">
+అన్నింటిని చూడు
+                               </a>
                         </div>
                         <div class="line-container">
                            <div class="line thick"></div>

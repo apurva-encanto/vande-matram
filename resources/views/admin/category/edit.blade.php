@@ -63,7 +63,7 @@
                                                     @csrf
                                                     <div class="mb-3">
                                                         <label for="Category Name" class="form-label">Category Name</label>
-                                                        <input type="text" pattern="[A-Za-z ]+" value="{{$category['name']}}"  name="name" class="form-control" placeholder="Category Name" required>
+                                                        <input type="text" value="{{$category['name']}}"  name="name" class="form-control" placeholder="Category Name" required>
                                                         @error('name')
                                                         <div class="text-danger">{{ $message }}</div>
                                                        @enderror

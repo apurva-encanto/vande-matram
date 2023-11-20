@@ -87,7 +87,12 @@
                                                     <div class="mb-3">
                                                         <label class="form-label">City</label> <br/>
                                                         <div class="form-group">
-                                                            <input  value="" type="text" placeholder="Enter City" id=""  name="city" class="form-control">
+                                                            <input  value="" type="text" pattern="[A-Za-z ]+" required placeholder="Enter City" id=""  name="city" class="form-control">
+                                                            
+                                                            
+                                                            <div class="invalid-feedback">
+                                                             Please enter a City.
+                                                            </div>
                                                         </div>
                                                     </div>
 
@@ -285,7 +290,7 @@ function ImageInput(element){
     var errors = [];
 
     // types.includes(file.type) || errors.push('Format file harus: ' + types.map(humanizeFormat).join(', '));
-    // file.size < maxSize || errors.push('Ukuran file maksimal ' + maxSize/1000000 + 'MB');
+    file.size < maxSize || errors.push('Ukuran file maksimal ' + maxSize/1000000 + 'MB');
 
     return errors.length ? errors : false;
   }

@@ -128,6 +128,10 @@ a {
         display: none;
         /* Hide the border-right on mobile view */
     }
+    
+    .header{
+        height:45px;
+    }
 
     .ad-1,
     .left-section,

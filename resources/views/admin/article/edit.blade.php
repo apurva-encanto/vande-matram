@@ -87,7 +87,7 @@
                                                    <div class="mb-3">
                                                         <label class="form-label">City</label> <br/>
                                                         <div class="form-group">
-                                                            <input  value="{{$article->city}}" type="text" placeholder="Enter City" id=""  name="city" class="form-control">
+                                                            <input  value="{{$article->city}}" pattern="[A-Za-z ]+" required type="text" placeholder="Enter City" id=""  name="city" class="form-control">
                                                         </div>
                                                     </div>
                                                     <div class="mb-3">
@@ -291,7 +291,6 @@ function ImageInput(element){
   function checkValidity(file) {
     var errors = [];
 
-    types.includes(file.type) || errors.push('Format file harus: ' + types.map(humanizeFormat).join(', '));
     file.size < maxSize || errors.push('Ukuran file maksimal ' + maxSize/1000000 + 'MB');
 
     return errors.length ? errors : false;

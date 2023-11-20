@@ -66,6 +66,10 @@
                                                     <div class="mb-3">
                                                         <label for="Title" class="form-label">Title</label>
                                                         <input type="text" pattern="[A-Za-z ]+" value="{{$article->title}}" required  name="title" class="form-control" placeholder="News Title" >
+                                                        
+                                                         <div class="invalid-feedback">
+                                                             Please enter a valid Title.
+                                                            </div>
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="Select Category" class="form-label">Select Category</label>
@@ -75,12 +79,18 @@
                                                             @foreach ($categories as $category )
                                                             <option @if($article->category_id == $category->id) selected @endif value="{{$category->id}}">{{$category->name}}</option>
                                                             @endforeach
+                                                             <div class="invalid-feedback">
+                                                             Please select Category.
+                                                            </div>
                                                         </select>
                                                     </div>
                                                    <div class="mb-3">
                                                         <label class="form-label">City</label> <br/>
                                                         <div class="form-group">
-                                                            <input  value="{{$article->city}}" type="text" placeholder="Enter City" id=""  name="city" class="form-control">
+                                                            <input  value="{{$article->city}}" required type="text" placeholder="Enter City" id=""  name="city" class="form-control">
+                                                             <div class="invalid-feedback">
+                                                             Please enter a City.
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="mb-3">
@@ -270,7 +280,7 @@ function ImageInput(element){
     var errors = [];
 
     // types.includes(file.type) || errors.push('Format file harus: ' + types.map(humanizeFormat).join(', '));
-    // file.size < maxSize || errors.push('Ukuran file maksimal ' + maxSize/1000000 + 'MB');
+    file.size < maxSize || errors.push('Ukuran file maksimal ' + maxSize/1000000 + 'MB');
 
     return errors.length ? errors : false;
   }

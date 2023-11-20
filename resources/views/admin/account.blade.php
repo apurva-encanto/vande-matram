@@ -66,6 +66,10 @@
                                                     <div class="mb-3">
                                                         <label for="Name" class="form-label">Name</label>
                                                         <input type="text" pattern="[A-Za-z ]+" value="{{auth()->user()->name}}" required  name="name" class="form-control" placeholder="Admin Name" >
+                                                        
+                                                         <div class="invalid-feedback">
+                                                              Please enter a valid Name.
+                                                            </div>
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="Email" class="form-label">Email Address</label>
@@ -214,7 +218,6 @@ function ImageInput(element){
   function checkValidity(file) {
     var errors = [];
 
-    types.includes(file.type) || errors.push('Format file harus: ' + types.map(humanizeFormat).join(', '));
     file.size < maxSize || errors.push('Ukuran file maksimal ' + maxSize/1000000 + 'MB');
 
     return errors.length ? errors : false;

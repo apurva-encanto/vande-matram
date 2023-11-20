@@ -93,7 +93,7 @@
 
                                                     <div class="mb-3">
                                                         <label for="Phone Number" class="form-label">Phone Number</label>
-                                                        <input type="text" value="{{$user['phone']}}"  name="phone" class="form-control" placeholder="Phone Number" required>
+                                                        <input type="number" value="{{$user['phone']}}"  name="phone" class="form-control" placeholder="Phone Number" required>
                                                             <div class="invalid-feedback">
                                                               Please enter a Phone Number.
                                                             </div>
@@ -343,7 +343,6 @@ $(document).ready(function(){
   function checkValidity(file) {
     var errors = [];
 
-    types.includes(file.type) || errors.push('Format file harus: ' + types.map(humanizeFormat).join(', '));
     file.size < maxSize || errors.push('Ukuran file maksimal ' + maxSize/1000000 + 'MB');
 
     return errors.length ? errors : false;
