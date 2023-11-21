@@ -20,8 +20,11 @@
                      <div class="col-md-12 mb-2">
                         <div>
                            <h5 class="mx-3 sub-heading">{{@$category->name}}</h5>
+                           
                         </div>
+                          
                      </div>
+                     
                      <div class="row mx-1">
                            @if (count($items) >0)
                             @foreach ($items  as $key=>$item )

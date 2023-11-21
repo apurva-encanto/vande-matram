@@ -61,11 +61,11 @@
 
                                         <div class="row mt-3">
                                             <div class="col-xl-6">
-                                                <form id="myForm" class="needs-validation" method="post" enctype="multipart/form-data" novalidate action="{{ route('agent.account.edit')}}" >
+                                                <form id="addArticle"  method="post" enctype="multipart/form-data"  action="{{ route('agent.account.edit')}}" >
                                                     @csrf
                                                     <div class="mb-3">
                                                         <label for="Name" class="form-label">Name</label>
-                                                        <input type="text" pattern="[A-Za-z ]+" value="{{auth()->user()->name}}" required  name="name" class="form-control" placeholder="Agent Name" >
+                                                        <input type="text" value="{{auth()->user()->name}}" required  name="name" class="form-control" placeholder="Agent Name" >
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="Email" class="form-label">Email Address</label>
@@ -166,10 +166,101 @@
  <script src="{{asset('assets/libs/quill/quill.min.js')}}"></script>
  <script src="{{ asset('assets/js/pages/add-product.init.js')}}"></script>
  <script src="https://cdn.ckeditor.com/4.12.1/standard/ckeditor.js"></script>
+ 
+ <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js"></script>
+ <script>
+ $(document).ready(function($) {
+     
+        // Custom validation method for max words
+    $.validator.addMethod("maxWords", function(value, element, params) {
+        return this.optional(element) || value.match(/\b\w+\b/g).length <= params;
+    }, "Please enter no more than {0} words.");
+    
+        // Custom validation method for minimum words
+    $.validator.addMethod("minWords", function(value, element, params) {
+        return this.optional(element) || value.match(/\b\w+\b/g).length >= params;
+    }, "Please enter at least {0} words.");
+    
+        
+				$("#addArticle").validate({
+                rules: {
+                    first_name:  {
+                    required: true,
+                        maxWords: 5 , // Custom rule to limit the number of words
+                         minWords: 1 
+                    }, 
+                    last_name:  {
+                    required: true,
+                        maxWords: 5 , // Custom rule to limit the number of words
+                         minWords: 1 
+                    }, 
+                     password: {
+                        minlength: 6
+                    },
+                     email:{
+                         required: true,
+                          email: true,
+                    },
+                    
+                    city: "required",
+                    editor1:"required",
+                    area:"required",
+                    category_id: "required",
+                    phone:{
+                          required: true,
+                          number: true
+                    }
+                 
+                },
+                messages: {
+                    first_name: {
+                        required: "First Name is required",
+                        maxWords: "Please enter no more than 150 words",
+                         minWords: "Please enter at least 5 words"
+                    },     
+                    
+                     last_name: {
+                        required: "Last Name is required",
+                        maxWords: "Please enter no more than 150 words",
+                         minWords: "Please enter at least 5 words"
+                    },   
+                    
+                     password: {
+                        minlength: "Your password must be at least 6 characters long"
+                    },
+                    phone:{
+                          required: "Please enter a numeric value",
+                          number: "Please enter a valid number"
+                    },
+                    
+                
+                  city: "Please enter your city",
+                  area: "Please enter your area",
+                  category_id: "Please select Category"
+                },
+                 errorPlacement: function(error, element) 
+        {
+            if ( element.is(":radio") ) 
+            {
+                error.appendTo( element.parents('.form-group') );
+            }
+            else 
+            { // This is the default behavior 
+                error.insertAfter( element );
+            }
+         },
+                submitHandler: function(form) {
+                    form.submit();
+                }
+                
+            });
+    });
+ </script>
+ 
  <script>
 
 
-    document.getElementById('myForm').addEventListener('submit', function(event) {
+    document.getElementById('addArticle').addEventListener('submit', function(event) {
         var fileUpload = document.getElementById('file-upload');
 
         // Check if the file input is empty

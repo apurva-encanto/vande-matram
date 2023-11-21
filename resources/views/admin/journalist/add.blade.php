@@ -63,14 +63,14 @@
                                                     @csrf
                                                     <div class="mb-3">
                                                         <label for="First Name" class="form-label">First Name</label>
-                                                        <input type="text" pattern="[A-Za-z ]+" value="{{old('first_name')}}"  name="first_name" class="form-control" placeholder="First Name" required>
+                                                        <input type="text"  value="{{old('first_name')}}"  name="first_name" class="form-control" placeholder="First Name" required>
                                                             <div class="invalid-feedback">
                                                             Please enter a First Name.
                                                             </div>
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="Last Name" class="form-label">Last Name</label>
-                                                        <input type="text" pattern="[A-Za-z ]+" value="{{old('last_name')}}"   name="last_name" class="form-control" placeholder="Last Name" required>
+                                                        <input type="text"  value="{{old('last_name')}}"   name="last_name" class="form-control" placeholder="Last Name" required>
                                                            <div class="invalid-feedback">
                                                             Please enter a Last Name.
                                                             </div>
@@ -78,7 +78,7 @@
 
                                                     <div class="mb-3">
                                                         <label for="Email Id" class="form-label">Email Id</label>
-                                                        <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" value="{{old('email')}}" name="email" class="form-control" placeholder="Email Id" required>
+                                                        <input type="email"  value="{{old('email')}}" name="email" class="form-control" placeholder="Email Id" required>
                                                         @error('email')
                                                             <div class="text-danger mt-1">{{ $message }}</div>
                                                         @enderror
@@ -214,6 +214,7 @@
                                                             <img src="" alt="">
                                                         </label>
 
+                                                    <p class="file-error d-none text-danger" >Please select a file before submitting the form.</p>
                                                         @error('file')
                                                             <div class="text-danger">{{ $message }}</div>
                                                         @enderror
@@ -299,7 +300,10 @@
                         required: true,
                         minlength: 6
                     },
-                    
+                     email:{
+                         required: true,
+                          email: true,
+                    },
                     city: "required",
                     editor1:"required",
                     area:"required",

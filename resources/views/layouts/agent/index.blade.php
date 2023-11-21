@@ -93,4 +93,18 @@
 
             </script>
      @endif
+     
+        @if ($message = Session::get('error'))
+            <script>
+                var title='{{ $message }}'
+        
+                Swal.fire({
+                icon: "error",
+                title: title,
+                showConfirmButton: false,
+                timer: 1500
+                });
+        
+            </script>
+        @endif
 </html>

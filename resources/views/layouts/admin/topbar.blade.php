@@ -176,10 +176,10 @@
                         <a href="{{ url('/') }}" class="logo logo-light text-center">
 
                             <span class="logo-sm">
-                                <h3 class="text-white mt-3">VANDEMATARAM </h3>
+                                <img src="{{ asset('assets/images/users/user-1.jpg')}}assets/images/logo-sm.png" alt="" height="50">
                             </span>
                             <span class="logo-lg">
-                                <h3 class="text-white mt-3">VANDEMATARAM </h3>
+                                <img src="{{ asset('assets/images/users/user-1.jpg')}} assets/images/logo-sm.png" alt="" height="50">
                             </span>
                         </a>
                     </div>

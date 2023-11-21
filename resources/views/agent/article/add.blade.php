@@ -255,8 +255,7 @@
                 rules: {
                     title:  {
                     required: true,
-                        maxWords: 150 , // Custom rule to limit the number of words
-                         minWords: 5 
+                        maxWords: 150 ,
                     }, 
                     city: "required",
                     editor1:"required",

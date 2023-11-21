@@ -107,7 +107,6 @@ class CategoryController extends Controller
         $category = Category::find($request->id);
         $category->name = $request->name;
         $category->description = $request->description;
-        $category->slug = $this->createSlug($request->name);
         $category->status = $request->status;
         $category->save();
         return redirect()->route('admin.category.list')->with('success', 'Category Updated successfully!');

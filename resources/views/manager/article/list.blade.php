@@ -107,6 +107,7 @@
                                                         <span class="badge label-table bg-danger">Inactive</span>
                                                         @endif</td>
                                                     <td>
+                                                               <a href="{{url('news-'.$article->category_slug.'/'.$article->title_slug)}}" class="btn btn-xs btn-primary mb-1"><i class="mdi mdi-eye"></i></a>
                                                         <a href="{{ route('manager.article.edit',$article->id) }}" class="btn btn-xs btn-info mb-1"><i class="mdi mdi-pencil"></i></a>
                                                         <a  data-bs-toggle="modal" data-bs-target="#danger-alert-modal{{$article->id}}" class="btn btn-xs btn-danger mb-1"><i class="mdi mdi-delete"></i></a>
                                                     </td>

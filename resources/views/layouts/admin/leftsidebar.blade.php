@@ -86,6 +86,12 @@
                     </ul>
                 </div>
             </li>
+            <li>
+                <a href="{{route('admin.ad')}}" data-bs-toggle="collapse"  >
+                    <i class="mdi  mdi-file-image"></i>
+                    <span> Advertisement </span>
+                </a>
+            </li>
 
             {{-- <li>
                 <a href="#sidebarDashboards" data-bs-toggle="collapse"  >

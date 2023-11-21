@@ -83,6 +83,13 @@ class MainController extends Controller
                 'articles.is_delete' => '0', 'articles.publish' => '1',
                 'articles.category_slug' => $category, 'title_slug' => $title
             ])->first();
+         if(empty($data['article']))
+         {
+           return redirect()->back()->with('error', 'Publish Article to View');
+           exit;
+         }
+            
+       
         $data['active_category'] = $category;
 
         Article::where('title_slug', $title)->increment('views');
@@ -113,6 +120,8 @@ class MainController extends Controller
         $where['articles.is_delete'] = '0';
         $where['articles.publish'] = '1';
         if($id !='latest'){
+            
+            $data['active_category'] =  $id;
             $where['articles.category_slug'] = $id;
         }
 

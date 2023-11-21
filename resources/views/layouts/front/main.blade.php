@@ -37,14 +37,14 @@
                         </select>
                     </div>
                 </div>
-                <div class="bg-white p-2">
+                <div class=" bg-white p-2">
                     <div class="row">
                         <div class="col-lg-4 col-md-10">
                          <a href="{{ url('/') }}"><img class="mx-4 logo-img" src="{{ asset('assets/images/logo-light.png')}}" alt="" /></a>
                         </div>
                         <div class="col-md-8">
-                            <div class="card p-1">
-                                <img class="" src="{{ asset('assets/images-data/35f5b357d3f59dca342852f31de02623.png')}}" alt="" />
+                            <div class="card">
+                                <img class="ad-header" src="{{ asset('assets/images/world-cup.jpg')}}" alt="" />
                             </div>
                         </div>
                     </div>

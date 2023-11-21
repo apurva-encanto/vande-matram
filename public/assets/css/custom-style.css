@@ -124,3 +124,8 @@ body {
     background-color: #143F76 !important;
     padding: auto;
   }
+  
+  .error{
+      color:red;
+      font-size:12px;
+  }

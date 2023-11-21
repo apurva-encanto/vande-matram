@@ -60,18 +60,18 @@
 
                                         <div class="row mt-3">
                                             <div class="col-xl-6">
-                                                <form class="needs-validation" method="post" enctype="multipart/form-data" novalidate action="{{ route('manager.agent.create')}}" >
+                                                <form id="addArticle" method="post" enctype="multipart/form-data"  action="{{ route('manager.agent.create')}}" >
                                                     @csrf
                                                     <div class="mb-3">
                                                         <label for="First Name" class="form-label">First Name</label>
-                                                        <input type="text" pattern="[A-Za-z ]+" value="{{old('first_name')}}"  name="first_name" class="form-control" placeholder="First Name" required>
+                                                        <input type="text"  value="{{old('first_name')}}"  name="first_name" class="form-control" placeholder="First Name" required>
                                                       <div class="invalid-feedback">
                                                                   Please enter valid First Name.
                                                                 </div>
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="Last Name" class="form-label">Last Name</label>
-                                                        <input type="text" pattern="[A-Za-z ]+" value="{{old('last_name')}}"   name="last_name" class="form-control" placeholder="Last Name" required>
+                                                        <input type="text"  value="{{old('last_name')}}"   name="last_name" class="form-control" placeholder="Last Name" required>
                                                            <div class="invalid-feedback">
                                                                  Please enter valid Last Name.
                                                                 </div>
@@ -159,14 +159,15 @@
 
                                                 <div class="my-3 mt-xl-0">
                                                 <label for="projectname" class="mb-0 form-label">Photo</label>
+                                                <p></p>
 
-                                                     <p class="text-muted font-14">Recommended thumbnail size 800x400 (px).</p>
                                                         <label class="image-input">
-                                                            <input type="file" name="file" accept="image/*"  max-size="10000000">
+                                                            <input type="file" id="file-upload" name="file" accept="image/*"  max-size="10000000">
                                                             <input type="hidden" name="">
                                                             <img src="" alt="">
                                                         </label>
 
+                                                    <p class="file-error d-none text-danger" >Please select a file before submitting the form.</p>
                                                         @error('file')
                                                             <div class="text-danger">{{ $message }}</div>
                                                         @enderror
@@ -220,6 +221,99 @@
  <script src="{{ asset('assets/libs/select2/js/select2.min.js')}}"></script>
  <script src="{{asset('assets/libs/quill/quill.min.js')}}"></script>
  <script src="{{ asset('assets/js/pages/add-product.init.js')}}"></script>
+ 
+ <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js"></script>
+ <script>
+ $(document).ready(function($) {
+     
+        // Custom validation method for max words
+    $.validator.addMethod("maxWords", function(value, element, params) {
+        return this.optional(element) || value.match(/\b\w+\b/g).length <= params;
+    }, "Please enter no more than {0} words.");
+    
+        // Custom validation method for minimum words
+    $.validator.addMethod("minWords", function(value, element, params) {
+        return this.optional(element) || value.match(/\b\w+\b/g).length >= params;
+    }, "Please enter at least {0} words.");
+    
+        
+				$("#addArticle").validate({
+                rules: {
+                    first_name:  {
+                    required: true,
+                        maxWords: 5 , // Custom rule to limit the number of words
+                         minWords: 1 
+                    }, 
+                    last_name:  {
+                    required: true,
+                        maxWords: 5 , // Custom rule to limit the number of words
+                         minWords: 1 
+                    }, 
+                     password: {
+                        required: true,
+                        minlength: 6
+                    },
+                     email:{
+                         required: true,
+                          email: true,
+                    },
+                    
+                    city: "required",
+                    editor1:"required",
+                    area:"required",
+                    category_id: "required",
+                    phone:{
+                          required: true,
+                          number: true
+                    }
+                 
+                },
+                messages: {
+                    first_name: {
+                        required: "First Name is required",
+                        maxWords: "Please enter no more than 150 words",
+                         minWords: "Please enter at least 5 words"
+                    },     
+                    
+                     last_name: {
+                        required: "Last Name is required",
+                        maxWords: "Please enter no more than 150 words",
+                         minWords: "Please enter at least 5 words"
+                    },   
+                    
+                     password: {
+                        required: "Please provide a password",
+                        minlength: "Your password must be at least 6 characters long"
+                    },
+                    phone:{
+                          required: "Please enter a numeric value",
+                          number: "Please enter a valid number"
+                    },
+                    
+                
+                  city: "Please enter your city",
+                  area: "Please enter your area",
+                  category_id: "Please select Category"
+                },
+                 errorPlacement: function(error, element) 
+        {
+            if ( element.is(":radio") ) 
+            {
+                error.appendTo( element.parents('.form-group') );
+            }
+            else 
+            { // This is the default behavior 
+                error.insertAfter( element );
+            }
+         },
+                submitHandler: function(form) {
+                    form.submit();
+                }
+                
+            });
+    });
+ </script>
+ 
 
  <script>
 
@@ -233,6 +327,20 @@ $(document).ready(function(){
             }
         });
     });
+    
+    
+    document.getElementById('addArticle').addEventListener('submit', function(event) {
+        var fileUpload = document.getElementById('file-upload');
+
+        // Check if the file input is empty
+        if (fileUpload.files.length === 0) {
+            // Prevent the form from being submitted
+            event.preventDefault();
+
+            $('.file-error').removeClass('d-none')
+        }
+    });
+    
 
 function ImageInput(element){
   // Variables

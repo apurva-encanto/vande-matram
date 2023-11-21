@@ -59,15 +59,15 @@
 
                                         <div class="row mt-3">
                                             <div class="col-xl-6">
-                                                <form class="needs-validation" method="post" enctype="multipart/form-data" novalidate action="{{ route('manager.agent.update',$user->user_id) }}" >
+                                                <form id="addArticle" method="post" enctype="multipart/form-data"  action="{{ route('manager.agent.update',$user->user_id) }}" >
                                                     @csrf
                                                     <div class="mb-3">
                                                         <label for="First Name" class="form-label">First Name</label>
-                                                        <input type="text" pattern="[A-Za-z ]+" value="{{$user['first_name']}}"  name="first_name" class="form-control" placeholder="First Name" required>
+                                                        <input type="text"  value="{{$user['first_name']}}"  name="first_name" class="form-control" placeholder="First Name" required>
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="Last Name" class="form-label">Last Name</label>
-                                                        <input type="text" pattern="[A-Za-z ]+" value="{{$user['last_name']}}"   name="last_name" class="form-control" placeholder="Last Name" required>
+                                                        <input type="text" value="{{$user['last_name']}}"   name="last_name" class="form-control" placeholder="Last Name" required>
                                                     </div>
 
                                                     <div class="mb-3">
@@ -224,6 +224,97 @@
  <script src="{{ asset('assets/libs/select2/js/select2.min.js')}}"></script>
  <script src="{{asset('assets/libs/quill/quill.min.js')}}"></script>
  <script src="{{ asset('assets/js/pages/add-product.init.js')}}"></script>
+ 
+  <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js"></script>
+ <script>
+ $(document).ready(function($) {
+     
+        // Custom validation method for max words
+    $.validator.addMethod("maxWords", function(value, element, params) {
+        return this.optional(element) || value.match(/\b\w+\b/g).length <= params;
+    }, "Please enter no more than {0} words.");
+    
+        // Custom validation method for minimum words
+    $.validator.addMethod("minWords", function(value, element, params) {
+        return this.optional(element) || value.match(/\b\w+\b/g).length >= params;
+    }, "Please enter at least {0} words.");
+    
+        
+				$("#addArticle").validate({
+                rules: {
+                    first_name:  {
+                    required: true,
+                        maxWords: 5 , // Custom rule to limit the number of words
+                         minWords: 1 
+                    }, 
+                    last_name:  {
+                    required: true,
+                        maxWords: 5 , // Custom rule to limit the number of words
+                         minWords: 1 
+                    }, 
+                     password: {
+                        minlength: 6
+                    },
+                    email:{
+                         required: true,
+                          email: true,
+                    },
+                    
+                    city: "required",
+                    editor1:"required",
+                    area:"required",
+                    category_id: "required",
+                    phone:{
+                          required: true,
+                          number: true
+                    }
+                 
+                },
+                messages: {
+                    first_name: {
+                        required: "First Name is required",
+                        maxWords: "Please enter no more than 150 words",
+                         minWords: "Please enter at least 5 words"
+                    },     
+                    
+                     last_name: {
+                        required: "Last Name is required",
+                        maxWords: "Please enter no more than 150 words",
+                         minWords: "Please enter at least 5 words"
+                    },   
+                    
+                     password: {
+                        minlength: "Your password must be at least 6 characters long"
+                    },
+                    phone:{
+                          required: "Please enter a numeric value",
+                          number: "Please enter a valid number"
+                    },
+                    
+                
+                  city: "Please enter your city",
+                  area: "Please enter your area",
+                  category_id: "Please select Category"
+                },
+                 errorPlacement: function(error, element) 
+        {
+            if ( element.is(":radio") ) 
+            {
+                error.appendTo( element.parents('.form-group') );
+            }
+            else 
+            { // This is the default behavior 
+                error.insertAfter( element );
+            }
+         },
+                submitHandler: function(form) {
+                    form.submit();
+                }
+                
+            });
+    });
+ </script>
+ 
 
  <script>
 

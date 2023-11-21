@@ -76,7 +76,6 @@
                                                 <thead>
                                                 <tr>
                                                     <th data-toggle="true" style="background: #eee;">Name</th>
-                                                    <th style="background: #eee;">Slug</th>
                                                     <th style="background: #eee;">Status</th>
                                                     <th style="background: #eee;">Action</th>
                                                     </tr>
@@ -86,7 +85,6 @@
                                                 @foreach ($categories as $category )
                                                 <tr>
                                                     <td>{{$category->name}}</td>
-                                                    <td>{{$category->slug}}</td>
                                                     <td>  @if($category->status=='active')
                                                         <span class="badge label-table bg-success">Active</span>
                                                         @else
@@ -94,7 +92,7 @@
                                                         @endif</td>
                                                     <td>
                                                         <a href="{{ route('admin.category.edit',$category->id) }}" class="btn btn-xs btn-info mb-1"><i class="mdi mdi-pencil"></i></a>
-                                                        <a  data-bs-toggle="modal" data-bs-target="#danger-alert-modal{{$category->id}}" class="btn btn-xs btn-danger mb-1"><i class="mdi mdi-delete"></i></a>
+                                                        @if( $category->is_main ==0 )<a  data-bs-toggle="modal" data-bs-target="#danger-alert-modal{{$category->id}}" class="btn btn-xs btn-danger mb-1"><i class="mdi mdi-delete"></i></a> @endif
                                                     </td>
 
                                                 </tr>

@@ -59,7 +59,7 @@
 
 
 
-                                        <div class="row mt-3 p-3">
+                                        <div class="row mt-3">
                                             <div class="col-xl-6">
                                                 <form id="addArticle" method="post" enctype="multipart/form-data"  action="{{ route('admin.article.create')}}" >
                                                     @csrf
@@ -97,11 +97,11 @@
                                                     <div class="mb-3">
                                                         <label class="form-label">Popular New</label> <br/>
                                                         <div class="form-check form-check-inline">
-                                                            <input  value="1" type="radio" id="customRadio1"  name="popular" class="form-check-input">
+                                                            <input  value="1" @if(old('popular') == 1) checked @endif  type="radio" id="customRadio1"  name="popular" class="form-check-input">
                                                             <label class="form-check-label" for="customRadio1">Yes</label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
-                                                            <input  value="0" type="radio" id="customRadio2" checked name="popular" class="form-check-input">
+                                                            <input  value="0" @if(old('popular') == 0) checked @endif  type="radio" id="customRadio2" checked name="popular" class="form-check-input">
                                                             <label class="form-check-label" for="customRadio2"  >No</label>
                                                         </div>
                                                     </div>
@@ -109,16 +109,14 @@
                                                     <div class="mb-3">
                                                         <label class="form-label">Top New</label> <br/>
                                                         <div class="form-check form-check-inline">
-                                                            <input  value="1" type="radio" id="customRadio1"  name="top_new" class="form-check-input">
+                                                            <input  value="1" @if(old('top_new') == 1) checked @endif type="radio" id="customRadio1"  name="top_new" class="form-check-input">
                                                             <label class="form-check-label" for="customRadio1">Yes</label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
-                                                            <input  value="0" type="radio" id="customRadio2" checked  name="top_new" class="form-check-input">
+                                                            <input  value="0" type="radio" id="customRadio2" @if(old('top_new') == 0) checked @endif checked  name="top_new" class="form-check-input">
                                                             <label class="form-check-label" for="customRadio2" >No</label>
                                                         </div>
                                                     </div>
-
-
 
                                             </div> <!-- end col-->
 
@@ -145,8 +143,8 @@
                                                             <p class="text-muted font-14">You can set time for publish.</p>
 
                                                            <select name="publish" id="" class="form-control">
-                                                               <option value="1">Publish</option>
-                                                               <option value="0" selected>Unpublish</option>
+                                                               <option @if(old('publish') == 1) selected @endif value="1">Publish</option>
+                                                               <option @if(old('publish') == 0) selected @endif value="0">Unpublish</option>
                                                            </select>
                                                             <div class="invalid-feedback">
                                                              Please enter a Publish Date.
@@ -256,8 +254,7 @@
                 rules: {
                     title:  {
                     required: true,
-                        maxWords: 150 , // Custom rule to limit the number of words
-                         minWords: 5 
+                        maxWords: 150 , 
                     }, 
                     city: "required",
                     editor1:"required",
