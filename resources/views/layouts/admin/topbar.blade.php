@@ -175,11 +175,8 @@
 
                         <a href="{{ url('/') }}" class="logo logo-light text-center">
 
-                            <span class="logo-sm">
-                                <img src="{{ asset('assets/images/users/user-1.jpg')}}assets/images/logo-sm.png" alt="" height="50">
-                            </span>
-                            <span class="logo-lg">
-                                <img src="{{ asset('assets/images/users/user-1.jpg')}} assets/images/logo-sm.png" alt="" height="50">
+                            <span class="logo-small">
+                                <img src="{{ asset('assets/images/logo-light.png')}}" alt="" height="50">
                             </span>
                         </a>
                     </div>

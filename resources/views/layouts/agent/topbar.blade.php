@@ -173,7 +173,7 @@
                     <div class="logo-box">
 
                         <a href="index.html" class="logo logo-light text-center">
-                            <span class="logo-sm">
+                            <span class="logo-small">
                                 <img src="{{ asset('assets/images/logo-sm.png')}}" alt="" height="50">
                             </span>
                             <span class="logo-lg">

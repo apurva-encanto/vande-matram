@@ -27,7 +27,7 @@
                         <img src="{{ asset('assets/images-data/youtube.png')}}" alt="" />
                     </div>
                     <div class="right text-uppercase">
-                       <a class="text-white" style="margin-right:5px;" href="{{url('login')}}">Login</a>
+                       <a class="text-white" style="margin-right:5px;" target="_blank" href="{{url('login')}}">Login</a>
                         <select name="" id="loginUser">
                             <option value="" selected disabled>Change Language</option>
                             <option value="telugu">తెలుగు</option>
@@ -44,7 +44,7 @@
                         </div>
                         <div class="col-md-8">
                             <div class="card">
-                                <img class="ad-header" src="{{ asset('assets/images/world-cup.jpg')}}" alt="" />
+                                <img class="ad-header" src="{{ asset('uploads/ad/')}}{{main_header_img()}}" alt="" />
                             </div>
                         </div>
                     </div>

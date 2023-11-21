@@ -64,6 +64,8 @@ Route::prefix('admin')->middleware(['auth', 'user-access:admin'])->group(functio
     Route::get('/account', [AdminController::class, 'adminAccount'])->name('admin.account');
     Route::post('/account-edit', [AdminController::class, 'adminAccountEdit'])->name('admin.account.edit');
 
+    Route::get('/advertise', [ArticleController::class, 'addAdvertise'])->name('admin.advertise');
+    Route::post('/add-advertise', [ArticleController::class, 'editAdvertise'])->name('admin.advertise.add');
 
     Route::prefix('article')->group(function () {
         Route::get('/add', [ArticleController::class, 'addArticle'])->name('admin.article.add');

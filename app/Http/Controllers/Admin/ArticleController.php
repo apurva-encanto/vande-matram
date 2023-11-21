@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Article;
+use App\Models\Ad;
 use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -530,5 +531,54 @@ class ArticleController extends Controller
 
 
         return view('manager.article.pending', $data);
+    }
+    
+    public function addAdvertise()
+    {
+        $data['advertise']=Ad::all();
+        return view('admin.advertise.add',$data);
+    }
+    
+    public function editAdvertise(Request $request)
+    {
+          if (!empty($request->file('main_header'))) {
+                    $coverfile = $request->file('main_header');
+                    
+                     $rules = [
+                        'main_header' => 'required|image',
+                    ];
+                
+                    // Custom error messages
+                    $messages = [
+                        'main_header.dimensions' => 'The image must be exactly 700 pixels in width and 80 pixels in height.',
+                    ];
+                    
+                     // Validate the request
+                        $validator = Validator::make($request->all(), $rules, $messages);
+                    
+                        // Check if validation fails
+                        if ($validator->fails()) {
+                            return redirect()->back()->withErrors($validator)->withInput();
+                        }
+
+                    $coverpath = public_path('uploads/ad');
+
+                  // Ensure the directory exists, create it if not
+                    if (!file_exists($coverpath)) {
+                        mkdir($coverpath, 0755, true);
+                    }
+
+                    // Generate a unique file name
+                    $fileName = '/' . time() . '_' . Str::random(10) . '_' . $coverfile->getClientOriginalName();
+
+                  // Move the uploaded file to the destination directory
+                  $coverfile->move($coverpath, $fileName);
+                  
+                  Ad::where('position','main_header')->update(['image'=>$fileName]);
+                  
+                  return redirect()->route('admin.advertise')->with('success', 'Ad Image Uploaded Successfuly');
+          }
+
+
     }
 }

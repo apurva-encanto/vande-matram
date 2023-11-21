@@ -173,7 +173,7 @@
                     <div class="logo-box">
 
                         <a href="index.html" class="logo logo-light text-center">
-                            <span class="logo-sm">
+                            <span class="logo-small">
                                <h3 class="text-white mt-3">VANDEMATARAM </h3>
                             </span>
                             <span class="logo-lg">

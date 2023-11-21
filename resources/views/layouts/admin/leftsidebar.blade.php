@@ -87,7 +87,7 @@
                 </div>
             </li>
             <li>
-                <a href="{{route('admin.ad')}}" data-bs-toggle="collapse"  >
+                <a href="{{route('admin.advertise')}}"  >
                     <i class="mdi  mdi-file-image"></i>
                     <span> Advertisement </span>
                 </a>

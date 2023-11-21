@@ -129,3 +129,13 @@ body {
       color:red;
       font-size:12px;
   }
+.logo-small img{
+    width:200px;
+}
+
+
+@media screen and (max-width: 768px) {
+    .logo-small img{
+    display:none;
+    }
+}

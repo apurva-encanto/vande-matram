@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use App\Models\Ad;
 use App\Models\JournalistDetail;
 
 function getCurrentUserImageName($id)
@@ -33,4 +34,12 @@ function getconvertedDate($date)
 {
     $convertedDate = date("F j, Y", strtotime($date));
     return $convertedDate;
+}
+
+function main_header_img()
+{
+    
+   $image= Ad::select('image')->where('position','main_header')->first();
+   return $image->image;
+    
 }
