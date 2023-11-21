@@ -14,7 +14,7 @@
                         </li>
                          @foreach ($categories->take(8) as $category)
                             <li class="nav-item @if($active_category ==$category->slug) bg-dark @endif">
-                               <a class="nav-link" href="{{ url('news-'.$category->slug) }}">{{ ucfirst(strtolower($category->name)) }}</a>
+                               <a class="nav-link sub-heading" href="{{ url('news-'.$category->slug) }}">{{ ucfirst(strtolower($category->name)) }}</a>
                             </li>
                          @endforeach
                           @if(count($categories) >8)
@@ -26,7 +26,7 @@
                            </a>
                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                              @foreach ($categories->slice(8) as $category)
-                               <li><a class="dropdown-item" href="{{ url('news-'.$category->slug) }}">{{ ucfirst(strtolower($category->name)) }}</a></li>
+                               <li><a class="dropdown-item sub-heading" href="{{ url('news-'.$category->slug) }}">{{ ucfirst(strtolower($category->name)) }}</a></li>
                               @endforeach
                            </ul>
                         </li>

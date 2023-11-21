@@ -19,7 +19,7 @@
 
                      <div class="col-md-12 mb-2">
                         <div>
-                           <h5 class="mx-3">{{$category->name}}</h5>
+                           <h5 class="mx-3 sub-heading">{{@$category->name}}</h5>
                         </div>
                      </div>
                      <div class="row mx-1">

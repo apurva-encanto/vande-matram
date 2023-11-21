@@ -21,7 +21,7 @@
                         <div class="col-md-8 bg-white">
                             <div class="single-post mt-3">
                                 <div class="post-title-area">
-                                    <h2 class="post-title">
+                                    <h2 class="post-title sub-heading">
                                         {{$article->title}}
                                     </h2>
                                     <div class="post-meta">
@@ -36,7 +36,7 @@
                                     <div class="post-media post-featured-image">
                                         <a href="{{ asset('uploads/article_'.$article->user_id.'/'.$article->image)}}" class="gallery-popup cboxElement"><img
                                          onerror="this.src='{{ asset('assets/images/default-img.jpg') }}';"
-                                                src="{{ asset('uploads/article_'.$article->user_id.'/'.$article->image)}}" class="img-fluid" alt="" /></a>
+                                                src="{{ asset('uploads/article_'.$article->user_id.'/'.$article->image)}}" class="single-content-img" alt="" /></a>
                                     </div>
                                     <div class="entry-content">
                                      <b>@if(!empty($article->city)){{ $article->city }} : @endif </b>  {!! html_entity_decode($article->content) !!}
@@ -58,7 +58,7 @@
                                     <div>
                                         <div class="col-md-12 mt-3 bg-white" style="padding: 2px;">
                                             <div class="widget color-default mb-3 ">
-                                                <h3 class="block-title"><span>
+                                                <h3 class="block-title sub-heading"><span>
                               ప్రముఖ వార్తలు                  </span></h3>
 
                                                 <div class="list-post-block mb-3">
@@ -66,7 +66,7 @@
                                                         @if(count($popular_posts) >0)
 
                                                         <!-- Li 1 end -->
-                                                         @foreach ($popular_posts as $key=>$post)
+                                                         @foreach ($popular_posts->take(4) as $key=>$post)
                                                         <li class="clearfix">
                                                             <div class="post-block-style post-float clearfix">
                                                                 <div class="post-thumb">
@@ -114,8 +114,8 @@
                                         </div>
                                         <div class="col-md-12 mt-3 bg-white" style="padding: 2px;">
                                             <div class="widget color-default ">
-                                                <h3 class="block-title"><span>
-                              మీరు దీన్ని ఇష్టపడవచ్చు                      
+                                                <h3 class="block-title sub-heading"><span>
+                                                       మీరు దీన్ని ఇష్టపడవచ్చు                      
                                                     </span></h3>
 
                                                 <div class="list-post-block mb-3">
@@ -167,7 +167,7 @@
                                 </div>
                             </div>
                         </div>
-@if(!empty($next_article))
+                        @if(!empty($next_article))
                         @php
                         
                         $arraySecond=[];
@@ -178,11 +178,11 @@
                         @endphp
 
                         <div class="col-md-12 bg-white mt-3">
-                            <h5 class="card-title pt-2">
+                            <h5 class="card-title pt-2 sub-heading">
                                 తదుపరి చదవండి
                             </h5>
                             <div class="row mb-5">
-                                <div class="col-lg-6 ">
+                                <div class="col-lg-6 mt-1 ">
                                     @foreach($arrayFirst  as $key=>$post)
                                         @if($key==0)
                                            <div class="block color-dark-blue">
@@ -237,7 +237,7 @@
                                     @endforeach
 
                                 </div>
-                               <div class="col-lg-6 ">
+                               <div class="col-lg-6 mt-1 ">
                                    @foreach($arraySecond  as $key=>$post)
                                         @if($key==0)
                                            <div class="block color-dark-blue">

@@ -15,7 +15,7 @@
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Vandemataram</a></li>
 
 
-                                            <li class="breadcrumb-item"><a href="{{route('admin.home')}}"> Dashoard</a></li>
+                                            <li class="breadcrumb-item"><a href="{{route('home')}}"> Dashoard</a></li>
                                             <li class="breadcrumb-item active">Article's List</li>
                                         </ol>
                                     </div>

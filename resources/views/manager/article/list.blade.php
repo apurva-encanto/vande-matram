@@ -15,7 +15,7 @@
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Vandemataram</a></li>
 
 
-                                            <li class="breadcrumb-item"><a href="{{route('admin.home')}}"> Dashoard</a></li>
+                                            <li class="breadcrumb-item"><a href="{{route('manager.home')}}"> Dashoard</a></li>
                                             <li class="breadcrumb-item active">Article's List</li>
                                         </ol>
                                     </div>
@@ -49,7 +49,7 @@
                                                         </h5>
 
                                                     </div>
-                                                    <a href="{{route('admin.article.add')}}" class="btn btn-primary">Add</a>
+                                                    <a href="{{route('manager.article.add')}}" class="btn btn-primary">Add</a>
                                                 </div>
 
                                             </div>

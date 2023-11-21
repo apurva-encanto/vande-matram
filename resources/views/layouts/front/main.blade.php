@@ -27,12 +27,13 @@
                         <img src="{{ asset('assets/images-data/youtube.png')}}" alt="" />
                     </div>
                     <div class="right text-uppercase">
-                       <a class="text-white" href="{{url('login')}}">Login</a>
+                       <a class="text-white" style="margin-right:5px;" href="{{url('login')}}">Login</a>
                         <select name="" id="loginUser">
                             <option value="" selected disabled>Change Language</option>
-                            <option value="admin">Telugu</option>
-                            <option value="manager">English</option>
-                            <option value="agent">Hindi</option>
+                            <option value="telugu">తెలుగు</option>
+                            <option value="english">English</option>
+                            <option value="hindi">हिंदी</option>
+                            <option value="kanada">ಕನ್ನಡ</option>
                         </select>
                     </div>
                 </div>

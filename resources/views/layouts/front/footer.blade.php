@@ -1,6 +1,6 @@
 <footer class="d-flex flex-wrap justify-content-between align-items-center">
             <div class="col-md-6 d-flex align-items-center p-2">
-               <span class="mb-3 mb-md-0 text-body-secondary"><a href="{{ url('contact-us')}}">Contact Us</a>  | <a href="{{ url('about-us')}}">About Us</a> | Advertise With Us | Privacy &
+               <span class="mb-3 mb-md-0 text-body-secondary"><a class="sub-heading" href="{{ url('contact-us')}}">Contact Us</a>  | <a  class="sub-heading"  href="{{ url('about-us')}}">About Us</a> | Advertise With Us | Privacy &
                Cookies Notice <br>
                Copyright © 2023 Vandemataram Broadcasting. All Rights Reserved.</span>
             </div>

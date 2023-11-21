@@ -105,7 +105,16 @@ class MainController extends Controller
 
     public function getArticleByCategory(Request $request, $id)
     {
-        $data['active_category'] = $id;
+        $data['active_category'] = 'home';
+        
+        
+        $where['articles.is_approved'] = '1';
+        $where['articles.status'] = 'active';
+        $where['articles.is_delete'] = '0';
+        $where['articles.publish'] = '1';
+        if($id !='latest'){
+            $where['articles.category_slug'] = $id;
+        }
 
         $data['categories'] = Category::where(['is_delete' => '0', 'status' => 'active'])->get();
         $data['category'] = Category::where(['slug' => $id])->first();
@@ -114,10 +123,7 @@ class MainController extends Controller
             ->leftJoin('categories', 'categories.id', '=', 'articles.category_id')
             ->select('articles.*', 'users.name as user_name', 'categories.name as category_name')
             ->inRandomOrder()
-            ->where([
-                'articles.is_approved' => '1', 'articles.status' => 'active',
-                'articles.is_delete' => '0', 'articles.publish' => '1', 'category_slug' => $id
-            ])->orderBy('articles.id', 'desc')->paginate(9);
+            ->where($where)->orderBy('articles.id', 'desc')->paginate(9);
 
         $data['popular_posts'] = $this->getPopularArticlesByCategory($id);
         $data['latest_posts'] = $this->getLatestArticlesByCategory($id);

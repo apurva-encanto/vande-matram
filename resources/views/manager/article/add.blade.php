@@ -61,11 +61,11 @@
 
                                         <div class="row mt-3">
                                             <div class="col-xl-6">
-                                                <form id="myForm" class="needs-validation" method="post" enctype="multipart/form-data" novalidate action="{{ route('manager.article.create')}}" >
+                                                <form id="addArticle" method="post" enctype="multipart/form-data"  action="{{ route('manager.article.create')}}" >
                                                     @csrf
                                                     <div class="mb-3">
                                                         <label for="Title" class="form-label">Title</label>
-                                                        <input type="text" pattern="[A-Za-z ]+" value="{{old('title')}}" required  name="title" class="form-control" placeholder="News Title" >
+                                                        <input type="text"  value="{{old('title')}}" required  name="title" class="form-control" placeholder="News Title" >
                                                             <div class="invalid-feedback">
                                                              Please enter a valid Title.
                                                             </div>
@@ -231,10 +231,65 @@
  <script src="{{asset('assets/libs/quill/quill.min.js')}}"></script>
  <script src="{{ asset('assets/js/pages/add-product.init.js')}}"></script>
  <script src="https://cdn.ckeditor.com/4.12.1/standard/ckeditor.js"></script>
+
+ <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js"></script>
  <script>
+ $(document).ready(function($) {
+     
+        // Custom validation method for max words
+    $.validator.addMethod("maxWords", function(value, element, params) {
+        return this.optional(element) || value.match(/\b\w+\b/g).length <= params;
+    }, "Please enter no more than {0} words.");
+    
+        // Custom validation method for minimum words
+    $.validator.addMethod("minWords", function(value, element, params) {
+        return this.optional(element) || value.match(/\b\w+\b/g).length >= params;
+    }, "Please enter at least {0} words.");
+    
+        
+				$("#addArticle").validate({
+                rules: {
+                    title:  {
+                    required: true,
+                        maxWords: 150 , // Custom rule to limit the number of words
+                         minWords: 5 
+                    }, 
+                    city: "required",
+                    editor1:"required",
+                    category_id: "required"
+                 
+                },
+                messages: {
+                    title: {
+                        required: "Title is required",
+                        maxWords: "Please enter no more than 150 words",
+                         minWords: "Please enter at least 5 words"
+                    },                   
+                
+                  city: "Please enter your city",
+                  category_id: "Please select Category"
+                },
+                 errorPlacement: function(error, element) 
+        {
+            if ( element.is(":radio") ) 
+            {
+                error.appendTo( element.parents('.form-group') );
+            }
+            else 
+            { // This is the default behavior 
+                error.insertAfter( element );
+            }
+         },
+                submitHandler: function(form) {
+                    form.submit();
+                }
+                
+            });
+    });
+ </script>
+<script>
 
-
-    document.getElementById('myForm').addEventListener('submit', function(event) {
+    document.getElementById('addArticle').addEventListener('submit', function(event) {
         var fileUpload = document.getElementById('file-upload');
 
         // Check if the file input is empty

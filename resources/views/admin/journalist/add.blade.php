@@ -59,7 +59,7 @@
 
                                         <div class="row mt-3">
                                             <div class="col-xl-6">
-                                                <form class="needs-validation" method="post" enctype="multipart/form-data" novalidate action="{{ route('admin.journalist.create')}}" >
+                                                <form id="addArticle" method="post" enctype="multipart/form-data"  action="{{ route('admin.journalist.create')}}" >
                                                     @csrf
                                                     <div class="mb-3">
                                                         <label for="First Name" class="form-label">First Name</label>
@@ -100,7 +100,7 @@
 
                                                     <div class="mb-3">
                                                         <label for="Phone Number" class="form-label">Phone Number</label>
-                                                        <input type="number" value="{{old('phone')}}"   name="phone" class="form-control" placeholder="Phone Number" required>
+                                                        <input type="text" value="{{old('phone')}}"   name="phone" class="form-control" placeholder="Phone Number" required>
                                                             <div class="invalid-feedback">
                                                               Please enter a Phone Number.
                                                             </div>
@@ -207,9 +207,9 @@
                                                 <div class="my-3 mt-xl-0">
                                                 <label for="projectname" class="mb-0 form-label">Photo</label>
 
-                                                     <p class="text-muted font-14">Recommended thumbnail size 800x400 (px).</p>
+                                                     <p class="text-muted font-14"></p>
                                                         <label class="image-input">
-                                                            <input type="file" name="file" accept="image/*"  max-size="10000000">
+                                                            <input type="file" id="file-upload" name="file" accept="image/*"  max-size="10000000">
                                                             <input type="hidden" name="">
                                                             <img src="" alt="">
                                                         </label>
@@ -267,6 +267,94 @@
  <script src="{{ asset('assets/libs/select2/js/select2.min.js')}}"></script>
  <script src="{{asset('assets/libs/quill/quill.min.js')}}"></script>
  <script src="{{ asset('assets/js/pages/add-product.init.js')}}"></script>
+ 
+  <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js"></script>
+ <script>
+ $(document).ready(function($) {
+     
+        // Custom validation method for max words
+    $.validator.addMethod("maxWords", function(value, element, params) {
+        return this.optional(element) || value.match(/\b\w+\b/g).length <= params;
+    }, "Please enter no more than {0} words.");
+    
+        // Custom validation method for minimum words
+    $.validator.addMethod("minWords", function(value, element, params) {
+        return this.optional(element) || value.match(/\b\w+\b/g).length >= params;
+    }, "Please enter at least {0} words.");
+    
+        
+				$("#addArticle").validate({
+                rules: {
+                    first_name:  {
+                    required: true,
+                        maxWords: 5 , // Custom rule to limit the number of words
+                         minWords: 1 
+                    }, 
+                    last_name:  {
+                    required: true,
+                        maxWords: 5 , // Custom rule to limit the number of words
+                         minWords: 1 
+                    }, 
+                     password: {
+                        required: true,
+                        minlength: 6
+                    },
+                    
+                    city: "required",
+                    editor1:"required",
+                    area:"required",
+                    category_id: "required",
+                    phone:{
+                          required: true,
+                          number: true
+                    }
+                 
+                },
+                messages: {
+                    first_name: {
+                        required: "First Name is required",
+                        maxWords: "Please enter no more than 150 words",
+                         minWords: "Please enter at least 5 words"
+                    },     
+                    
+                     last_name: {
+                        required: "Last Name is required",
+                        maxWords: "Please enter no more than 150 words",
+                         minWords: "Please enter at least 5 words"
+                    },   
+                    
+                     password: {
+                        required: "Please provide a password",
+                        minlength: "Your password must be at least 6 characters long"
+                    },
+                    phone:{
+                          required: "Please enter a numeric value",
+                          number: "Please enter a valid number"
+                    },
+                    
+                
+                  city: "Please enter your city",
+                  area: "Please enter your area",
+                  category_id: "Please select Category"
+                },
+                 errorPlacement: function(error, element) 
+        {
+            if ( element.is(":radio") ) 
+            {
+                error.appendTo( element.parents('.form-group') );
+            }
+            else 
+            { // This is the default behavior 
+                error.insertAfter( element );
+            }
+         },
+                submitHandler: function(form) {
+                    form.submit();
+                }
+                
+            });
+    });
+ </script>
 
  <script>
 
@@ -281,6 +369,19 @@ $(document).ready(function(){
         });
     });
 
+
+    document.getElementById('addArticle').addEventListener('submit', function(event) {
+        var fileUpload = document.getElementById('file-upload');
+
+        // Check if the file input is empty
+        if (fileUpload.files.length === 0) {
+            // Prevent the form from being submitted
+            event.preventDefault();
+
+            $('.file-error').removeClass('d-none')
+        }
+    });
+    
 function ImageInput(element){
   // Variables
   var $wrapper = element;

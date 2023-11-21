@@ -76,7 +76,7 @@ trait ArticleTrait
             ->leftJoin('categories', 'categories.id', '=', 'articles.category_id')
             ->select('articles.*', 'users.name as user_name', 'categories.name as category_name')
             ->inRandomOrder()
-            ->where($where)->orderBy('articles.created_at', 'desc')->take(8)->get();
+            ->where($where)->orderBy('articles.created_at', 'desc')->take(12)->get();
 
         return $items;
     }
