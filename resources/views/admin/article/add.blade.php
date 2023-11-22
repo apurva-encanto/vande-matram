@@ -73,7 +73,7 @@
                                                     <div class="mb-3">
                                                         <label for="Select Category" class="form-label">Select Category <span class="text-danger">*</span></label>
 
-                                                        <select name="category_id" id="" required class="form-control">
+                                                        <select name="category_id" id="category_id" required class="form-control">
                                                             <option value="">Select Category</option>
                                                             @foreach ($categories as $category )
                                                             <option value="{{$category->id}}">{{$category->name}}</option>
@@ -87,7 +87,7 @@
                                                     <div class="mb-3">
                                                         <label class="form-label">City <span class="text-danger">*</span></label> <br/>
                                                         <div class="form-group">
-                                                            <input  value="" type="text"  pattern="[A-Za-z ]+" required placeholder="Enter City" id=""  required name="city" class="form-control">
+                                                            <input  value="" type="text"  pattern="[A-Za-z ]+"  placeholder="Enter City" id=""   name="city" class="form-control">
                                                           <div class="invalid-feedback">
                                                               Please enter a City.
                                                             </div>
@@ -154,6 +154,15 @@
                                                                 <div class="text-danger">{{ $message }}</div>
                                                             @enderror
                                                         </div>
+                                                        
+                                                                
+                                                        <div class="mb-3 d-none" id="video_url">
+                                                            <label for="Video Url" class="form-label">Video Url</label>
+                                                                <input type="text"  value="{{old('videos')}}"    name="videos" class="form-control " placeholder="News Video Url" >
+                                                                    <div class="invalid-feedback">
+                                                                     Please enter a valid Url.
+                                                                    </div>
+                                                        </div>
 
                                                     </div>
 
@@ -182,6 +191,10 @@
                                             <div class="col-xl-12">
                                                 <div class="mb-3">
                                                     <label for="project-overview" class="form-label">Article Content <span class="text-danger">*</span></label>
+                                                            @error('editor1')
+                                                                <div class="text-danger">Article Content is Required</div>
+                                                            @enderror
+                                                            
                                                     <textarea required value="{{old('editor1')}}" class="form-control" name="editor1" id="project-overview"  rows="5" placeholder="Article Content"></textarea>
 
                                                             <div class="invalid-feedback">
@@ -239,6 +252,18 @@
  <script>
  $(document).ready(function($) {
      
+        $("#category_id").on("change", function() {
+      var selectedValue = $(this).val();
+      if(selectedValue == 4)
+      {
+           $("#video_url").removeClass("d-none")
+          $("#video_url").prop("required", true);
+      }else{
+           $("#video_url").addClass("d-none")
+           $("#video_url").prop("required", false);
+      }
+    });
+     
         // Custom validation method for max words
     $.validator.addMethod("maxWords", function(value, element, params) {
         return this.optional(element) || value.match(/\b\w+\b/g).length <= params;
@@ -256,7 +281,6 @@
                     required: true,
                         maxWords: 150 , 
                     }, 
-                    city: "required",
                     editor1:"required",
                     category_id: "required"
                  

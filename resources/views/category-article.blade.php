@@ -35,6 +35,14 @@
                                             <a href="{{url('news-'.$item->category_slug.'/'.$item->title_slug)}}">
                                             <img class="img-fluid"  onerror="this.src='{{ asset('assets/images/default-img.jpg') }}';" src="{{ asset('uploads/article_'.$item->user_id.'/'.$item->image)}}"
                                                alt="" />
+                                                @if($item->category_id == 4)
+                                                 <a class="popup cboxElement"
+                                                       href="{{$item->videos}}?autoplay=1&amp;loop=1">
+                                                        <div class="video-icon">
+                                                          <i class="fa fa-play"></i>
+                                                       </div> 
+                                                    </a>
+                                                @endif    
                                             </a>
                                          </div>
                                          <div class="post-content px-1">

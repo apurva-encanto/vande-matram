@@ -55,7 +55,6 @@ class ArticleController extends Controller
             'editor1' => 'required',
             'popular' => 'required',
             'top_new' => 'required',
-            'city' => 'required',
             'publish_date' => 'required|date|after_or_equal:today',
         ], [
             'publish_date.after_or_equal' => 'The publish date must be greater than or equal to the current date.',
@@ -108,6 +107,7 @@ class ArticleController extends Controller
         $article->popular = $request->popular;
         $article->top_new = $request->top_new;
         $article->publish = $request->publish;
+        $article->videos = $request->videos;
         $article->is_show = 1;
         $article->created_by = 1;
         $article->is_approved = 1;
@@ -212,6 +212,7 @@ class ArticleController extends Controller
         $article->popular = $request->popular;
         $article->top_new = $request->top_new;
         $article->publish = $request->publish;
+        $article->videos = $request->videos;
         $article->is_approved = $request->is_approved;
         $article->save();
 
@@ -236,13 +237,12 @@ class ArticleController extends Controller
     public function listManagerArticle()
     {
         $data['articles'] = Article::where('articles.is_delete', '0')
-            ->select('articles.*', 'categories.name as category_name')
-            ->where('is_approved', '1')
             ->where('created_by', auth()->user()->id)
+            ->select('articles.*', 'categories.name as category_name')
             ->leftJoin('categories', 'categories.id', '=', 'articles.category_id')
             ->orderBy('articles.id', 'desc')
             ->get();
-
+   
         return view('manager.article.list', $data);
     }
 
@@ -303,6 +303,7 @@ class ArticleController extends Controller
         $article->popular = $request->popular;
         $article->top_new = $request->top_new;
         $article->publish = $request->publish;
+        $article->videos = $request->videos;
         $article->is_show = 1;
         $article->created_by = auth()->user()->id;
         $article->is_approved = 0;
@@ -371,8 +372,8 @@ class ArticleController extends Controller
         $article->city = $request->city;
         $article->popular = $request->popular;
         $article->top_new = $request->top_new;
+        $article->videos = $request->videos;
         $article->publish = $request->publish;
-        $article->is_approved = $request->is_approved;
         $article->save();
 
         return redirect()->route('manager.article.list')->with('success', 'Article Updated Successfuly');
@@ -394,7 +395,6 @@ class ArticleController extends Controller
             ->leftJoin('categories', 'categories.id', '=', 'articles.category_id')
             ->orderBy('articles.id', 'desc')
             ->get();
-
 
         return view('agent.article.list', $data);
     }
@@ -457,6 +457,7 @@ class ArticleController extends Controller
         $article->top_new = $request->top_new;
         $article->publish = $request->publish;
         $article->is_show = 1;
+        $article->videos = $request->videos;
         $article->created_by = auth()->user()->id;
         $article->is_approved = 2;
         $article->save();
@@ -514,6 +515,7 @@ class ArticleController extends Controller
         $article->city = $request->city;
         $article->popular = $request->popular;
         $article->top_new = $request->top_new;
+        $article->videos = $request->videos;
         $article->publish = $request->publish;
         $article->save();
 
@@ -525,7 +527,7 @@ class ArticleController extends Controller
         $data['articles'] = Article::leftJoin('users', 'users.id', '=', 'articles.user_id')
             ->select('articles.*', 'users.is_assign as is_assign')
             ->where('articles.is_approved',2)
-            ->where('users.is_assign', auth()->user()->id)
+            ->where('users.created_by', auth()->user()->id)
             ->orderBy('id', 'desc')
             ->get();
 

@@ -73,7 +73,7 @@
                                                     <div class="mb-3">
                                                         <label for="Select Category" class="form-label">Select Category</label>
 
-                                                        <select name="category_id" id="" required class="form-control">
+                                                        <select name="category_id" id="category_id" required class="form-control">
                                                             <option value="">Select Category</option>
                                                             @foreach ($categories as $category )
                                                             <option value="{{$category->id}}">{{$category->name}}</option>
@@ -123,6 +123,8 @@
                                                 <div class="row">
                                                     <div class="col-lg-6">
                                                         <!-- Date View -->
+                                                      
+                                                    
                                                         <div class="mb-3">
                                                             <label class="form-label">Publish Date</label>
                                                             <input  value="{{date('Y-m-d')}}" required type="date" class="form-control" name="publish_date"  data-toggle="flatpicker" placeholder="June 9, 2023">
@@ -149,6 +151,15 @@
                                                             </div>
 
                                                         </div>
+                                                        
+                                                        <div class="mb-3 d-none" id="video_url">
+                                                            <label for="Video Url" class="form-label">Video Url</label>
+                                                                <input type="text"  value="{{old('videos')}}"    name="videos" class="form-control " placeholder="News Video Url" >
+                                                                    <div class="invalid-feedback">
+                                                                     Please enter a valid Url.
+                                                                    </div>
+                                                        </div>
+                                                        
 
                                                     </div>
 
@@ -176,8 +187,13 @@
 
                                         </div> <!-- end col-->
                                             <div class="col-xl-12">
+                                                           
+                                                            
                                                 <div class="mb-3">
                                                     <label for="project-overview" class="form-label">Article Content</label>
+                                                             @error('editor1')
+                                                                <div class="text-danger">Article Content is Required</div>
+                                                            @enderror
                                                     <textarea  value="{{old('editor1')}}" class="form-control" name="editor1" id="project-overview"  rows="5" placeholder="Article Content"></textarea>
 
                                                             <div class="invalid-feedback">
@@ -253,7 +269,6 @@
                     required: true,
                         maxWords: 150
                     }, 
-                    city: "required",
                     editor1:"required",
                     category_id: "required"
                  
@@ -287,6 +302,19 @@
     });
  </script>
 <script>
+
+    $("#category_id").on("change", function() {
+      var selectedValue = $(this).val();
+      if(selectedValue == 4)
+      {
+           $("#video_url").removeClass("d-none")
+          $("#video_url").prop("required", true);
+      }else{
+           $("#video_url").addClass("d-none")
+           $("#video_url").prop("required", false);
+      }
+    });
+    
 
     document.getElementById('addArticle').addEventListener('submit', function(event) {
         var fileUpload = document.getElementById('file-upload');

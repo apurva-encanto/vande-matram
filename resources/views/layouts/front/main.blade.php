@@ -73,7 +73,7 @@
                 var baseUrl = "{{ url('/') }}";
                 var selectedValue = $(this).val();
                 var url = baseUrl+'/'+selectedValue + '-login';
-                window.location.replace(url);
+                // window.location.replace(url);
             });
         </script>
         <script>

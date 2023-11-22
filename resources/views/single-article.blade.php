@@ -34,9 +34,17 @@
 
                                 <div class="post-content-area">
                                     <div class="post-media post-featured-image">
-                                        <a href="{{ asset('uploads/article_'.$article->user_id.'/'.$article->image)}}" class="gallery-popup cboxElement"><img
-                                         onerror="this.src='{{ asset('assets/images/default-img.jpg') }}';"
-                                                src="{{ asset('uploads/article_'.$article->user_id.'/'.$article->image)}}" class="single-content-img" alt="" /></a>
+                                        <a href="{{ $article->videos}}" class="gallery-popup cboxElement">
+                                            <img onerror="this.src='{{ asset('assets/images/default-img.jpg') }}';"
+                                                src="{{ asset('uploads/article_'.$article->user_id.'/'.$article->image)}}" class="single-content-img" alt="" />
+                                                <div class="single-video-icon">
+                                                    
+                                                    <i class="fa fa-play"></i>
+                                                </div>
+                                                                                      
+                                               
+                                               
+                                        </a>
                                     </div>
                                     <div class="entry-content">
                                      <b>@if(!empty($article->city)){{ $article->city }} : @endif </b>  {!! html_entity_decode($article->content) !!}
@@ -59,7 +67,7 @@
                                         <div class="col-md-12 mt-3 bg-white" style="padding: 2px;">
                                             <div class="widget color-default mb-3 ">
                                                 <h3 class="block-title sub-heading"><span>
-                              ప్రముఖ వార్తలు                  </span></h3>
+                                                          ప్రముఖ వార్తలు                  </span></h3>
 
                                                 <div class="list-post-block mb-3">
                                                     <ul class="list-post mb-3">
@@ -67,13 +75,22 @@
 
                                                         <!-- Li 1 end -->
                                                          @foreach ($popular_posts->take(4) as $key=>$post)
-                                                        <li class="clearfix">
+                                                        <li class="clearfix mt-1">
                                                             <div class="post-block-style post-float clearfix">
                                                                 <div class="post-thumb">
                                                                     <a href="{{url('news-'.$post->category_slug.'/'.$post->title_slug)}}">
                                                                         <img class="img-fluid"  onerror="this.src='{{ asset('assets/images/default-img.jpg') }}';"
                                                                             src="{{ asset('uploads/article_'.$post->user_id.'/'.$post->image)}}"
                                                                             alt="" />
+                                                                            
+                                                                              @if($post->category_id == 4)
+                                                                                 <a class="popup cboxElement"
+                                                                                       href="{{$post->videos}}?autoplay=1&amp;loop=1">
+                                                                                        <div class="video-icon">
+                                                                                          <i class="fa fa-play"></i>
+                                                                                       </div> 
+                                                                                    </a>
+                                                                                @endif    
                                                                     </a>
                                                                 </div>
                                                                 <!-- Post thumb end -->
@@ -122,12 +139,20 @@
                                                     <ul class="list-post mb-3">
                                                      @if(count($similar_posts) >0)
                                                      @foreach($similar_posts as $key=>$post)
-                                                        <li class="clearfix">
+                                                        <li class="clearfix mt-1">
                                                             <div class="post-block-style post-float clearfix">
                                                                 <div class="post-thumb">
                                                                     <a href="{{url('news-'.$post->category_slug.'/'.$post->title_slug)}}">
                                                                         <img class="img-fluid"  onerror="this.src='{{ asset('assets/images/default-img.jpg') }}';"
                                                                             src="{{ asset('uploads/article_'.$post->user_id.'/'.$post->image)}}" alt="" />
+                                                                            @if($post->category_id == 4)
+                                                                                 <a class="popup cboxElement"
+                                                                                       href="{{$post->videos}}?autoplay=1&amp;loop=1">
+                                                                                        <div class="video-icon">
+                                                                                          <i class="fa fa-play"></i>
+                                                                                       </div> 
+                                                                                    </a>
+                                                                                @endif   
                                                                     </a>
                                                                 </div>
                                                                 <!-- Post thumb end -->
@@ -191,6 +216,14 @@
                                                 <div class="post-thumb">
                                                     <a href="{{url('news-'.$post['category_slug'].'/'.$post['title_slug'])}}">
                                                         <img  onerror="this.src='{{ asset('assets/images/default-img.jpg') }}';" class="img-fluid" src="{{ asset('uploads/article_'.$post['user_id'].'/'.$post['image'])}}" alt="" />
+                                                                                @if($post['category_id'] == 4)
+                                                                                 <a class="popup cboxElement"
+                                                                                       href="{{$post['videos']}}?autoplay=1&amp;loop=1">
+                                                                                        <div class="video-icon">
+                                                                                          <i class="fa fa-play"></i>
+                                                                                       </div> 
+                                                                                    </a>
+                                                                                @endif    
                                                     </a>
                                                 </div>
                                                 <div class="post-content">
@@ -200,7 +233,7 @@
                                                     <div class="post-meta">
                                                         <span class="post-date">{{ getconvertedDate($post['publish_date']) }}</span>
                                                     </div>
-                                                    <p>{{getShortContent($post['title'])}}...</p>
+                                                    <p>{{getShortContent(html_entity_decode($post['content']))}}...</p>
                                                 </div>
                                                 <!-- Post content end -->
                                             </div>
@@ -215,6 +248,14 @@
                                                             <div class="post-thumb post-height">
                                                                 <a href="{{url('news-'.$post['category_slug'].'/'.$post['title_slug'])}}">
                                                                     <img   onerror="this.src='{{ asset('assets/images/default-img.jpg') }}';" class="img-fluid" src="{{ asset('uploads/article_'.$post['user_id'].'/'.$post['image'])}}" alt="" />
+                                                                    @if($post['category_id'] == 4)
+                                                                                 <a class="popup cboxElement"
+                                                                                       href="{{$post['videos']}}?autoplay=1&amp;loop=1">
+                                                                                        <div class="video-icon">
+                                                                                          <i class="fa fa-play"></i>
+                                                                                       </div> 
+                                                                                    </a>
+                                                                                @endif    
                                                                 </a>
                                                             </div>
 
@@ -246,6 +287,14 @@
                                                 <div class="post-thumb">
                                                     <a href="{{url('news-'.$post['category_slug'].'/'.$post['title_slug'])}}">
                                                         <img  onerror="this.src='{{ asset('assets/images/default-img.jpg') }}';" class="img-fluid" src="{{ asset('uploads/article_'.$post['user_id'].'/'.$post['image'])}}" alt="" />
+                                                        @if($post['category_id'] == 4)
+                                                                                 <a class="popup cboxElement"
+                                                                                       href="{{$post['videos']}}?autoplay=1&amp;loop=1">
+                                                                                        <div class="video-icon">
+                                                                                          <i class="fa fa-play"></i>
+                                                                                       </div> 
+                                                                                    </a>
+                                                                                @endif   
                                                     </a>
                                                 </div>
                                                 <div class="post-content">
@@ -255,7 +304,7 @@
                                                     <div class="post-meta">
                                                         <span class="post-date">{{ getconvertedDate($post['publish_date']) }}</span>
                                                     </div>
-                                                    <p>{{getShortContent($post['title'])}}...</p>
+                                                    <p>{{getShortContent(html_entity_decode($post['content']))}}...</p>
                                                 </div>
                                                 <!-- Post content end -->
                                             </div>
@@ -270,6 +319,14 @@
                                                             <div class="post-thumb post-height">
                                                                 <a href="{{url('news-'.$post['category_slug'].'/'.$post['title_slug'])}}">
                                                                     <img   onerror="this.src='{{ asset('assets/images/default-img.jpg') }}';" class="img-fluid" src="{{ asset('uploads/article_'.$post['user_id'].'/'.$post['image'])}}" alt="" />
+                                                                    @if($post['category_id'] == 4)
+                                                                                 <a class="popup cboxElement"
+                                                                                       href="{{$post['videos']}}?autoplay=1&amp;loop=1">
+                                                                                        <div class="video-icon">
+                                                                                          <i class="fa fa-play"></i>
+                                                                                       </div> 
+                                                                                    </a>
+                                                                                @endif   
                                                                 </a>
                                                             </div>
 

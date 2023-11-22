@@ -73,7 +73,7 @@
                                                     <div class="mb-3">
                                                         <label for="Select Category" class="form-label">Select Category</label>
 
-                                                        <select name="category_id" id="" required class="form-control">
+                                                        <select name="category_id" id="category_id" required class="form-control">
                                                             <option value="">Select Category</option>
                                                             @foreach ($categories as $category )
                                                             <option value="{{$category->id}}">{{$category->name}}</option>
@@ -87,7 +87,7 @@
                                                     <div class="mb-3">
                                                         <label class="form-label">City</label> <br/>
                                                         <div class="form-group">
-                                                            <input  value="" type="text" pattern="[A-Za-z ]+" required placeholder="Enter City" id=""  name="city" class="form-control">
+                                                            <input  value="" type="text" pattern="[A-Za-z ]+"  placeholder="Enter City" id=""  name="city" class="form-control">
                                                             
                                                             
                                                             <div class="invalid-feedback">
@@ -153,6 +153,13 @@
                                                             </div>
 
                                                         </div>
+                                                        <div class="mb-3 d-none" id="video_url">
+                                                            <label for="Video Url" class="form-label">Video Url</label>
+                                                                <input type="text"  value="{{old('videos')}}"    name="videos" class="form-control " placeholder="News Video Url" >
+                                                                    <div class="invalid-feedback">
+                                                                     Please enter a valid Url.
+                                                                    </div>
+                                                        </div>
 
                                                     </div>
 
@@ -182,6 +189,10 @@
                                             <div class="col-xl-12">
                                                 <div class="mb-3">
                                                     <label for="project-overview" class="form-label">Article Content</label>
+                                                            @error('editor1')
+                                                                <div class="text-danger">Article Content is Required</div>
+                                                            @enderror
+                                                            
                                                     <textarea  value="{{old('editor1')}}" class="form-control" name="editor1" id="project-overview"  rows="5" placeholder="Article Content"></textarea>
 
                                                             <div class="invalid-feedback">
@@ -257,7 +268,6 @@
                     required: true,
                         maxWords: 150 ,
                     }, 
-                    city: "required",
                     editor1:"required",
                     category_id: "required"
                  
@@ -430,6 +440,18 @@ document.querySelectorAll('.image-input').forEach(_ => {
     function redirectToRoute() {
         window.location.href = "{{ route('agent.article.list') }}";
     }
+    
+       $("#category_id").on("change", function() {
+      var selectedValue = $(this).val();
+      if(selectedValue == 4)
+      {
+           $("#video_url").removeClass("d-none")
+          $("#video_url").prop("required", true);
+      }else{
+           $("#video_url").addClass("d-none")
+           $("#video_url").prop("required", false);
+      }
+    });
 </script>
 
  @endpush
