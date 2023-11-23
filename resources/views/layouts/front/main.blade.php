@@ -27,6 +27,8 @@
                         <img src="{{ asset('assets/images-data/youtube.png')}}" alt="" />
                     </div>
                     <div class="right text-uppercase">
+                       <a class="text-white" style="margin-right:5px;" target="_blank" href="{{url('login')}}"><i class="fa fa-newspaper-o mx-1"></i> E Paper</a>
+
                        <a class="text-white" style="margin-right:5px;" target="_blank" href="{{url('login')}}">Login</a>
                         <select name="" id="loginUser">
                             <option value="" selected disabled>Change Language</option>

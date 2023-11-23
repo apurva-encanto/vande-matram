@@ -35,7 +35,11 @@ Route::get('/{user}-login', [LoginController::class, 'login'])->name('admin.logi
 
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
-Route::get('/admin-logincheck', [LoginController::class, 'logincheck'])->name('admin.logincheck');
+Route::get('/forgot-password', [LoginController::class, 'forgot_password'])->name('forgot');
+Route::get('/reset-password', [LoginController::class, 'reset_password'])->name('reset-password');
+Route::post('/admin-logincheck', [LoginController::class, 'logincheck'])->name('admin.logincheck');
+Route::post('/admin-forgotcheck', [LoginController::class, 'forgotcheck'])->name('admin.forgotCheck');
+Route::post('/admin-passwordChange', [LoginController::class, 'passwordChange'])->name('admin.passwordChange');
 
 Route::middleware(['auth', 'user-access:agent'])->group(function () {
 

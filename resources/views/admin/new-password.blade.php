@@ -39,7 +39,7 @@
                                 </div>
 
                        <div>
-                                    <p class="mb-4 mt-3">Enter your User Name and password to access {{ $user }} panel.</p>
+                                    <h4 class="mb-4 mt-3">Change Password</h4>
                                 </div>
 
                                 @if (session('error'))
@@ -54,45 +54,33 @@
                                 </div>
                                 @endif
 
-                                <form action="{{ route('admin.logincheck') }}" method="post" class=" mb-4 mt-3">
+                                <form id="newPassword" action="{{ route('admin.passwordChange') }}" method="post" class=" mb-4 mt-3">
                                     @csrf
-
+                                    <input type="hidden" name="email" value="{{ $_GET['email'] }}">
                                     <div class="mb-3">
-                                        <label for="emailaddress" class="form-label">User Email</label>
-                                        <input class="form-control" type="email" id="emailaddress" required="" name="email" value="{{ old('email') }}" placeholder="User Email">
-                                    @error('email')
+                                        <label for="password" class="form-label">Password</label>
+                                        <input class="form-control" type="password" required id="password"  name="password" value="{{ old('password') }}" placeholder="Password">
+                                    @error('password')
                                         <div class="text-danger mt-1">{{ $message }}</div>
                                     @enderror
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="password" class="form-label">Password</label>
-                                        <div class="input-group input-group-merge">
-                                            <input type="password" id="password" class="form-control" name="password" placeholder="Enter your password">
-                                            <div class="input-group-text" data-password="false">
-                                                <span class="password-eye"></span>
-                                            </div>
-                                        </div>
-
-                                         @error('password')
+                                        <label for="password" class="form-label">Confirm Password</label>
+                                        <input class="form-control" type="password" required id="cemailaddress"  name="confirm_password" value="{{ old('confirm_password') }}" placeholder="Confirm Password">
+                                    @error('password')
                                         <div class="text-danger mt-1">{{ $message }}</div>
-                                        @enderror
+                                    @enderror
                                     </div>
 
-                                    <div class="mb-3">
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="checkbox-signin" checked>
-                                            <label class="form-check-label" for="checkbox-signin">Remember me</label>
-                                        </div>
-                                    </div>
 
                                     <div class="text-center d-grid ">
-                                        <button class="btn btn-primary" type="submit" > Log In </button>
+                                        <button class="btn btn-primary" type="submit" > Send Email </button>
                                     </div>
 
                                 </form>
 
-                                <a href="{{url('/forgot-password')}}">Forgot your password?</a>
+                                <a href="{{url('/login')}}">Already a Member ? Login</a>
 
                             </div> <!-- end card-body -->
                         </div>
@@ -100,7 +88,7 @@
 
                         <div class="row mt-3">
                             <div class="col-12 text-center">
-                                <p> <a href="{{url('/forgot-password')}}" class="text-white ms-1">Forgot your password?</a></p>
+                                <p> <a href="{{url('/login')}}" class="text-white ms-1">Already a Member ? Login</a></p>
                                 {{-- <p class="text-white">Don't have an account? <a href="signin-signup.html" class="text-white ms-1"><b>Sign Up</b></a></p> --}}
                             </div> <!-- end col -->
                         </div>
@@ -124,6 +112,54 @@
 
         <!-- App js -->
         <script src="{{ asset('assets/js/app.min.js')}}"></script>
+
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js"></script>
+ <script>
+ $(document).ready(function($) {
+
+
+
+
+
+				$("#newPassword").validate({
+                rules: {
+                    password:  {
+                            required: true,
+                            minlength: 6 ,
+                            },
+                            confirm_password: {
+                                required: true,
+                                minlength: 6,
+                                equalTo: "#password"
+                            }
+                },
+                messages: {
+                    password: {
+                        required: "Password is required",
+                    },
+                    confirm_password:{
+                        required: "Confirm Password is required",
+
+                    }
+                },
+                 errorPlacement: function(error, element)
+        {
+            if ( element.is(":radio") )
+            {
+                error.appendTo( element.parents('.form-group') );
+            }
+            else
+            { // This is the default behavior
+                error.insertAfter( element );
+            }
+         },
+                submitHandler: function(form) {
+                    form.submit();
+                }
+
+            });
+    });
+ </script>
 
     </body>
 </html>

@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class LoginController extends Controller
 {
@@ -75,6 +77,38 @@ class LoginController extends Controller
        }
     }
 
+    public function forgot_password(Request $request)
+    {
+        return view('admin.forgot');
+    }
+    public function forgotcheck(Request $request)
+    {
+       $user=  User::where('email',$request->email)->first();
+       if(!empty($user))
+       {
+            $randomNumber = rand(100000, 999999);
+            // Encryption
+            $encryptedData = base64_encode($randomNumber);
+
+            User::where('email', $request->email)->update(['otp'=> $randomNumber]);
+
+            $data=['username'=> $user->name,'email'=> $request->email,'token'=> $encryptedData];
+            //see use statement
+            Mail::send('emails.forgot-password', $data, function ($message) {
+                $message->to('apurva.dixit@encantotek.in', 'abc')->subject('Password Reset Request');
+            });
+
+            return redirect()->back()->with('success', 'We have sent you an email. Please check your inbox.');
+
+
+
+
+       }else{
+
+            return redirect()->back()->with('error', 'User not Exists');
+       }
+    }
+
 
     public function logout(Request $request)
     {
@@ -82,5 +116,35 @@ class LoginController extends Controller
         $url= url('/') . '/'.auth()->user()->role.'-login';
         Auth::logout();
         return redirect($url)->with('success', 'You have been logged out successfully.');
+    }
+
+    public function reset_password(Request $request)
+    {
+
+        $user = User::where(['email' => $request->email])->first();
+        $decryptedData = base64_decode($request->token);
+        if($user->otp == $decryptedData){
+            return view('admin.new-password');
+
+        }else{
+
+            return redirect()->route('login')->with('error', 'You`re no authorized to access this url.');
+        }
+exit;
+
+    }
+
+    public function passwordChange(Request $request)
+    {
+
+        $user = User::where(['email' => $request->email])->first();
+        if(!empty($user))
+        {
+            User::where(['email' => $request->email])->update(['password'=>Hash::make($request->password)]);
+            return redirect()->route('login')->with('success', 'Password change successfully.Please Login.');
+        }else{
+            return redirect()->route('login')->with('error', 'You`re no authorized to access this url.');
+
+        }
     }
 }

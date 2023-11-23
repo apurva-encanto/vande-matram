@@ -14,6 +14,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use App\Mail\MyTestMail;
+use Illuminate\Support\Facades\Mail;
+
 
 class MainController extends Controller
 {
@@ -26,6 +29,7 @@ class MainController extends Controller
 
     public function index()
     {
+
         $data['top_news'] =  $this->getTopNewsArticles();
 
         $data['categories'] = Category::where(['is_delete' => '0', 'status' => 'active'])->orderBy('is_main', 'desc')->get();
@@ -88,8 +92,8 @@ class MainController extends Controller
            return redirect()->back()->with('error', 'Publish Article to View');
            exit;
          }
-            
-       
+
+
         $data['active_category'] = $category;
 
         Article::where('title_slug', $title)->increment('views');
@@ -113,14 +117,14 @@ class MainController extends Controller
     public function getArticleByCategory(Request $request, $id)
     {
         $data['active_category'] = 'home';
-        
-        
+
+
         $where['articles.is_approved'] = '1';
         $where['articles.status'] = 'active';
         $where['articles.is_delete'] = '0';
         $where['articles.publish'] = '1';
         if($id !='latest'){
-            
+
             $data['active_category'] =  $id;
             $where['articles.category_slug'] = $id;
         }

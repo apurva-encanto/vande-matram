@@ -10,7 +10,8 @@ use App\Models\JournalistDetail;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
-
+use App\Mail\MyTestMail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 class JournalistController extends Controller
 {
@@ -36,7 +37,7 @@ class JournalistController extends Controller
             'start_date' => 'required',
             'area' => 'required',
             'address' => 'required',
-            'file' => 'required|file|mimes:jpeg,png,jpg,gif|max:2048',
+            'file' => 'required|file|max:2048',
         ]);
 
         if ($validator->fails()) {
@@ -57,6 +58,8 @@ class JournalistController extends Controller
         $user->is_approved = 1;
         $user->device_token = ' ';
         $user->save();
+
+
 
                     $coverfile = $request->file('file');
                     $request->validate([
@@ -96,8 +99,16 @@ class JournalistController extends Controller
                     $agent->save();
                 }
             }
+                    // $data = ['username' => $input['first_name'] . ' ' . $input['last_name'],'email'=> $input['email'],'password'=> $input['password'],
+                    //'message_text'=>'You can now log in to your account using the following link:'];
+                    // //see use statement
+                    // Mail::send('emails.account', $data, function ($message) {
+                    //     $message->to('apurva.dixit@encantotek.in', 'abc')->subject('Account Creation Successful');
+                    // });
 
-            return redirect()->route('admin.journalist.list')->with('success', 'Journalist Save successfully!');
+
+
+            return redirect()->route('admin.journalist.list')->with('success', 'Journalist Save successfully! Mail Sent Successfully');
         } catch (\Exception $e) {
             // Handle the exception here
             $user_exists = User::find($user->id);
@@ -190,6 +201,28 @@ class JournalistController extends Controller
         }
 
         $userUpdate = User::find($id);
+
+        if($userUpdate->is_approved ==0 && $input['is_approved'] ==1)
+        {
+            $data = [
+                'username' => $input['first_name'] . ' ' . $input['last_name']];
+            //see use statement
+            Mail::send('emails.account-approve', $data, function ($message) {
+                $message->to('apurva.dixit@encantotek.in', 'abc')->subject('Account Approved - Welcome to Vandematram News');
+            });
+
+        }
+
+        if ($userUpdate->is_approved == 0 && $input['is_approved'] == 0 || $userUpdate->is_approved == 1 && $input['is_approved'] == 0 ) {
+            $data = [
+                'username' => $input['first_name'] . ' ' . $input['last_name']
+            ];
+            //see use statement
+            Mail::send('emails.account-reject', $data, function ($message) {
+                $message->to('apurva.dixit@encantotek.in', 'abc')->subject('Account Rejected');
+            });
+        }
+
         $userUpdate->name = $input['first_name'] . ' ' . $input['last_name'];
         $userUpdate->email = $input['email'];
         $userUpdate->phone = $input['phone'];
@@ -289,7 +322,7 @@ class JournalistController extends Controller
             'start_date' => 'required',
             'area' => 'required',
             'address' => 'required',
-            'file' => 'required|file|mimes:jpeg,png,jpg,gif|max:2048',
+            'file' => 'required|file|max:2048',
         ]);
 
         if ($validator->fails()) {
@@ -314,7 +347,7 @@ class JournalistController extends Controller
 
                     $coverfile = $request->file('file');
                     $request->validate([
-                      'file' => 'required|mimes:jpeg,png,jpg,webp|max:2048', // Validate file type and size
+                      'file' => 'required|max:2048', // Validate file type and size
                     ]);
                     // Generate a dynamic folder name based on user ID or any unique identifier
                     $dynamicFolderName = 'user_' . $user->id; // Example: 'user_1'
@@ -327,8 +360,6 @@ class JournalistController extends Controller
                     $fileName = '/' . time() . '_' . Str::random(10) . '_' . $coverfile->getClientOriginalName();
                    // Move the uploaded file to the destination directory
                    $coverfile->move($coverpath, $fileName);
-
-        try {
 
 
             $curentUser = JournalistDetail::where('user_id', auth()->user()->id)->first();
@@ -352,14 +383,16 @@ class JournalistController extends Controller
 
             User::where('id', $user->id)->update(['image' => $fileName]);
 
+                 $data = ['username' => $input['first_name'] . ' ' . $input['last_name'],'email'=> $input['email'],'password'=> $input['password'],
+                        'message_text'=> 'Once your account is approved, you will receive a confirmation email, and you can then log in to your account using the following link:'];
+                    //see use statement
+                    Mail::send('emails.account', $data, function ($message) {
+                        $message->to('apurva.dixit@encantotek.in', 'abc')->subject('Account Creation Successful - Awaiting Admin Approval');
+                    });
+
+
             return redirect()->route('manager.agent.list')->with('success', 'Agent Save successfully!');
-        } catch (\Exception $e) {
-            // Handle the exception here
-            $user_exists = User::find($user->id);
-            $user_exists->delete();
-            // Log the exception, display an error message, or redirect to an error page
-            return back()->with('error', 'Failed to create Agent user: ' . $e->getMessage());
-        }
+
     }
 
     public function listAgent()

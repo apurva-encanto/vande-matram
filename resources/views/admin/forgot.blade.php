@@ -39,7 +39,7 @@
                                 </div>
 
                        <div>
-                                    <p class="mb-4 mt-3">Enter your User Name and password to access {{ $user }} panel.</p>
+                                    <h4 class="mb-4 mt-3">Forgot Password</h4>
                                 </div>
 
                                 @if (session('error'))
@@ -54,45 +54,25 @@
                                 </div>
                                 @endif
 
-                                <form action="{{ route('admin.logincheck') }}" method="post" class=" mb-4 mt-3">
+                                <form action="{{ route('admin.forgotCheck') }}" method="post" class=" mb-4 mt-3">
                                     @csrf
 
                                     <div class="mb-3">
-                                        <label for="emailaddress" class="form-label">User Email</label>
+                                        <label for="emailaddress" class="form-label">Email</label>
                                         <input class="form-control" type="email" id="emailaddress" required="" name="email" value="{{ old('email') }}" placeholder="User Email">
                                     @error('email')
                                         <div class="text-danger mt-1">{{ $message }}</div>
                                     @enderror
                                     </div>
 
-                                    <div class="mb-3">
-                                        <label for="password" class="form-label">Password</label>
-                                        <div class="input-group input-group-merge">
-                                            <input type="password" id="password" class="form-control" name="password" placeholder="Enter your password">
-                                            <div class="input-group-text" data-password="false">
-                                                <span class="password-eye"></span>
-                                            </div>
-                                        </div>
-
-                                         @error('password')
-                                        <div class="text-danger mt-1">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="checkbox-signin" checked>
-                                            <label class="form-check-label" for="checkbox-signin">Remember me</label>
-                                        </div>
-                                    </div>
 
                                     <div class="text-center d-grid ">
-                                        <button class="btn btn-primary" type="submit" > Log In </button>
+                                        <button class="btn btn-primary" type="submit" > Send Email </button>
                                     </div>
 
                                 </form>
 
-                                <a href="{{url('/forgot-password')}}">Forgot your password?</a>
+                                <a href="{{url('/login')}}">Already a Member ? Login</a>
 
                             </div> <!-- end card-body -->
                         </div>
@@ -100,7 +80,7 @@
 
                         <div class="row mt-3">
                             <div class="col-12 text-center">
-                                <p> <a href="{{url('/forgot-password')}}" class="text-white ms-1">Forgot your password?</a></p>
+                                <p> <a href="{{url('/login')}}" class="text-white ms-1">Already a Member ? Login</a></p>
                                 {{-- <p class="text-white">Don't have an account? <a href="signin-signup.html" class="text-white ms-1"><b>Sign Up</b></a></p> --}}
                             </div> <!-- end col -->
                         </div>
