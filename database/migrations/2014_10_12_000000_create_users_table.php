@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('device_token');
             $table->string('created_by')->nullable();
             $table->string('is_approved')->nullable();
-            $table->string('device_token');
+            $table->string('image')->nullable();
             $table->integer('otp')->nullable();
             $table->integer('notify')->default('0');
             $table->rememberToken();

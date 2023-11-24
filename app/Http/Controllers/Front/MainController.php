@@ -162,6 +162,15 @@ class MainController extends Controller
         return view('about-us', $data);
     }
 
+    public function epaper(Request $request)
+    {
+        $data['active_category'] = 'home';
+        $data['categories'] = Category::where(['is_delete' => '0', 'status' => 'active'])->get();
+        $data['top_news'] =  $this->getTopNewsArticles();
+        return view('epaper', $data);
+    }
+
+
 
 
 }

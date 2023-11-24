@@ -1,0 +1,143 @@
+body {
+    background: #e3e3e3;
+}
+
+.ep-header-title {
+    font-size: 14px;
+}
+
+.ep-main-section {
+    margin-top: 72px;
+}
+
+.ep-nav-page-dropdown {
+    height: 270px;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.ep-zoom-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.ep-zoom-button i {
+    width: 32px;
+    padding: 8px;
+}
+
+.ep-zoom-button span {
+    margin: 0;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    padding: 5px 10px;
+}
+
+.ep-header-nav-link {
+    /* color:#fff; */
+    font-weight: 700;
+}
+
+.ep-header {
+    /* background: #474544 !important; */
+}
+
+.fixed-column {
+    position: sticky;
+    top: 0;
+    height: 80vh;
+    overflow-y: auto;
+}
+
+.scrollable-column {
+    overflow-y: auto;
+    max-height: 80vh;
+
+}
+
+/* Custom scrollbar styles */
+.scrollable-column::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+.scrollable-column::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.scrollable-column::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 6px;
+    border: 3px solid #f1f1f1;
+}
+
+.scrollable-column::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
+@media screen and (max-width: 768px) {
+    .fixed-column {
+        position: absolute;
+        height: 0;
+        display: none;
+    }
+
+    .scrollable-column {
+        margin-top: 10px;
+        overflow-y: auto;
+        max-height: 80vh;
+    }
+
+    .pagination {
+        overflow-x: auto;
+        justify-content: left !important;
+    }
+
+        .pagination::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+        }
+}
+
+.ep-content-button {
+    background: #fff;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    padding: 16px;
+    border: 1px solid #fff;
+    position: fixed;
+    cursor: pointer;
+}
+
+.scrollable-column img {
+    width: 100%;
+    height: 80vh;
+    cursor:grab;
+}
+
+.date-input{
+            top: 0;
+            left: 0;
+            height: 100%;
+            border: none;
+            background-color: transparent;
+            color: transparent;
+}
+
+.pagination span{
+        font-weight: 700;
+        font-size: 14px;
+        padding: 0 14px;
+        color: grey;
+}
+
+
+.pagination-active{
+  color: #fff !important;
+  background: #474544;
+  border-radius: 50%;
+}

@@ -131,21 +131,21 @@ a {
         display: none;
         /* Hide the border-right on mobile view */
     }
-    
+
     .header{
         height:60px;
     }
-    
-          
+
+
 .right-border{
-    
+
     border:none !important;
 }
 .bottom-border{
     border:none !important;
 }
 
-.ad-header 
+.ad-header
 {
     width:100%;
     height:50px;
@@ -188,7 +188,7 @@ a {
         .feature-card {
             height: 400px;
         }
-  
+
 }
 
 .nav-header {
@@ -508,7 +508,7 @@ a.post-cat {
     margin-top: -40px;
 }
 .single-video-icon{
-    
+
     position: absolute;
     left: 34%;
     top: 22%;
@@ -589,14 +589,14 @@ a.post-cat {
     font-weight:600;
 }
 
-.ad-header 
+.ad-header
 {
     width:100%;
     height:100px;
 }
 
 .right-border{
-    
+
     border-right:1px solid #ccc;
 }
 .bottom-border{

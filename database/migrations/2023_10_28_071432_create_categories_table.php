@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->string('meta_title')->nullable();
             $table->text('meta_description')->nullable();
-            $table->integer('is_main', 10)->default('0');
+            $table->integer('is_main')->default(0);
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->enum('is_delete', ['0', '1'])->default('0');
             $table->timestamps();
