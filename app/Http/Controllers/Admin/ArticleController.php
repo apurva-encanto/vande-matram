@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Article;
+use Validator;
 use App\Models\Ad;
+use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Support\Str;
+use App\Models\ePaperDetail;
+use App\Models\ePaperImages;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Validator;
 use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller
@@ -242,7 +244,7 @@ class ArticleController extends Controller
             ->leftJoin('categories', 'categories.id', '=', 'articles.category_id')
             ->orderBy('articles.id', 'desc')
             ->get();
-   
+
         return view('manager.article.list', $data);
     }
 
@@ -534,30 +536,30 @@ class ArticleController extends Controller
 
         return view('manager.article.pending', $data);
     }
-    
+
     public function addAdvertise()
     {
         $data['advertise']=Ad::all();
         return view('admin.advertise.add',$data);
     }
-    
+
     public function editAdvertise(Request $request)
     {
           if (!empty($request->file('main_header'))) {
                     $coverfile = $request->file('main_header');
-                    
+
                      $rules = [
                         'main_header' => 'required|image',
                     ];
-                
+
                     // Custom error messages
                     $messages = [
                         'main_header.dimensions' => 'The image must be exactly 700 pixels in width and 80 pixels in height.',
                     ];
-                    
+
                      // Validate the request
                         $validator = Validator::make($request->all(), $rules, $messages);
-                    
+
                         // Check if validation fails
                         if ($validator->fails()) {
                             return redirect()->back()->withErrors($validator)->withInput();
@@ -575,12 +577,78 @@ class ArticleController extends Controller
 
                   // Move the uploaded file to the destination directory
                   $coverfile->move($coverpath, $fileName);
-                  
+
                   Ad::where('position','main_header')->update(['image'=>$fileName]);
-                  
+
                   return redirect()->route('admin.advertise')->with('success', 'Ad Image Uploaded Successfuly');
           }
 
+
+    }
+
+    public function addEpaper()
+    {
+        return view('admin.epaper.add');
+    }
+    public function storeEpaper(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'epaper_date' => 'required',
+            'epaper_city' => 'required',
+            'files' => 'required',
+            ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+        $ePaperDetail= new ePaperDetail();
+        $ePaperDetail->user_id=auth()->user()->id;
+        $ePaperDetail->date=$request->epaper_date;
+        $ePaperDetail->place=$request->epaper_city;
+        $ePaperDetail->is_download = $request->is_download;
+        $ePaperDetail->is_premium = 0;
+        $ePaperDetail->status = 1;
+        $ePaperDetail->is_delete = 0;
+        $ePaperDetail->save();
+
+        $coverfiles = $request->file('files');
+
+        foreach($coverfiles as $image)
+        {
+            $dynamicFolderName = 'epaper';
+            $coverpath = public_path('uploads/' . $dynamicFolderName);
+            // Ensure the directory exists, create it if not
+            if (!file_exists($coverpath)) {
+                mkdir($coverpath, 0755, true);
+            }
+            // Generate a unique file name
+            $fileName = '/' . time() . '_' . Str::random(10) . '_' . $image->getClientOriginalName();
+            $ePaperImages = new ePaperImages();
+            $ePaperImages->paper_id = $ePaperDetail->id;
+            $ePaperImages->image = $fileName;
+            $ePaperImages->is_delete = 0;
+            $ePaperImages->save();
+            $image->move($coverpath, $fileName);
+       }
+
+        return redirect()->route('admin.epaper.list')->with('success', 'E-Paper Added Successfuly');
+
+    }
+
+    public function listEpaper()
+    {
+        $data['lists']= ePaperDetail::all();
+        return view('admin.epaper.list',$data);
+    }
+    public function editEpaper($id)
+    {
+
+        $data['list'] = ePaperDetail::where('id',$id)->first();
+        $data['eimages'] = ePaperImages::where('paper_id', $id)->get();
+
+        return view('admin.epaper.edit', $data);
 
     }
 }

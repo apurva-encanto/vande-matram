@@ -62,14 +62,14 @@
                                                 <form id="addArticle" method="post" enctype="multipart/form-data"  action="{{ route('admin.journalist.create')}}" >
                                                     @csrf
                                                     <div class="mb-3">
-                                                        <label for="First Name" class="form-label">First Name</label>
+                                                        <label for="First Name" class="form-label">First Name <span class="text-danger"> *</span></label>
                                                         <input type="text"  value="{{old('first_name')}}"  name="first_name" class="form-control" placeholder="First Name" required>
                                                             <div class="invalid-feedback">
                                                             Please enter a First Name.
                                                             </div>
                                                     </div>
                                                     <div class="mb-3">
-                                                        <label for="Last Name" class="form-label">Last Name</label>
+                                                        <label for="Last Name" class="form-label">Last Name <span class="text-danger"> *</span></label>
                                                         <input type="text"  value="{{old('last_name')}}"   name="last_name" class="form-control" placeholder="Last Name" required>
                                                            <div class="invalid-feedback">
                                                             Please enter a Last Name.
@@ -77,7 +77,7 @@
                                                     </div>
 
                                                     <div class="mb-3">
-                                                        <label for="Email Id" class="form-label">Email Id</label>
+                                                        <label for="Email Id" class="form-label">Email Id <span class="text-danger"> *</span></label>
                                                         <input type="email"  value="{{old('email')}}" name="email" class="form-control" placeholder="Email Id" required>
                                                         @error('email')
                                                             <div class="text-danger mt-1">{{ $message }}</div>
@@ -88,7 +88,7 @@
                                                     </div>
 
                                                     <div class="mb-3">
-                                                        <label for="Password" class="form-label">Password</label>
+                                                        <label for="Password" class="form-label">Password <span class="text-danger"> *</span></label>
                                                         <input type="password" value="{{old('password')}}" minlength="5" name="password" class="form-control" placeholder="Password" required>
                                                             <div class="invalid-feedback">
                                                             Please enter a Password.
@@ -99,7 +99,7 @@
                                                     </div>
 
                                                     <div class="mb-3">
-                                                        <label for="Phone Number" class="form-label">Phone Number</label>
+                                                        <label for="Phone Number" class="form-label">Phone Number <span class="text-danger"> *</span></label>
                                                         <input type="text" value="{{old('phone')}}"   name="phone" class="form-control" placeholder="Phone Number" required>
                                                             <div class="invalid-feedback">
                                                               Please enter a Phone Number.
@@ -109,7 +109,7 @@
                                                             @enderror
                                                     </div>
                                                     <div class="mb-3">
-                                                        <label class="form-label">Role</label> <br/>
+                                                        <label class="form-label">Role <span class="text-danger"> *</span></label> <br/>
                                                         <div class="form-check form-check-inline">
                                                             <input  value="manager" type="radio" id="customRadio1" required name="role" class="form-check-input">
                                                             <label class="form-check-label" for="customRadio1">City Manager</label>
@@ -122,7 +122,7 @@
 
 
                                                     <div class="mb-3">
-                                                        <label for="Last Name" class="form-label">Area</label>
+                                                        <label for="Last Name" class="form-label">Area <span class="text-danger"> *</span></label>
                                                         <input type="text" value="{{old('area')}}"  name="area" class="form-control" required placeholder="Area">
 
                                                                 <div class="invalid-feedback">
@@ -205,7 +205,7 @@
 
                                                 </div>
                                                 <div class="my-3 mt-xl-0">
-                                                <label for="projectname" class="mb-0 form-label">Photo</label>
+                                                <label for="projectname" class="mb-0 form-label">Photo <span class="text-danger"> *</span></label>
 
                                                      <p class="text-muted font-14"></p>
                                                         <label class="image-input">
@@ -268,34 +268,34 @@
  <script src="{{ asset('assets/libs/select2/js/select2.min.js')}}"></script>
  <script src="{{asset('assets/libs/quill/quill.min.js')}}"></script>
  <script src="{{ asset('assets/js/pages/add-product.init.js')}}"></script>
- 
+
   <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js"></script>
  <script>
  $(document).ready(function($) {
-     
+
         // Custom validation method for max words
     $.validator.addMethod("maxWords", function(value, element, params) {
         return this.optional(element) || value.match(/\b\w+\b/g).length <= params;
     }, "Please enter no more than {0} words.");
-    
+
         // Custom validation method for minimum words
     $.validator.addMethod("minWords", function(value, element, params) {
         return this.optional(element) || value.match(/\b\w+\b/g).length >= params;
     }, "Please enter at least {0} words.");
-    
-        
+
+
 				$("#addArticle").validate({
                 rules: {
                     first_name:  {
                     required: true,
                         maxWords: 5 , // Custom rule to limit the number of words
-                         minWords: 1 
-                    }, 
+                         minWords: 1
+                    },
                     last_name:  {
                     required: true,
                         maxWords: 5 , // Custom rule to limit the number of words
-                         minWords: 1 
-                    }, 
+                         minWords: 1
+                    },
                      password: {
                         required: true,
                         minlength: 6
@@ -312,21 +312,21 @@
                           required: true,
                           number: true
                     }
-                 
+
                 },
                 messages: {
                     first_name: {
                         required: "First Name is required",
                         maxWords: "Please enter no more than 150 words",
                          minWords: "Please enter at least 5 words"
-                    },     
-                    
+                    },
+
                      last_name: {
                         required: "Last Name is required",
                         maxWords: "Please enter no more than 150 words",
                          minWords: "Please enter at least 5 words"
-                    },   
-                    
+                    },
+
                      password: {
                         required: "Please provide a password",
                         minlength: "Your password must be at least 6 characters long"
@@ -335,27 +335,27 @@
                           required: "Please enter a numeric value",
                           number: "Please enter a valid number"
                     },
-                    
-                
+
+
                   city: "Please enter your city",
                   area: "Please enter your area",
                   category_id: "Please select Category"
                 },
-                 errorPlacement: function(error, element) 
+                 errorPlacement: function(error, element)
         {
-            if ( element.is(":radio") ) 
+            if ( element.is(":radio") )
             {
                 error.appendTo( element.parents('.form-group') );
             }
-            else 
-            { // This is the default behavior 
+            else
+            { // This is the default behavior
                 error.insertAfter( element );
             }
          },
                 submitHandler: function(form) {
                     form.submit();
                 }
-                
+
             });
     });
  </script>
@@ -385,7 +385,7 @@ $(document).ready(function(){
             $('.file-error').removeClass('d-none')
         }
     });
-    
+
 function ImageInput(element){
   // Variables
   var $wrapper = element;

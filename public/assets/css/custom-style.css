@@ -124,7 +124,7 @@ body {
     background-color: #143F76 !important;
     padding: auto;
   }
-  
+
   .error{
       color:red;
       font-size:12px;
@@ -139,3 +139,22 @@ body {
     display:none;
     }
 }
+
+.imageThumb {
+    width: 150px;
+}
+
+ .pip {
+     position: relative;
+ }
+
+ .remove {
+     position: absolute;
+     top: 0;
+     right: 0;
+     cursor: pointer;
+     padding: 5px;
+     color: white;
+    border-radius: 50%;
+     /* Optional: Set text color */
+ }

@@ -62,7 +62,7 @@
                                                 <form class="needs-validation" method="post" enctype="multipart/form-data" novalidate action="{{ route('admin.category.create')}}" >
                                                     @csrf
                                                     <div class="mb-3">
-                                                        <label for="Category Name" class="form-label">Category Name</label>
+                                                        <label for="Category Name" class="form-label">Category Name <span class="text-danger"> *</span></label>
                                                         <input type="text"  value="{{old('name')}}"  name="name" class="form-control" placeholder="Category Name" required>
                                                         @error('name')
                                                         <div class="text-danger">{{ $message }}</div>

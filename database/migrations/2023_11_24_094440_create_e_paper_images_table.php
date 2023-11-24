@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('e_paper_images', function (Blueprint $table) {
             $table->id();
+            $table->string('paper_id');
+            $table->string('image');
+            $table->string('is_delete');
             $table->timestamps();
         });
     }

@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('user_id')->nullable();
             $table->string('date');
             $table->string('place');
+            $table->string('is_download');
+            $table->string('is_premium');
             $table->string('status');
             $table->string('is_delete');
             $table->timestamps();

@@ -86,6 +86,26 @@
                     </ul>
                 </div>
             </li>
+
+            <li>
+                <a href="#Epaper" data-bs-toggle="collapse">
+                    <i class="mdi mdi-clipboard-multiple-outline"></i>
+                    <span>  E-Paper </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse " id="Epaper">
+                    <ul class="nav-second-level">
+                        <li>
+                            <a href="{{route('admin.epaper.add')}}">Add E-paper</a>
+                        </li>
+                        <li>
+                            <a href="{{route('admin.epaper.list')}}">Epaper's List</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </li>
+
             <li>
                 <a href="{{route('admin.advertise')}}"  >
                     <i class="mdi  mdi-file-image"></i>

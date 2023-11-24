@@ -83,7 +83,15 @@ Route::prefix('admin')->middleware(['auth', 'user-access:admin'])->group(functio
         Route::delete('/delete/{id}', [ArticleController::class, 'deleteArticle'])->name('admin.article.delete');
     });
 
+        Route::prefix('e-paper')->group(function () {
 
+             Route::get('/add', [ArticleController::class, 'addEpaper'])->name('admin.epaper.add');
+             Route::get('/list', [ArticleController::class, 'listEpaper'])->name('admin.epaper.list');
+             Route::post('/create', [ArticleController::class, 'storeEpaper'])->name('admin.epaper.create');
+             Route::get('/edit/{id}', [ArticleController::class, 'editEpaper'])->name('admin.epaper.edit');
+             Route::delete('/delete/{id}', [ArticleController::class, 'deleteEpaper'])->name('admin.epaper.delete');
+
+        });
     Route::prefix('category')->group(function () {
         Route::get('/list', [CategoryController::class, 'listCategory'])->name('admin.category.list');
         Route::get('/add', [CategoryController::class, 'addCategory'])->name('admin.category.add');
